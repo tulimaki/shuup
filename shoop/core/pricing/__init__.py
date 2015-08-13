@@ -6,6 +6,9 @@
 # This source code is licensed under the AGPLv3 license found in the
 # LICENSE file in the root directory of this source tree.
 from __future__ import unicode_literals
+import abc
+import six
+
 """
 Shoop modular product pricing functionality.
 
@@ -48,9 +51,11 @@ from django.utils.encoding import force_bytes
 from django.utils.timezone import now
 
 from .price import Price, TaxfulPrice, TaxlessPrice
+from .price_info import PriceInfo
 
 __all__ = [
     "Price",
+    "PriceInfo",
     "PricingContext",
     "PricingModule",
     "TaxfulPrice",
@@ -90,10 +95,9 @@ class PricingContext(object):
     cache_key = property(get_cache_key)
 
 
-class PricingModule(object):
+class PricingModule(six.with_metaclass(abc.ABCMeta)):
     identifier = None
     name = None
-
     pricing_context_class = PricingContext
 
     def get_context(self, context):
@@ -116,26 +120,13 @@ class PricingModule(object):
     def get_context_from_data(self, **context_data):
         return self.pricing_context_class(**context_data)
 
-    def get_price(self, context, product_id, quantity=1):
+    @abc.abstractmethod
+    def get_price_info(self, context, product, quantity=1):
         """
-        Get context-specific Price for the given product and quantity.
-
-        May return TaxlessPrice or TaxfulPrice.
-
-        :type context: PricingContext
-        :rtype: Price
+        :param product: `Product` object or id of `Product`
+        :type product: `Product` or int
         """
-        return TaxlessPrice(0)
-
-    def get_base_price(self, product_id):
-        """
-        Get base Price for the given product.
-
-        May return TaxlessPrice or TaxfulPrice.
-
-        :rtype: Price
-        """
-        return TaxlessPrice(0)
+        pass
 
     def get_pricing_steps(self, context, product_id):
         """
@@ -155,15 +146,18 @@ class PricingModule(object):
         """
         return [(0, TaxlessPrice(0))]
 
-    def get_prices(self, context, product_ids, quantity=1):
-        return {
-            product_id: self.get_price(context, product_id=product_id, quantity=quantity)
-            for product_id in product_ids
-        }
+    def get_price_infos(self, context, products, quantity=1):
+        """
+        :param products: a list of `Product`s or id's
+        :type products:  list
+        """
+        if not all(isinstance(item, six.integer_types) for item in products):
+            product_ids = [product.pk for product in products]
+        else:
+            product_ids = products
 
-    def get_base_prices(self, product_ids):
         return {
-            product_id: self.get_base_price(product_id=product_id)
+            product_id: self.get_price_info(context=context, product=product_id, quantity=quantity)
             for product_id in product_ids
         }
 

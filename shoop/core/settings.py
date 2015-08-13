@@ -136,3 +136,6 @@ SHOOP_TELEMETRY_ENABLED = True
 
 #: The submission URL for Shoop's telemetry (statistics) system
 SHOOP_TELEMETRY_URL = "https://telemetry.shoop.io/collect/"
+
+#: Defines whether the default prices for products are assumed to be taxful or taxless.
+SHOOP_DEFAULT_PRICES_INCLUDE_TAX = False

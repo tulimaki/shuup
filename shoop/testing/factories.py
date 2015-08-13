@@ -15,6 +15,7 @@ from decimal import Decimal
 import factory
 import factory.fuzzy as fuzzy
 import faker
+from shoop_tests.utils import apply_request_middleware
 import six
 from django.conf import settings
 from django.core.files.base import ContentFile
@@ -393,7 +394,7 @@ def get_completed_order_status():
     return OrderStatus.objects.get_default_complete()
 
 
-def create_product(sku, shop=None, supplier=None):
+def create_product(sku, shop=None, supplier=None, default_price=None):
     product = Product(
         type=get_default_product_type(),
         tax_class=get_default_tax_class(),
@@ -411,8 +412,11 @@ def create_product(sku, shop=None, supplier=None):
     product.save()
     if shop:
         sp = ShopProduct.objects.create(product=product, shop=shop)
+        if default_price:
+            sp.default_price = default_price
         if supplier:
             sp.suppliers.add(supplier)
+        sp.save()
 
     return product
 
@@ -434,9 +438,14 @@ def create_order_with_product(product, supplier, quantity, taxless_unit_price, t
     order = create_empty_order()
     order.full_clean()
     order.save()
+
+    request = apply_request_middleware(RequestFactory().get("/"))
+
     for x in range(n_lines):
         product_order_line = OrderLine(order=order)
-        update_order_line_from_product(request=None, order_line=product_order_line, product=product, quantity=quantity,
+        update_order_line_from_product(request=request,
+                                       order_line=product_order_line,
+                                       product=product, quantity=quantity,
                                        supplier=supplier)
         product_order_line.unit_price = TaxlessPrice(taxless_unit_price)
         product_order_line.save()
@@ -548,8 +557,11 @@ def create_random_order(customer=None, products=(), completion_probability=0):
     if not customer:
         raise ValueError("No valid contacts")
 
-    request = RequestFactory().get("/")
-    request.customer = customer
+    shop = get_default_shop()
+
+    request = apply_request_middleware(RequestFactory().get("/"),
+                                       customer=customer)
+
     context = PriceTaxContext.from_request(request)
     source = OrderSource()
     source.customer = customer
@@ -563,7 +575,7 @@ def create_random_order(customer=None, products=(), completion_probability=0):
         source.shipping_address = create_random_address()
     source.order_date = now() - datetime.timedelta(days=random.uniform(0, 400))
 
-    source.shop = Shop.objects.first()
+    source.shop = shop
     source.language = customer.language
     source.status = get_initial_order_status()
 

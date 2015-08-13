@@ -47,8 +47,7 @@ class Populator:
             from shoop.simple_pricing.models import SimpleProductPrice
             SimpleProductPrice.objects.create(
                 product=product,
-                price=random.randint(15, 340),
-                includes_tax=False,
+                price=random.randint(15, 340)
             )
 
     def populate_if_required(self):

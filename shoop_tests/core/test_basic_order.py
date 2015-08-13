@@ -69,9 +69,11 @@ def create_order(request, creator, customer, product):
 
 @pytest.mark.django_db
 def test_basic_order(rf, admin_user):
+
     request = rf.get('/')
+    request.shop = get_default_shop()
     product = get_default_product()
-    SimpleProductPrice.objects.create(product=product, group=None, price=Decimal("100.00"), includes_tax=False)
+    SimpleProductPrice.objects.create(product=product, group=None, price=Decimal("100.00"))
     customer = get_person_contact(admin_user)
     for x in range(10):
         create_order(request, creator=admin_user, customer=customer, product=product)

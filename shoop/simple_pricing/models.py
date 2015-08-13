@@ -18,7 +18,6 @@ class SimpleProductPrice(models.Model):
     shop = models.ForeignKey("shoop.Shop", blank=True, null=True, db_index=True)
     group = models.ForeignKey("shoop.ContactGroup", blank=True, null=True, db_index=True)
     price = MoneyField(default=0)
-    includes_tax = models.BooleanField(default=True)
 
     # TODO: (TAX) Check includes_tax consistency (see below)
     #
@@ -39,5 +38,5 @@ class SimpleProductPrice(models.Model):
             self.shop_id,
             self.group_id,
             self.price,
-            self.includes_tax,
+            self.shop.prices_include_tax
         )

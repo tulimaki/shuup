@@ -7,14 +7,16 @@
 # LICENSE file in the root directory of this source tree.
 from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
+from shoop.core.models import ShopProduct
 
-from shoop.core.pricing import PricingContext, PricingModule, TaxfulPrice, TaxlessPrice
+from shoop.core.pricing import PriceInfo, PricingContext, PricingModule, TaxfulPrice, TaxlessPrice
 
 from .models import SimpleProductPrice
+import six
 
 
 class SimplePricingContext(PricingContext):
-    REQUIRED_VALUES = ("customer_group_ids", "shop_id")
+    REQUIRED_VALUES = ("customer_group_ids", "shop")
     customer_group_ids = ()
     shop_id = None
 
@@ -29,50 +31,52 @@ class SimplePricingModule(PricingModule):
         customer = getattr(request, "customer", None)
         shop = getattr(request, "shop", None)
 
+        assert shop is not None
+
         if not customer or customer.is_anonymous:
             customer_group_ids = []
         else:
             customer_group_ids = sorted(customer.groups.all().values_list("id", flat=True))
 
         return self.pricing_context_class(
-            shop_id=(shop.pk if shop else None),
+            shop=(shop if shop else None),
             customer_group_ids=customer_group_ids
         )
 
-    def get_price(self, context, product_id, quantity=1):
-        # TODO: SimplePricingModule: Implement caching that works
+    def get_price_info(self, context, product, quantity=1):
 
-        filter = Q(price__gt=0, product_id=product_id)
+        if isinstance(product, six.integer_types):
+            product_id = product
+            shop_product = ShopProduct.objects.get(product_id=product_id, shop_id=context.shop.pk)
+        else:
+            shop_product = product.get_shop_instance(context.shop)
+            product_id = product.pk
+
+        default_price = shop_product.default_price
+
+        includes_tax = context.shop.prices_include_tax
 
         if context.customer_group_ids:
-            filter &= (Q(group__id__in=context.customer_group_ids) | Q(group__isnull=True))
+            filter = Q(price__gt=0, product=product_id, shop=context.shop, group__in=context.customer_group_ids)
+            result = (
+                SimpleProductPrice.objects.filter(filter)
+                .order_by("price")[:1]
+                .values_list("price", flat=True)
+            )
         else:
-            filter &= Q(group__isnull=True)
+            result = None
 
-        if context.shop_id:
-            filter &= (Q(shop_id=context.shop_id) | Q(shop__isnull=True))
+        if result:
+            price = result[0]
+            if default_price > 0:
+                price = min([default_price, price])
         else:
-            filter &= Q(shop__isnull=True)
+            price = default_price
 
-        result = (
-            SimpleProductPrice.objects.filter(filter)
-            .order_by("price")[:1]
-            .values_list("price", "includes_tax")
+        base_price = price
+
+        price_cls = TaxfulPrice if includes_tax else TaxlessPrice
+        return PriceInfo(
+            price=price_cls(price),
+            base_price=price_cls(base_price)
         )
-
-        (price, includes_tax) = result[0] if result else (0, False)
-        return _create_price(price, includes_tax)
-
-    def get_base_price(self, product):
-        product_price_model = SimpleProductPrice.objects.filter(product=product, group=None).first()
-        if product_price_model:
-            return _create_price(product_price_model.price, product_price_model.includes_tax)
-
-        return _create_price(0, includes_tax=False)
-
-
-def _create_price(price, includes_tax):
-    if includes_tax:
-        return TaxfulPrice(price)
-    else:
-        return TaxlessPrice(price)
