@@ -6,6 +6,7 @@
 # LICENSE file in the root directory of this source tree.
 
 from shoop.apps import AppConfig
+from shoop.themes.classic_gray.views.product_preview import product_quick_view
 from shoop.xtheme.theme import Theme
 
 
@@ -13,6 +14,12 @@ class ClassicGrayTheme(Theme):
     identifier = "shoop.themes.classic_gray"
     name = "Shoop Classic Gray Theme"
     author = "Juha Kujala"
+    views = {
+    	"preview": product_quick_view
+    }
+
+    def get_view(self, view_name):
+    	return self.views.get(view_name)
 
 
 class ClassicGrayThemeAppConfig(AppConfig):

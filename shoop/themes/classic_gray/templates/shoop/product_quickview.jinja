@@ -1,6 +1,4 @@
-{# TODO: Make this actually work #}
-{% set productid = 30 %}
-<div class="product-preview-modal fade" id="product-{{ productid }}-modal" tabindex="-1" role="dialog" aria-labelledby="product-{{ productid }}-preview">
+<div class="product-preview-modal fade" id="product-{{ product.id }}-modal" tabindex="-1" role="dialog" aria-labelledby="product-{{ productid }}-preview">
     <div class="product-preview-modal-dialog" role="document">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <div class="content" id="product-{{ productid }}-preview">
@@ -25,5 +23,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
 </div>
+{% endblock %}

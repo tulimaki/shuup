@@ -32,6 +32,7 @@ INSTALLED_APPS = add_enabled_addons(SHOOP_ENABLED_ADDONS_FILE, (
     'filer',
     'easy_thumbnails',
     'shoop.core',
+    'shoop.themes.classic_gray',
     'shoop.simple_supplier',
     'shoop.default_tax',
     'shoop.front',

@@ -25,6 +25,7 @@ def _get_view_by_name(theme, view_name):
     view = theme.get_view(view_name)
     if hasattr(view, "as_view"):  # Handle CBVs
         view = view.as_view()
+
     if view and not callable(view):
         raise ImproperlyConfigured("View %r not callable" % view)
     return view
