@@ -1,0 +1,21 @@
+<div id="id_{{ field_name }}">
+{% for object in objects %}
+    {% set price_info = object.get_effective_price_info(basket) %}
+    <div class="radio">
+        <label for="id_{{ field_name }}_{{ object.id }}">
+            <input
+                    {% if current_value == object.id %}checked=checked{% endif %}
+                    name="{{ field_name }}"
+                    id="id_{{ field_name }}_{{ object.id }}"
+                    type="radio" value="{{ object.id }}">
+            {{ object.name }} {{ price_info.price|money }}
+        </label>
+        <div class="extra-info">
+            {% if object.get_shipping_time is defined %}
+                {{ object.get_shipping_time() }}
+            {% endif %}
+            {{ object.description }}
+        </div>
+    </div>
+{% endfor %}
+</div>

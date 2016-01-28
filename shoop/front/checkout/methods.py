@@ -10,17 +10,34 @@ from __future__ import unicode_literals
 import logging
 
 from django import forms
-from django.forms.models import ModelChoiceIterator
-from django.utils.encoding import force_text
+from django.template.loader import render_to_string
+from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import View
 from django.views.generic.edit import FormView
 
 from shoop.core.models import PaymentMethod, ShippingMethod
 from shoop.front.checkout import CheckoutPhaseViewMixin
-from shoop.utils.i18n import format_money
 
 LOG = logging.getLogger(__name__)
+
+
+class MethodWidget(forms.Widget):
+    def __init__(self, attrs=None, choices=()):
+        super(MethodWidget, self).__init__(attrs)
+        self.choices = list(choices)
+        self.field_name = None
+        self.basket = None
+
+    def render(self, name, value, attrs=None):
+        return mark_safe(
+            render_to_string("shoop/front/checkout/method_choice.jinja", {
+                "field_name": self.field_name,
+                "objects": self.choices,
+                "current_value": value,
+                "basket": self.basket
+            })
+        )
 
 
 class MethodModelChoiceField(forms.ModelChoiceField):
@@ -29,26 +46,19 @@ class MethodModelChoiceField(forms.ModelChoiceField):
         self.show_prices = bool(kwargs.pop("show_prices", True))
         super(MethodModelChoiceField, self).__init__(*args, **kwargs)
 
-    def label_from_instance(self, obj):
-        label = force_text(obj.get_effective_name(self.basket))
 
-        price_info = (
-            obj.get_effective_price_info(self.basket)
-            if self.basket and self.show_prices else None)
-        price_text = (
-            format_money(price_info.price)
-            if price_info and price_info.price else None)
-
-        return ("{} ({})".format(label, price_text) if price_text else label)
+class MethodChoiceIterator(forms.models.ModelChoiceIterator):
+    def choice(self, obj):
+        return obj
 
 
 class MethodsForm(forms.Form):
     shipping_method = MethodModelChoiceField(
-        queryset=ShippingMethod.objects.all(), widget=forms.RadioSelect(),
+        queryset=ShippingMethod.objects.all(), widget=MethodWidget(),
         label=_('shipping method')
     )
     payment_method = MethodModelChoiceField(
-        queryset=PaymentMethod.objects.all(), widget=forms.RadioSelect(),
+        queryset=PaymentMethod.objects.all(), widget=MethodWidget(),
         label=_('payment method')
     )
 
@@ -66,10 +76,13 @@ class MethodsForm(forms.Form):
         ):
             field = self.fields[field_name]
             field.basket = self.basket
-            mci = ModelChoiceIterator(field)
+            mci = MethodChoiceIterator(field)
+            # TODO: add ordering here
             field.choices = [mci.choice(obj) for obj in methods]
+            field.widget.field_name = field_name
+            field.widget.basket = self.basket
             if field.choices:
-                field.initial = field.choices[0][0]
+                field.initial = field.choices[0]  # TODO: Make this settable from admin
 
 
 class MethodsPhase(CheckoutPhaseViewMixin, FormView):
