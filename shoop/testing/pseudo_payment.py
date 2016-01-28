@@ -15,7 +15,7 @@ from django.http.response import HttpResponse
 from django.utils.timezone import now
 from django.views.generic import View
 
-from shoop.core.methods.base import BasePaymentMethodModule
+from shoop.core.methods.base import ServiceProviderModule
 from shoop.utils.excs import Problem
 
 
@@ -46,11 +46,11 @@ class ExampleDetailViewClass(View):
             """)
 
 
-class PseudoPaymentMethodModule(BasePaymentMethodModule):
+class PseudoPaymentMethodModule(ServiceProviderModule):
     identifier = "pseudo_payment"
     name = "Shoop Pseudo Payment"
     admin_detail_view_class = ExampleDetailViewClass
-    option_fields = BasePaymentMethodModule.option_fields + [
+    option_fields = ServiceProviderModule.option_fields + [
         ("bg_color", forms.CharField(label="Payment Page Background Color", required=False, initial="white")),
         ("fg_color", forms.CharField(label="Payment Page Text Color", required=False, initial="black"))
     ]

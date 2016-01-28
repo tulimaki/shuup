@@ -312,6 +312,10 @@ class OrderSource(object):
         product_lines = [l for l in self.get_lines() if l.product]
         return product_lines
 
+    @property
+    def product_ids(self):
+        return set(l.product.id for l in self.self.get_lines() if l.product)
+
     def get_validation_errors(self):
         shipping_method = self.shipping_method
         payment_method = self.payment_method

@@ -19,7 +19,8 @@ from ._contacts import (
 )
 from ._counters import Counter, CounterType
 from ._manufacturers import Manufacturer
-from ._methods import MethodStatus, MethodType, PaymentMethod, ShippingMethod
+from ._methods import Carrier, MethodStatus, MethodType, PaymentMethod, ShippingMethod
+from ._methods_logic import ConstantPrice, MethodBusinessLogic
 from ._order_lines import OrderLine, OrderLineTax, OrderLineType
 from ._orders import (
     Order, OrderLogEntry, OrderStatus, OrderStatusRole, PaymentStatus,
@@ -50,11 +51,13 @@ __all__ = [
     "Attribute",
     "AttributeType",
     "AttributeVisibility",
+    "Carrier",
     "Category",
     "CategoryStatus",
     "CategoryVisibility",
     "CompanyContact",
     "ConfigurationItem",
+    "ConstantPrice",
     "Contact",
     "ContactGroup",
     "Counter",
@@ -64,6 +67,7 @@ __all__ = [
     "Gender",
     "ImmutableAddress",
     "Manufacturer",
+    "MethodBusinessLogic",
     "MethodStatus",
     "MethodType",
     "MutableAddress",
