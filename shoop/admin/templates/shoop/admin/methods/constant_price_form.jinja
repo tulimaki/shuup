@@ -1,0 +1,8 @@
+{% from "shoop/admin/macros/general.jinja" import content_block %}
+{% from "shoop/admin/macros/multilanguage.jinja" import language_dependent_content_tabs %}
+
+{% set business_logic_form = form["business_logic"] %}
+
+{% call content_block(_("Business logic"), "fa-cogs") %}
+    {{ bs3.field(business_logic_form.price_value) }}
+{% endcall %}

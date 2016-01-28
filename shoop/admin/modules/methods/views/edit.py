@@ -6,23 +6,24 @@
 # LICENSE file in the root directory of this source tree.
 from __future__ import unicode_literals
 
-from copy import deepcopy
-
-from django import forms
-from django.conf import settings
 from django.core.urlresolvers import reverse
-from django.forms.models import modelform_factory
+from django.db.transaction import atomic
 from django.utils.encoding import force_text
 from django.utils.translation import ugettext_lazy as _
 
 from shoop.admin.base import MenuEntry
+from shoop.admin.form_part import (
+    FormPartsViewMixin, SaveFormPartsMixin
+)
+from shoop.admin.modules.methods.views.base_form_parts import (
+    PaymentMethodBaseFormPart, ShippingMethodBaseFormPart
+)
 from shoop.admin.toolbar import (
     get_default_edit_toolbar, Toolbar, URLActionButton
 )
 from shoop.admin.utils.views import CreateOrUpdateView
 from shoop.core.models import PaymentMethod, ShippingMethod
 from shoop.core.modules.interface import ModuleNotFound
-from shoop.utils.multilanguage_model_form import MultiLanguageModelForm
 
 
 class MethodEditToolbar(Toolbar):
@@ -54,12 +55,22 @@ class MethodEditToolbar(Toolbar):
         ))
 
 
-class _BaseMethodEditView(CreateOrUpdateView):
+class _BaseMethodEditView(SaveFormPartsMixin, FormPartsViewMixin, CreateOrUpdateView):
     model = None  # Overridden below
     action_url_name_prefix = None
     template_name = "shoop/admin/methods/edit.jinja"
-    form_class = forms.Form
+    base_form_part_classes = []
     context_object_name = "method"
+
+    def get_form_part_classes(self):
+        form_part_classes = list(self.base_form_part_classes)
+        if self.object.business_logic and self.object.business_logic.admin_form_part_class:
+            form_part_classes += [self.object.business_logic.admin_form_part_class]
+        return form_part_classes
+
+    @atomic
+    def form_valid(self, form):
+        return self.save_form_parts(form)
 
     @property
     def title(self):
@@ -73,49 +84,20 @@ class _BaseMethodEditView(CreateOrUpdateView):
             )
         ]
 
-    def get_form(self, form_class=None):
-        form_class = modelform_factory(
-            model=self.model,
-            form=MultiLanguageModelForm,
-            fields=("name", "status", "tax_class", "module_identifier"),
-            widgets={"module_identifier": forms.Select},
-        )
-        form = form_class(languages=settings.LANGUAGES, **self.get_form_kwargs())
-        form.fields["module_identifier"].widget.choices = self.model.get_module_choices(
-            empty_label=(_("Default %s module") % self.model._meta.verbose_name).title()
-        )
-
-        # Add fields from the module, if any...
-        form.module_option_field_names = []
-        for field_name, field in self.object.module.option_fields:
-            form.fields[field_name] = deepcopy(field)
-            form.module_option_field_names.append(field_name)
-            if self.object.module_data and field_name in self.object.module_data:
-                form.initial[field_name] = self.object.module_data[field_name]
-
-        return form
-
     def get_success_url(self):
         return reverse("shoop_admin:%s.edit" % self.action_url_name_prefix, kwargs={"pk": self.object.pk})
 
     def get_toolbar(self):
         return MethodEditToolbar(self)
 
-    def save_form(self, form):
-        self.object = form.save()
-        if not self.object.module_data:
-            self.object.module_data = {}
-        for field_name in form.module_option_field_names:
-            if field_name in form.cleaned_data:
-                self.object.module_data[field_name] = form.cleaned_data[field_name]
-        self.object.save()
-
 
 class ShippingMethodEditView(_BaseMethodEditView):
     model = ShippingMethod
     action_url_name_prefix = "method.shipping"
+    base_form_part_classes = [ShippingMethodBaseFormPart]
 
 
 class PaymentMethodEditView(_BaseMethodEditView):
     model = PaymentMethod
     action_url_name_prefix = "method.payment"
+    base_form_part_classes = [PaymentMethodBaseFormPart]

@@ -5,7 +5,7 @@
 #
 # This source code is licensed under the AGPLv3 license found in the
 # LICENSE file in the root directory of this source tree.
-
+from .constant_price_form_part import ConstantPriceFormPart
 from .edit import PaymentMethodEditView, ShippingMethodEditView
 from .edit_detail import (
     PaymentMethodEditDetailView, ShippingMethodEditDetailView
@@ -13,6 +13,7 @@ from .edit_detail import (
 from .list import PaymentMethodListView, ShippingMethodListView
 
 __all__ = [
+    "ConstantPriceFormPart",
     "ShippingMethodEditView",
     "ShippingMethodEditDetailView",
     "ShippingMethodListView",
