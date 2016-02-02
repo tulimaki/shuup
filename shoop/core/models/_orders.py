@@ -32,6 +32,7 @@ from shoop.core.fields import (
     UnsavedForeignKey
 )
 from shoop.core.pricing import TaxfulPrice, TaxlessPrice
+from shoop.core.signals import order_fully_paid
 from shoop.utils.analog import define_log_model, LogEntryKind
 from shoop.utils.money import Money
 from shoop.utils.numbers import bankers_round
@@ -368,6 +369,7 @@ class Order(MoneyPropped, models.Model):
             self.payment_status = PaymentStatus.FULLY_PAID
             self.payment_date = now()
             self.save()
+            order_fully_paid.send(sender=self)
 
     def is_paid(self):
         return (self.payment_status == PaymentStatus.FULLY_PAID)
