@@ -33,8 +33,8 @@ class ExpensiveSwedenShippingModule(BaseShippingMethodModule):
         return u"Expenseefe-a Svedee Sheepping"
 
     def get_effective_price_info(self, source, **kwargs):
-        four = source.shop.create_price('4.00')
-        five = source.shop.create_price('5.00')
+        four = source.create_price('4.00')
+        five = source.create_price('5.00')
         if source.shipping_address and source.shipping_address.country == "SE":
             return PriceInfo(five, four, 1)
         return PriceInfo(four, four, 1)
@@ -111,12 +111,12 @@ def test_methods(admin_user, country):
         for line in final_lines:
             if line.type == OrderLineType.SHIPPING:
                 if country == "SE":  # We _are_ using Expenseefe-a Svedee Sheepping after all.
-                    assert line.price == source.shop.create_price("5.00")
+                    assert line.price == source.create_price("5.00")
                 else:
-                    assert line.price == source.shop.create_price("4.00")
+                    assert line.price == source.create_price("4.00")
                 assert line.text == u"Expenseefe-a Svedee Sheepping"
             if line.type == OrderLineType.PAYMENT:
-                assert line.price == source.shop.create_price(4)
+                assert line.price == source.create_price(4)
 
 
 @pytest.mark.django_db
@@ -133,14 +133,14 @@ def test_waiver():
                         })
     source = BasketishOrderSource(get_default_shop())
     assert sm.get_effective_name(source) == u"Waivey"
-    assert sm.get_effective_price_info(source).price == source.shop.create_price(100)
+    assert sm.get_effective_price_info(source).price == source.create_price(100)
     source.add_line(
         type=OrderLineType.PRODUCT,
         product=get_default_product(),
-        base_unit_price=source.shop.create_price(400),
+        base_unit_price=source.create_price(400),
         quantity=1
     )
-    assert sm.get_effective_price_info(source).price == source.shop.create_price(0)
+    assert sm.get_effective_price_info(source).price == source.create_price(0)
 
 
 @pytest.mark.django_db

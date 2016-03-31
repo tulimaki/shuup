@@ -19,7 +19,10 @@ from ._contacts import (
 )
 from ._counters import Counter, CounterType
 from ._manufacturers import Manufacturer
-from ._methods import MethodStatus, MethodType, PaymentMethod, ShippingMethod
+from ._service_providers import (
+    Carrier, PaymentProcessor, Service, ServiceProvider
+)
+from ._methods import PaymentMethod, ShippingMethod
 from ._order_lines import OrderLine, OrderLineTax, OrderLineType
 from ._orders import (
     Order, OrderLogEntry, OrderStatus, OrderStatusRole, PaymentStatus,
@@ -50,6 +53,7 @@ __all__ = [
     "Attribute",
     "AttributeType",
     "AttributeVisibility",
+    "Carrier",
     "Category",
     "CategoryStatus",
     "CategoryVisibility",
@@ -64,8 +68,6 @@ __all__ = [
     "Gender",
     "ImmutableAddress",
     "Manufacturer",
-    "MethodStatus",
-    "MethodType",
     "MutableAddress",
     "Order",
     "OrderLine",
@@ -76,6 +78,7 @@ __all__ = [
     "OrderStatusRole",
     "Payment",
     "PaymentMethod",
+    "PaymentProcessor",
     "PaymentStatus",
     "PersistentCacheEntry",
     "PersonContact",
@@ -98,6 +101,8 @@ __all__ = [
     "SavedAddress",
     "SavedAddressRole",
     "SavedAddressStatus",
+    "Service",
+    "ServiceProvider",
     "Shipment",
     "ShipmentProduct",
     "ShippingMethod",

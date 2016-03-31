@@ -16,12 +16,19 @@ from shoop.core.models import Order
 
 
 def get_payment_urls(request, order):
+    """
+    :type request: django.http.HttpRequest
+    """
     kwargs = dict(pk=order.pk, key=order.key)
-    return {
-        "payment": request.build_absolute_uri(reverse("shoop:order_process_payment", kwargs=kwargs)),
-        "return": request.build_absolute_uri(reverse("shoop:order_process_payment_return", kwargs=kwargs)),
-        "cancel": request.build_absolute_uri(reverse("shoop:order_payment_canceled", kwargs=kwargs))
-    }
+
+    def absolute_url_for(name):
+        return request.build_absolute_uri(reverse(name, kwargs=kwargs))
+
+    return PaymentUrls(
+        payment_url=absolute_url_for("shoop:order_process_payment"),
+        return_url=absolute_url_for("shoop:order_process_payment_return"),
+        cancel_url=absolute_url_for("shoop:order_payment_canceled"),
+    )
 
 
 class ProcessPaymentView(DetailView):

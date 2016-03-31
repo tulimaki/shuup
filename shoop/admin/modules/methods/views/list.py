@@ -9,9 +9,11 @@ from __future__ import unicode_literals
 
 from django.utils.translation import ugettext_lazy as _
 
-from shoop.admin.utils.picotable import ChoicesFilter, Column, TextFilter
+from shoop.admin.utils.picotable import (
+    Column, TextFilter, true_or_false_filter
+)
 from shoop.admin.utils.views import PicotableListView
-from shoop.core.models import MethodStatus, PaymentMethod, ShippingMethod
+from shoop.core.models import PaymentMethod, ShippingMethod
 
 
 class _BaseMethodListView(PicotableListView):
@@ -21,7 +23,7 @@ class _BaseMethodListView(PicotableListView):
             filter_field="name",
             placeholder=_("Filter by name...")
         )),
-        Column("status", _(u"Status"), filter_config=ChoicesFilter(choices=MethodStatus.choices)),
+        Column("enabled", _("Enabled"), filter_config=true_or_false_filter),
     ]
 
     def get_object_abstract(self, instance, item):

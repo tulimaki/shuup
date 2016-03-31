@@ -63,9 +63,9 @@ class ConfirmPhase(CheckoutPhaseViewMixin, FormView):
         basket = self.request.basket
         assert isinstance(basket, BaseBasket)
         assert basket.shop == self.request.shop
-        basket.orderer = self.request.person
-        basket.customer = self.request.customer
-        basket.creator = self.request.user
+        assert basket.customer == self.request.customer
+        assert basket.orderer == self.request.person
+        assert basket.creator == self.request.user
         basket.status = OrderStatus.objects.get_default_initial()
         order_creator = get_basket_order_creator()
         order = order_creator.create_order(basket)

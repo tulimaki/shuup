@@ -123,9 +123,9 @@ class BaseMethodModule(object):
         :rtype: shoop.core.pricing.PriceInfo
         """
         price_value = self.get_options().get("price", 0)
-        normal_price = source.shop.create_price(price_value)
+        normal_price = source.create_price(price_value)
         if self._is_price_waived(source):
-            return PriceInfo(source.shop.create_price(0), normal_price, 1)
+            return PriceInfo(source.create_price(0), normal_price, 1)
         return PriceInfo(normal_price, normal_price, 1)
 
     def get_effective_name(self, source, **kwargs):

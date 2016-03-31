@@ -7,46 +7,29 @@
 # LICENSE file in the root directory of this source tree.
 from __future__ import unicode_literals, with_statement
 
+import datetime
+import functools
+import random
+
+from django.core.exceptions import ValidationError
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
-from django.utils.translation import ugettext_lazy as _
-from enumfields import Enum, EnumIntegerField
-from jsonfield import JSONField
+from django.utils.translation import ungettext, ugettext_lazy as _
 from parler.managers import TranslatableQuerySet
-from parler.models import TranslatableModel, TranslatedFields
+from parler.models import TranslatedField, TranslatedFieldsModel
+from polymorphic.models import PolymorphicModel
 
 from shoop.core.fields import InternalIdentifierField
-from shoop.core.modules import ModuleInterface
-from shoop.core.taxing import TaxableItem
-from shoop.front.signals import get_method_validation_errors
-from shoop.utils.text import force_ascii
+from shoop.core.pricing import PriceInfo
 
+from ._base import ShoopModel, TranslatableShoopModel
 from ._order_lines import OrderLineType
-
-__all__ = ("MethodType", "ShippingMethod", "PaymentMethod", "MethodStatus")
-
-
-class MethodType(Enum):
-    SHIPPING = 1
-    PAYMENT = 2
-
-    class Labels:
-        SHIPPING = _('shipping')
-        PAYMENT = _('payment')
-
-
-class MethodStatus(Enum):
-    DISABLED = 0
-    ENABLED = 1
-
-    class Labels:
-        DISABLED = _('disabled')
-        ENABLED = _('enabled')
+from ._product_shops import ShopProduct
+from ._service_providers import Carrier, PaymentProcessor
 
 
 class MethodQuerySet(TranslatableQuerySet):
     def enabled(self):
-        return self.filter(status=MethodStatus.ENABLED)
+        return self.filter(enabled=True)
 
     def available_ids(self, shop, products):
         """
@@ -60,7 +43,6 @@ class MethodQuerySet(TranslatableQuerySet):
         :return: Set of method IDs
         :rtype: set[int]
         """
-        from ._product_shops import ShopProduct
         shop_product_m2m = self.model.shop_product_m2m
         shop_product_limiter_attr = "limit_%s" % self.model.shop_product_m2m
 
@@ -73,6 +55,7 @@ class MethodQuerySet(TranslatableQuerySet):
         available_method_ids = set(self.enabled().values_list("pk", flat=True))
 
         for shop_product in ShopProduct.objects.filter(**limiting_products_query):
+
             available_method_ids &= set(getattr(shop_product, shop_product_m2m).values_list("pk", flat=True))
             if not available_method_ids:  # Out of IDs, better just fail fast
                 break
@@ -83,82 +66,232 @@ class MethodQuerySet(TranslatableQuerySet):
         return self.filter(pk__in=self.available_ids(shop, products))
 
 
-@python_2_unicode_compatible
-class Method(TaxableItem, ModuleInterface, TranslatableModel):
-    tax_class = models.ForeignKey("TaxClass", verbose_name=_('tax class'), on_delete=models.PROTECT)
-    status = EnumIntegerField(MethodStatus, db_index=True, default=MethodStatus.ENABLED, verbose_name=_('status'))
+class Method(TranslatableShoopModel):
     identifier = InternalIdentifierField(unique=True)
-    module_identifier = models.CharField(max_length=64, blank=True, verbose_name=_('module'))
-    module_data = JSONField(blank=True, null=True, verbose_name=_('module data'))
+    enabled = models.BooleanField(default=True, verbose_name=_("enabled"))
 
-    objects = MethodQuerySet.as_manager()
+    name = TranslatedField()
+
+    tax_class = models.ForeignKey(
+        'TaxClass', verbose_name=_("tax class"), on_delete=models.PROTECT)
 
     class Meta:
         abstract = True
 
-    def __str__(self):  # pragma: no cover
-        return (self.safe_translation_getter("name", any_language=True) or self.identifier or "")
+    @property
+    def provider(self):
+        return getattr(self, self.provider_attr)
 
-    def get_source_lines(self, source):
-        for line in self.module.get_source_lines(source=source):
-            yield line
+    def is_available_for(self, source):
+        """
+        Return true if method is available for given source.
 
-    def get_validation_errors(self, source):
-        for receiver, errors in get_method_validation_errors.send(sender=Method, method=self, source=source):
-            for error in errors:
-                yield error
-        for error in self.module.get_validation_errors(source=source):
-            yield error
+        :type source: shoop.core.order_creator.OrderSource
+        :rtype: bool
+        """
+        return not any(self.get_unavailability_reasons(source))
 
-    def is_valid_for_source(self, source):
-        for error in self.get_validation_errors(source):
-            return False
-        return True
+    def get_unavailability_reasons(self, source):
+        """
+        Get reasons of being unavailable for given source.
 
-    def get_effective_price_info(self, source):
-        return self.module.get_effective_price_info(source=source)
+        :type source: shoop.core.order_creator.OrderSource
+        :rtype: Iterable[ValidationError]
+        """
+        if not self.provider or not self.provider.enabled or not self.enabled:
+            yield ValidationError(_("%s is disabled") % self, code='disabled')
 
-    def get_effective_name(self, source):
-        return self.module.get_effective_name(source=source)
+        for part in self.behavior_parts.all():
+            for reason in part.get_unavailability_reasons(source):
+                yield reason
 
-    def __repr__(self):
-        identifier = force_ascii(getattr(self, 'identifier', ''))
-        return '<%s: %s "%s">' % (type(self).__name__, self.pk, identifier)
+    def get_total_cost(self, source):
+        """
+        Get total cost of this method for items in given source.
+
+        :type source: shoop.core.order_creator.OrderSource
+        :rtype: PriceInfo
+        """
+        price_infos = (x[1] for x in self.get_costs(source))
+        zero = source.create_price(0)
+        return _sum_price_infos(price_infos, PriceInfo(zero, zero, quantity=1))
+
+    def get_costs(self, source):
+        """
+        Get costs of this method for items in given source.
+
+        :type source: shoop.core.order_creator.OrderSource
+        :return: description, price and tax class of the costs
+        :rtype: Iterable[(str, PriceInfo, TaxClass)]
+        """
+        for part in self.behavior_parts.all():
+            for (desc, price_info, tax_class) in part.get_costs(source):
+                yield (desc, price_info, tax_class or self.tax_class)
+
+    def get_lines(self, source):
+        """
+        Get method lines for given source.
+
+        :type source: shoop.core.order_creator.OrderSource
+        :rtype: Iterable[shoop.core.order_creator.SourceLine]
+        """
+        line_prefix = type(self).__name__.lower()
+
+        def rand_int():
+            return random.randint(0, 0x7FFFFFFF)
+
+        for (n, cost) in enumerate(self.get_costs(source)):
+            (desc, price_info, tax_class) = cost
+            yield source.create_line(
+                line_id="%s_%02d_%x" % (line_prefix, n, rand_int()),
+                type=self.line_type,
+                quantity=1,
+                text=desc,
+                base_unit_price=price_info.base_unit_price,
+                discount_amount=price_info.discount_amount,
+                tax_class=tax_class,
+            )
+
+    def _make_sure_is_usable(self):
+        if not self.provider:
+            raise ValueError('%r has no %s' % (self, self.provider_attr))
+        if not self.enabled:
+            raise ValueError('%r is disabled' % (self,))
+        if not self.provider.enabled:
+            raise ValueError(
+                '%s of %r is disabled' % (self.provider_attr, self))
+
+
+def _sum_price_infos(price_infos, zero):
+    def plus(pi1, pi2):
+        assert pi1.quantity == pi2.quantity
+        return PriceInfo(
+            pi1.price + pi2.price,
+            pi1.base_price + pi2.base_price,
+            quantity=pi1.quantity,
+        )
+    return functools.reduce(plus, price_infos, zero)
 
 
 class ShippingMethod(Method):
-    type = MethodType.SHIPPING
-    line_type = OrderLineType.SHIPPING
-    default_module_spec = "shoop.core.methods.default:DefaultShippingMethodModule"
-    module_provides_key = "shipping_method_module"
-    shop_product_m2m = "shipping_methods"
+    carrier = models.ForeignKey(
+        Carrier, null=True, blank=True,
+        verbose_name=_("carrier"), on_delete=models.SET_NULL)
 
-    translations = TranslatedFields(
-        name=models.CharField(verbose_name=_('name'), max_length=64),
-    )
+    # Initialized from ShippingService.identifier
+    service_identifier = models.CharField(blank=True, max_length=64)
+
+    line_type = OrderLineType.SHIPPING
+    shop_product_m2m = "shipping_methods"
+    provider_attr = 'carrier'
 
     class Meta:
-        verbose_name = _('shipping method')
-        verbose_name_plural = _('shipping methods')
+        verbose_name = _("shipping method")
+        verbose_name_plural = _("shipping methods")
+
+    def get_shipping_time(self, source):
+        """
+        Get shipping time for items in given source.
+
+        :rtype: ShippingTimeRange|None
+        """
+        times = set()
+        for part in self.behavior_parts.all():
+            shipping_time = part.get_shipping_time(source)
+            if shipping_time:
+                times.add(shipping_time.min_time)
+                times.add(shipping_time.max_time)
+        if not times:
+            return None
+        return ShippingTimeRange(min(times), max(times))
+
+    # TODO(SHOOP-2293): Check that method without a provider cannot be saved as enabled
+
+
+class ShippingMethodTranslation(TranslatedFieldsModel):
+    master = models.ForeignKey(
+        ShippingMethod, null=True, related_name='translations')
+    name = models.CharField(_("name"), max_length=100)
+
+
+class BehaviorPart(ShoopModel):
+    class Meta:
+        abstract = True
+
+    def get_name(self, source):
+        """
+        :rtype: str
+        """
+        return ""
+
+    def get_unavailability_reasons(self, source):
+        """
+        :rtype: Iterable[ValidationError]
+        """
+        return ()
+
+    def get_costs(self, source):
+        """
+        :rtype: Iterable[(str, PriceInfo, TaxClass|None)]
+        """
+        return ()
 
 
 class PaymentMethod(Method):
-    type = MethodType.PAYMENT
+    payment_processor = models.ForeignKey(
+        PaymentProcessor, null=True, blank=True,
+        verbose_name=_("payment processor"), on_delete=models.SET_NULL)
+
+    # Initialized from PaymentService.identifier
+    service_identifier = models.CharField(blank=True, max_length=64)
+
     line_type = OrderLineType.PAYMENT
-    default_module_spec = "shoop.core.methods.default:DefaultPaymentMethodModule"
-    module_provides_key = "payment_method_module"
+    provider_attr = 'payment_processor'
     shop_product_m2m = "payment_methods"
 
-    translations = TranslatedFields(
-        name=models.CharField(verbose_name=_('name'), max_length=64),
-    )
-
     class Meta:
-        verbose_name = _('payment method')
-        verbose_name_plural = _('payment methods')
+        verbose_name = _("payment method")
+        verbose_name_plural = _("payment methods")
 
     def get_payment_process_response(self, order, urls):
-        return self.module.get_payment_process_response(order=order, urls=urls)
+        self._make_sure_is_usable()
+        return self.payment_processor.get_payment_process_response(order, urls)
 
     def process_payment_return_request(self, order, request):
-        return self.module.process_payment_return_request(order=order, request=request)
+        self._make_sure_is_usable()
+        self.payment_processor.process_payment_return_request(order, request)
+
+
+class ShippingBehaviorPart(BehaviorPart, PolymorphicModel):
+    name = None
+
+    owner = models.ForeignKey(ShippingMethod, related_name="behavior_parts")
+
+    def get_shipping_time(self, source):
+        """
+        :rtype: ShippingTimeRange|None
+        """
+        return None
+
+
+class PaymentBehaviorPart(BehaviorPart, PolymorphicModel):
+    name = None
+
+    owner = models.ForeignKey(PaymentMethod, related_name="behavior_parts")
+
+
+
+class ShippingTimeRange(object):
+    def __init__(self, min_time, max_time=None):
+        assert isinstance(min_time, datetime.timedelta)
+        assert max_time is None or isinstance(max_time, datetime.timedelta)
+        assert max_time is None or max_time >= min_time
+        self.min_time = min_time
+        self.max_time = max_time if max_time is not None else min_time
+
+    def __str__(self):
+        if self.min_time == self.max_time:
+            days = self.max_time.days
+            return ungettext("%s day", "%s days", days) % (days,)
+        return _("%(min)s--%(max)s days") % {
+            "min": self.min_time.days, "max": self.max_time.days}
