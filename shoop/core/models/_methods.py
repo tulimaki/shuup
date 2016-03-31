@@ -29,7 +29,14 @@ from ._service_providers import Carrier, PaymentProcessor
 
 class MethodQuerySet(TranslatableQuerySet):
     def enabled(self):
-        return self.filter(enabled=True)
+        no_provider_filter = {
+            self.model.provider_attr: None,
+        }
+        enabled_filter = {
+            self.model.provider_attr + '__enabled': True,
+            'enabled': True,
+        }
+        return self.exclude(**no_provider_filter).filter(**enabled_filter)
 
     def available_ids(self, shop, products):
         """
@@ -100,6 +107,10 @@ class Method(TranslatableShoopModel):
         """
         if not self.provider or not self.provider.enabled or not self.enabled:
             yield ValidationError(_("%s is disabled") % self, code='disabled')
+
+        if source.shop != self.provider.shop:
+            yield ValidationError(
+                _("%s is for different shop") % self, code='wrong_shop')
 
         for part in self.behavior_parts.all():
             for reason in part.get_unavailability_reasons(source):

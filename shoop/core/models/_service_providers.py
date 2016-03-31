@@ -10,12 +10,16 @@ from django.utils.translation import ugettext as _
 from parler.models import TranslatedField, TranslatedFields
 from polymorphic.models import PolymorphicModel
 
+from shoop.core.fields import InternalIdentifierField
+
 from ._base import TranslatableShoopModel
 from ._orders import PaymentStatus
 from ._shops import Shop
 
 
 class ServiceProvider(TranslatableShoopModel):
+    identifier = InternalIdentifierField(unique=True)
+    enabled = models.BooleanField(default=True, verbose_name=_("enabled"))
     shop = models.ForeignKey(Shop)
     name = TranslatedField()
 

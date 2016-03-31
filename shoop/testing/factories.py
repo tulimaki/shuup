@@ -29,12 +29,12 @@ from six import BytesIO
 
 from shoop.core.defaults.order_statuses import create_default_order_statuses
 from shoop.core.models import (
-    AnonymousContact, Attribute, AttributeType, Category, CategoryStatus,
-    CompanyContact, Contact, ContactGroup, MutableAddress, Order, OrderLine,
-    OrderLineTax, OrderLineType, OrderStatus, PaymentMethod, PersonContact,
-    Product, ProductMedia, ProductMediaKind, ProductType, SalesUnit,
-    ShippingMethod, Shop, ShopProduct, ShopStatus, StockBehavior, Supplier,
-    SupplierType, Tax, TaxClass
+    AnonymousContact, Attribute, AttributeType, Carrier, Category,
+    CategoryStatus, CompanyContact, Contact, ContactGroup, MutableAddress,
+    Order, OrderLine, OrderLineTax, OrderLineType, OrderStatus, PaymentMethod,
+    PaymentProcessor, PersonContact, Product, ProductMedia, ProductMediaKind,
+    ProductType, SalesUnit, ShippingMethod, Shop, ShopProduct, ShopStatus,
+    StockBehavior, Supplier, SupplierType, Tax, TaxClass
 )
 from shoop.core.order_creator import OrderCreator, OrderSource
 from shoop.core.pricing import get_pricing_module
@@ -297,8 +297,12 @@ def get_default_tax_class():
 def get_default_payment_method():
     payment_method = default_by_identifier(PaymentMethod)
     if not payment_method:
+        payment_processor = PaymentProcessor.objects.create(
+            identifier='default', name="Payment processor",
+            shop=get_default_shop())
         payment_method = PaymentMethod.objects.create(
-            identifier=DEFAULT_IDENTIFIER, name=DEFAULT_NAME,
+            identifier=DEFAULT_IDENTIFIER, name="Payment method",
+            payment_processor=payment_processor,
             tax_class=get_default_tax_class(),
         )
         assert payment_method.pk and payment_method.identifier == DEFAULT_IDENTIFIER
@@ -308,8 +312,12 @@ def get_default_payment_method():
 def get_default_shipping_method():
     shipping_method = default_by_identifier(ShippingMethod)
     if not shipping_method:
+        carrier = Carrier.objects.create(
+            identifier='default', name="Carrier",
+            shop=get_default_shop())
         shipping_method = ShippingMethod.objects.create(
-            identifier=DEFAULT_IDENTIFIER, name=DEFAULT_NAME,
+            identifier=DEFAULT_IDENTIFIER, name="Shipping method",
+            carrier=carrier,
             tax_class=get_default_tax_class(),
         )
         assert shipping_method.pk and shipping_method.identifier == DEFAULT_IDENTIFIER

@@ -173,6 +173,7 @@ class BaseShippingMethodModule(BaseMethodModule):
     ]
 
     def get_validation_errors(self, source, **kwargs):
+        # TODO(SHOOP-2293): Implement WeightLimitsBehaviorPart
         weight = sum(((l.get("weight") or 0) for l in source.get_lines()), 0)
         options = self.get_options()
 
