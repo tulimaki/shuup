@@ -15,7 +15,7 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import ungettext, ugettext_lazy as _
 from parler.managers import TranslatableQuerySet
-from parler.models import TranslatedField, TranslatedFieldsModel
+from parler.models import TranslatedField, TranslatedFields
 from polymorphic.models import PolymorphicModel
 
 from shoop.core.fields import InternalIdentifierField
@@ -181,6 +181,10 @@ class ShippingMethod(Method):
     # Initialized from ShippingService.identifier
     service_identifier = models.CharField(blank=True, max_length=64)
 
+    translations = TranslatedFields(
+        name=models.CharField(_("name"), max_length=100),
+    )
+
     line_type = OrderLineType.SHIPPING
     shop_product_m2m = "shipping_methods"
     provider_attr = 'carrier'
@@ -206,12 +210,6 @@ class ShippingMethod(Method):
         return ShippingTimeRange(min(times), max(times))
 
     # TODO(SHOOP-2293): Check that method without a provider cannot be saved as enabled
-
-
-class ShippingMethodTranslation(TranslatedFieldsModel):
-    master = models.ForeignKey(
-        ShippingMethod, null=True, related_name='translations')
-    name = models.CharField(_("name"), max_length=100)
 
 
 class BehaviorPart(ShoopModel):
@@ -244,6 +242,10 @@ class PaymentMethod(Method):
 
     # Initialized from PaymentService.identifier
     service_identifier = models.CharField(blank=True, max_length=64)
+
+    translations = TranslatedFields(
+        name=models.CharField(_("name"), max_length=100),
+    )
 
     line_type = OrderLineType.PAYMENT
     provider_attr = 'payment_processor'
@@ -278,7 +280,6 @@ class PaymentBehaviorPart(BehaviorPart, PolymorphicModel):
     name = None
 
     owner = models.ForeignKey(PaymentMethod, related_name="behavior_parts")
-
 
 
 class ShippingTimeRange(object):

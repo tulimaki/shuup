@@ -7,7 +7,7 @@
 from django.db import models
 from django.http.response import HttpResponseRedirect
 from django.utils.translation import ugettext as _
-from parler.models import TranslatedField, TranslatedFieldsModel
+from parler.models import TranslatedField, TranslatedFields
 from polymorphic.models import PolymorphicModel
 
 from ._base import TranslatableShoopModel
@@ -50,16 +50,16 @@ class Service(object):
 
 
 class Carrier(PolymorphicModel, ServiceProvider):
-    pass
-
-
-class CarrierTranslation(TranslatedFieldsModel):
-    master = models.ForeignKey(
-        Carrier, null=True, related_name='translations')
-    name = models.CharField(_("name"), max_length=100)
+    translations = TranslatedFields(
+        name=models.CharField(_("name"), max_length=100),
+    )
 
 
 class PaymentProcessor(PolymorphicModel, ServiceProvider):
+    translations = TranslatedFields(
+        name=models.CharField(_("name"), max_length=100),
+    )
+
     def get_payment_process_response(self, order, urls):
         """
         TODO(SHOOP-2293): Document!
@@ -86,12 +86,6 @@ class PaymentProcessor(PolymorphicModel, ServiceProvider):
             order.payment_status = PaymentStatus.DEFERRED
             order.add_log_entry("Payment status set to deferred by %s" % self.method)
             order.save(update_fields=("payment_status",))
-
-
-class PaymentProcessorTranslation(TranslatedFieldsModel):
-    master = models.ForeignKey(
-        PaymentProcessor, null=True, related_name='translations')
-    name = models.CharField(_("name"), max_length=100)
 
 
 class PaymentUrls(object):
