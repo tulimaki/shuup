@@ -65,10 +65,8 @@ def encode_shop(shop):
 
 
 def encode_method_extras(method):
-    module_data = method.module_data or {}
-
     return {
-        "price": module_data.get("price", "0"),
+        "price": "0",  # TODO(SHOOP-2293): order creator: encode_method_extras
     }
 
 

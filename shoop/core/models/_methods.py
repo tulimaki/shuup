@@ -82,6 +82,8 @@ class Method(TranslatableShoopModel):
     tax_class = models.ForeignKey(
         'TaxClass', verbose_name=_("tax class"), on_delete=models.PROTECT)
 
+    objects = MethodQuerySet.as_manager()
+
     class Meta:
         abstract = True
 
