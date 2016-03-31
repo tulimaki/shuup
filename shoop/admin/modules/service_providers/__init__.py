@@ -5,6 +5,7 @@
 #
 # This source code is licensed under the AGPLv3 license found in the
 # LICENSE file in the root directory of this source tree.
+
 from __future__ import unicode_literals
 
 from itertools import chain
@@ -13,10 +14,10 @@ from django.utils.translation import ugettext_lazy as _
 
 from shoop.admin.base import AdminModule, MenuEntry
 from shoop.admin.utils.urls import admin_url, derive_model_url
-from shoop.core.models import PaymentMethod, ShippingMethod
+from shoop.core.models import Carrier, PaymentProcessor
 
 
-class MethodModule(AdminModule):
+class ServiceProviderModule(AdminModule):
     name = _("Methods")
 
     def _get_per_method_type_urls(self, url_part, class_name_prefix, url_name_prefix):
@@ -27,56 +28,52 @@ class MethodModule(AdminModule):
         }
         return [
             admin_url(
-                "^methods/%(url_part)s/(?P<pk>\d+)/detail/$" % ns,
-                "shoop.admin.modules.methods.views.%(class_name_prefix)sEditDetailView" % ns,
-                name="%(url_name_prefix)s.edit-detail" % ns
-            ),
-            admin_url(
-                "^methods/%(url_part)s/(?P<pk>\d+)/$" % ns,
-                "shoop.admin.modules.methods.views.%(class_name_prefix)sEditView" % ns,
+                "^%(url_part)s/(?P<pk>\d+)/$" % ns,
+                "shoop.admin.modules.service_providers.views.%(class_name_prefix)sEditView" % ns,
                 name="%(url_name_prefix)s.edit" % ns
             ),
             admin_url(
-                "^methods/%(url_part)s/new/$" % ns,
-                "shoop.admin.modules.methods.views.%(class_name_prefix)sEditView" % ns,
+                "^%(url_part)s/new/$" % ns,
+                "shoop.admin.modules.service_providers.views.%(class_name_prefix)sEditView" % ns,
                 kwargs={"pk": None},
                 name="%(url_name_prefix)s.new" % ns
             ),
             admin_url(
-                "^methods/%(url_part)s/$" % ns,
-                "shoop.admin.modules.methods.views.%(class_name_prefix)sListView" % ns,
+                "^%(url_part)s/$" % ns,
+                "shoop.admin.modules.service_providers.views.%(class_name_prefix)sListView" % ns,
                 name="%(url_name_prefix)s.list" % ns
             ),
         ]
 
     def get_urls(self):
         return list(chain(
-            self._get_per_method_type_urls("payment", "PaymentMethod", "method.payment"),
-            self._get_per_method_type_urls("shipping", "ShippingMethod", "method.shipping")
+            self._get_per_method_type_urls(
+                "payment_processor", "PaymentProcessor", "service_provider.payment_processor"),
+            self._get_per_method_type_urls(
+                "carrier", "Carrier", "service_provider.carrier")
         ))
 
     def get_menu_category_icons(self):
         return {self.name: "fa fa-cubes"}
 
     def get_menu_entries(self, request):
-        category = self.name
         return [
             MenuEntry(
-                text=_("Shipping Methods"),
+                text=_("Carriers"),
                 icon="fa fa-truck",
-                url="shoop_admin:method.shipping.list",
-                category=category
+                url="shoop_admin:service_provider.carrier.list",
+                category=self.name
             ),
             MenuEntry(
-                text=_("Payment Methods"),
+                text=_("Payment Processors"),
                 icon="fa fa-credit-card",
-                url="shoop_admin:method.payment.list",
-                category=category
+                url="shoop_admin:service_provider.payment_processor.list",
+                category=self.name
             ),
         ]
 
     def get_model_url(self, object, kind):
         return (
-            derive_model_url(ShippingMethod, "shoop_admin:method.shipping", object, kind) or
-            derive_model_url(PaymentMethod, "shoop_admin:method.payment", object, kind)
+            derive_model_url(Carrier, "shoop_admin:service_provider.carrier", object, kind) or
+            derive_model_url(PaymentProcessor, "shoop_admin:service_provider.payment_processor", object, kind)
         )

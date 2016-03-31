@@ -37,6 +37,16 @@ import shoop.core.fields
 import shoop.core.models._counters
 import shoop.core.models._shipments
 import shoop.core.modules.interface
+from enumfields import Enum
+
+
+class MethodStatus(Enum):
+    DISABLED = 0
+    ENABLED = 1
+
+    class Labels:
+        DISABLED = 'disabled'
+        ENABLED = 'enabled'
 
 
 class Migration(migrations.Migration):
@@ -411,7 +421,7 @@ class Migration(migrations.Migration):
             name='PaymentMethod',
             fields=[
                 ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
-                ('status', enumfields.fields.EnumIntegerField(default=1, verbose_name='status', enum=shoop.core.models._methods.MethodStatus, db_index=True)),
+                ('status', enumfields.fields.EnumIntegerField(default=1, verbose_name='status', enum=MethodStatus, db_index=True)),
                 ('identifier', shoop.core.fields.InternalIdentifierField(verbose_name='internal identifier', blank=True, unique=True, editable=False, help_text="Do not change this value if you are not sure what you're doing.", max_length=64, null=True)),
                 ('module_identifier', models.CharField(verbose_name='module', blank=True, max_length=64)),
                 ('module_data', jsonfield.fields.JSONField(blank=True, null=True)),
@@ -792,7 +802,7 @@ class Migration(migrations.Migration):
             name='ShippingMethod',
             fields=[
                 ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
-                ('status', enumfields.fields.EnumIntegerField(default=1, verbose_name='status', enum=shoop.core.models._methods.MethodStatus, db_index=True)),
+                ('status', enumfields.fields.EnumIntegerField(default=1, verbose_name='status', enum=MethodStatus, db_index=True)),
                 ('identifier', shoop.core.fields.InternalIdentifierField(verbose_name='internal identifier', blank=True, unique=True, editable=False, help_text="Do not change this value if you are not sure what you're doing.", max_length=64, null=True)),
                 ('module_identifier', models.CharField(verbose_name='module', blank=True, max_length=64)),
                 ('module_data', jsonfield.fields.JSONField(blank=True, null=True)),

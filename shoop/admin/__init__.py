@@ -26,7 +26,7 @@ class ShoopAdminAppConfig(AppConfig):
             "shoop.admin.modules.contacts:ContactModule",
             "shoop.admin.modules.contact_groups:ContactGroupModule",
             "shoop.admin.modules.users:UserModule",
-            "shoop.admin.modules.methods:MethodModule",
+            "shoop.admin.modules.service_providers:ServiceProviderModule",
             "shoop.admin.modules.attributes:AttributeModule",
             "shoop.admin.modules.sales_units:SalesUnitModule",
             "shoop.admin.modules.shops:ShopModule",
