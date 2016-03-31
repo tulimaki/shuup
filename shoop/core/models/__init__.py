@@ -22,7 +22,9 @@ from ._manufacturers import Manufacturer
 from ._service_providers import (
     Carrier, PaymentProcessor, Service, ServiceProvider
 )
-from ._methods import PaymentMethod, ShippingMethod
+from ._methods import (
+    BehaviorPart, PaymentMethod, ShippingMethod, ShippingBehaviorPart
+)
 from ._order_lines import OrderLine, OrderLineTax, OrderLineType
 from ._orders import (
     Order, OrderLogEntry, OrderStatus, OrderStatusRole, PaymentStatus,
@@ -53,6 +55,7 @@ __all__ = [
     "Attribute",
     "AttributeType",
     "AttributeVisibility",
+    "BehaviorPart",
     "Carrier",
     "Category",
     "CategoryStatus",
@@ -105,6 +108,7 @@ __all__ = [
     "ServiceProvider",
     "Shipment",
     "ShipmentProduct",
+    "ShippingBehaviorPart",
     "ShippingMethod",
     "ShippingMode",
     "ShippingStatus",

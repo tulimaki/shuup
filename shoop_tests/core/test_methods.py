@@ -8,13 +8,21 @@
 from decimal import Decimal
 
 import pytest
+from django.conf import settings
+from django.core import management
 from django.core.exceptions import ValidationError
+from django.db import models
 from django.test.utils import override_settings
+from django.utils.translation import ugettext as _
 
+import shoop.apps
 from shoop.apps.provides import override_provides
+from shoop.apps.settings import reload_apps
+from shoop.core.fields import MoneyValueField
 from shoop.core.methods.base import BaseShippingMethodModule
 from shoop.core.models import (
-    get_person_contact, OrderLineType, PaymentMethod, ShippingMethod
+    BehaviorPart, Carrier, get_person_contact, OrderLineType, PaymentMethod,
+    ShippingBehaviorPart, Service, ShippingMethod
 )
 from shoop.core.order_creator import SourceLine
 from shoop.core.pricing import PriceInfo
@@ -25,49 +33,107 @@ from shoop.testing.factories import (
 from shoop_tests.utils.basketish_order_source import BasketishOrderSource
 
 
-class ExpensiveSwedenShippingModule(BaseShippingMethodModule):
-    identifier = "expensive_sweden"
-    name = "Expensive Sweden Shipping"
+class AppConfig(shoop.apps.AppConfig):
+    name = __name__
+    label = 'shoop_tests_methods'
 
-    def get_effective_name(self, source, **kwargs):
+
+class ExpensiveSwedenCarrier(Carrier):
+    def get_services(self):
+        """
+        :rtype: list[Service]
+        """
+        return [Service('default', "Default service")]
+
+
+class ExpensiveSwedenBehaviorPart(ShippingBehaviorPart):
+
+    def get_name(self, source):
         return u"Expenseefe-a Svedee Sheepping"
 
-    def get_effective_price_info(self, source, **kwargs):
+    def get_costs(self, source):
         four = source.create_price('4.00')
         five = source.create_price('5.00')
         if source.shipping_address and source.shipping_address.country == "SE":
-            return PriceInfo(five, four, 1)
-        return PriceInfo(four, four, 1)
+            yield (self.get_name(source), PriceInfo(five, four, 1), None)
+        else:
+            yield (self.get_name(source), PriceInfo(four, four, 1), None)
 
-    def get_validation_errors(self, source, **kwargs):
-        for error in super(ExpensiveSwedenShippingModule, self).get_validation_errors(source, **kwargs):
-            # The following line is no cover because the parent class doesn't necessarily error out
-            yield error  # pragma: no cover
-
-
+    def get_unavailability_reasons(self, source):
         if source.shipping_address and source.shipping_address.country == "FI":
             yield ValidationError("Veell nut sheep unytheeng tu Feenlund!", code="we_no_speak_finnish")
 
 
-SHIPPING_METHOD_SPEC = "%s:%s" % (__name__, ExpensiveSwedenShippingModule.__name__)
+class WeightLimitsBehaviorPart(ShippingBehaviorPart):
+    min_weight = models.DecimalField(
+        max_digits=36, decimal_places=6, blank=True, null=True,
+        verbose_name=_("minimum weight"))
+    max_weight = models.DecimalField(
+        max_digits=36, decimal_places=6, blank=True, null=True,
+        verbose_name=_("maximum weight"))
+
+    def get_unavailability_reasons(self, source):
+        weight = sum(((x.get("weight") or 0) for x in source.get_lines()), 0)
+        if self.min_weight:
+            if weight < self.min_weight:
+                yield ValidationError(_("Minimum weight not met."), code="min_weight")
+        if self.max_weight:
+            if weight > self.max_weight:
+                yield ValidationError(_("Maximum weight exceeded."), code="max_weight")
+
+
+class PriceWaiverBehaviorPart(ShippingBehaviorPart):
+    waive_limit_value = MoneyValueField()
+
+    def get_costs(self, source):
+        waive_limit = source.create_price(self.waive_limit_value)
+        product_total = source.total_price_of_products
+        if product_total and product_total >= waive_limit:
+            five = source.create_price(5)
+            # TODO(SHOOP-2293): Reconsider calculation of method's price
+            # with behavior parts since price waiving is impossible
+            #
+            # We decided to use campaigns in that case... maybe that's
+            # OK too, but then these test would have to be amended and
+            # the Campaign rule has to be created
+            yield (_("Free shipping"), PriceInfo(-five, -five, 1), None)
 
 
 def get_expensive_sweden_shipping_method():
+    carrier = ExpensiveSwedenCarrier.objects.create(
+        identifier="expensive_sweden",
+        name="Expensive Sweden Shipping",
+        shop=get_default_shop(),
+    )
     sm = ShippingMethod(
         identifier=ExpensiveSwedenShippingModule.identifier,
-        module_identifier=ExpensiveSwedenShippingModule.identifier,
+        carrier=carrier,
         tax_class=get_default_tax_class()
     )
-    sm.module_data = {
-        "min_weight": "0.11000000",
-        "max_weight": "3.00000000",
-        "price_waiver_product_minimum": "370"
-    }
     sm.save()
+    ExpensiveSwedenBehaviorPart.objects.create(owner=sm)
+    WeightLimitsBehaviorPart.objects.create(
+        owner=sm, min_weight="0.11", max_weight="3")
+    PriceWaiverBehaviorPart.objects.create(
+        owner=sm, waive_limit_value="370")
     return sm
 
-def override_provides_for_expensive_sweden_shipping_method():
-    return override_provides("shipping_method_module", [SHIPPING_METHOD_SPEC])
+
+class override_provides_for_expensive_sweden_shipping_method(object):
+    def __enter__(self):
+        apps = settings.INSTALLED_APPS + type(settings.INSTALLED_APPS)([
+            __name__ + '.AppConfig',
+        ])
+        self.overrider = override_settings(INSTALLED_APPS=apps)
+        self.overrider.__enter__()
+        reload_apps()
+        management.call_command('migrate', 'shoop_tests_methods')
+
+    def __exit__(self, *args, **kwargs):
+        self.overrider.__exit__(*args, **kwargs)
+
+    # TODO(SHOOP-2293): Clean-up shipping_method_module provide
+    #return override_provides("shipping_method_module", [])
 
 @pytest.mark.django_db
 @pytest.mark.parametrize("country", ["FI", "SE", "NL", "NO"])
