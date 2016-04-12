@@ -52,6 +52,7 @@ INSTALLED_APPS = add_enabled_addons(SHOOP_ENABLED_ADDONS_FILE, [
     'shoop.testing',
     'shoop.utils',
     'shoop.xtheme',
+    'shoop.contact_group_sales',
     # external apps
     'bootstrap3',
     'django_jinja',
