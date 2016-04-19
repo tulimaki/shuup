@@ -14,7 +14,7 @@
                     <label class="control-label" for"id_component-select">{% trans %}Behavior component type{% endtrans %}</label>
                     <select class="form-control" id="component-select">
                         {% for form_def in form_defs %}
-                            {% if form_def != "base" %}
+                            {% if form_def in component_forms %}
                                 {% set form_prefix = form_def %}
                                 {% set formset = form[form_def] %}
                                 <option data-target-id="id_{{ form_prefix }}" value="{{ form_prefix }}">{{ formset.get_name() }}</option>
@@ -26,15 +26,26 @@
                     <a class="btn btn-lg btn-text" id="component-button" href="#">+ {% trans %}Add component{% endtrans %}</a>
                 </div>
                 {% for form_def in form_defs %}
-                    {% if form_def != "base" %}
+                    {% if form_def in component_forms %}
                         {% set form_prefix = form_def %}
                         {% set formset = form[form_def] %}
-                        {% include "shoop/admin/services/_edit_behavior_components_form.jinja" with context %}
+                        {% set template_name = form_defs[form_def].template_name or "shoop/admin/services/_edit_behavior_components_form.jinja" %}
+                        {% include template_name with context %}
                     {% endif %}
                 {% endfor %}
                 <div class="hide" id="insert-placeholder"></div>
             {% endcall %}
             {% endif %}
+            {% for form_def in form_defs %}
+                {% if form_def in component_form_parts %}
+                    {% set form_prefix = form_def %}
+                    {% set formset = form[form_def] %}
+                    {% call content_block(_(formset[0].instance.name), ("fa-cubes")) %}
+                        {% set template_name = form_defs[form_def].template_name or "shoop/admin/services/_edit_behavior_components_form.jinja" %}
+                        {% include template_name with context %}
+                    {% endcall %}
+                {% endif %}
+            {% endfor %}
         </form>
     {% endcall %}
 {% endblock %}

@@ -8,9 +8,10 @@
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from enumfields import Enum, EnumIntegerField
 from parler.models import TranslatedField, TranslatedFields
 
-from shoop.core.fields import MoneyValueField
+from shoop.core.fields import MeasurementField, MoneyValueField
 
 from ._service_base import (
     ServiceBehaviorComponent, ServiceCost,
@@ -82,3 +83,26 @@ class WeightLimitsBehaviorComponent(ServiceBehaviorComponent):
         if self.max_weight:
             if weight > self.max_weight:
                 yield ValidationError(_("Maximum weight exceeded."), code="max_weight")
+
+
+class OutOfRangeBehaviorChoices(Enum):
+    HIGHEST_PRICE = 0
+    MAKE_UNAVAILABLE = 1
+
+    class Labels:
+        HIGHEST_PRICE = _("highest price")
+        MAKE_UNAVAILABLE = _("make unavailable")
+
+
+class WeightBasedPricingBehaviorComponent(ServiceBehaviorComponent):
+    name = _("Weight-based pricing")
+    help_text = _("Based on weight")
+
+    out_of_range_behavior = EnumIntegerField(OutOfRangeBehaviorChoices, default=OutOfRangeBehaviorChoices.HIGHEST_PRICE, verbose_name=_("out of range behavior"))
+
+
+class WeightBasedPriceRange(models.Model):
+    component = models.ForeignKey("WeightBasedPricingBehaviorComponent", related_name="ranges", on_delete=models.CASCADE)
+    min_value = MeasurementField(unit="g", verbose_name=_("min weight"), blank=True, null=True)
+    max_value = MeasurementField(unit="g", verbose_name=_("max weight"), blank=True, null=True)
+    price_value = MoneyValueField()

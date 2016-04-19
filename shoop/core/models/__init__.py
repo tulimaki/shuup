@@ -47,7 +47,8 @@ from ._service_base import (
 )
 from ._service_behavior import (
     FixedCostBehaviorComponent, WaivingCostBehaviorComponent,
-    WeightLimitsBehaviorComponent
+    WeightLimitsBehaviorComponent, WeightBasedPricingBehaviorComponent,
+    WeightBasedPriceRange
 )
 from ._service_payment import (
     CustomPaymentProcessor, PaymentMethod, PaymentProcessor, PaymentUrls
