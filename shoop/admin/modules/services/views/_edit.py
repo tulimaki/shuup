@@ -14,7 +14,7 @@ from shoop.admin.modules.services.base_form_part import (
     PaymentMethodBaseFormPart, ShippingMethodBaseFormPart
 )
 from shoop.admin.modules.services.behavior_form_part import \
-    BehaviorComponentFormPart, TemplatedBehaviorComponentFormPart
+    BehaviorComponentFormPart
 from shoop.admin.toolbar import get_default_edit_toolbar
 from shoop.admin.utils.urls import get_model_url
 from shoop.admin.utils.views import CreateOrUpdateView
@@ -27,8 +27,6 @@ class ServiceEditView(SaveFormPartsMixin, FormPartsViewMixin, CreateOrUpdateView
     template_name = "shoop/admin/services/edit.jinja"
     context_object_name = "service"
     base_form_part_classes = []  # Override in subclass
-    component_forms = set()
-    component_form_parts = set()
     form_provide_key = "service_behavior_component_form"
     form_part_provide_key = "service_behavior_component_form_part"
 
@@ -42,11 +40,8 @@ class ServiceEditView(SaveFormPartsMixin, FormPartsViewMixin, CreateOrUpdateView
             return form_parts
         for form in get_provide_objects(self.form_provide_key):
             form_parts.append(self._get_behavior_form_part(form, object))
-            self.component_forms.add(form._meta.model.__name__.lower())
         for form_class in get_provide_objects(self.form_part_provide_key):
-            form = form_class(self.request, object)
-            form_parts.append(form)
-            self.component_form_parts.add(form.name)
+            form_parts.append(form_class(self.request, object))
         return form_parts
 
     def _get_behavior_form_part(self, form, object):
@@ -58,10 +53,7 @@ class ServiceEditView(SaveFormPartsMixin, FormPartsViewMixin, CreateOrUpdateView
         delete_url = get_model_url(object, "delete") if object.pk else None
         return get_default_edit_toolbar(self, save_form_id, delete_url=(delete_url if object.can_delete() else None))
 
-
     def get_context_data(self, *args, **kwargs):
-        kwargs["component_forms"] = self.component_forms
-        kwargs["component_form_parts"] = self.component_form_parts
         return super(ServiceEditView, self).get_context_data(**kwargs)
 
 

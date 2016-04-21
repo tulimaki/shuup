@@ -46,8 +46,8 @@ class ShoopAdminAppConfig(AppConfig):
             "shoop.admin.modules.services.forms:WeightLimitsBehaviorComponentForm",
         ],
         "service_behavior_component_form_part": [
-            "shoop.admin.modules.services.behavior_form_part:WeightBasedPricingBehaviorComponentFormPart",
-        ],
+            "shoop.admin.modules.services.weight_based_pricing.WeightBasedPricingFormPart"
+        ]
     }
 
     def ready(self):

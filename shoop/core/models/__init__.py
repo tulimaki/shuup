@@ -47,8 +47,8 @@ from ._service_base import (
 )
 from ._service_behavior import (
     FixedCostBehaviorComponent, WaivingCostBehaviorComponent,
-    WeightLimitsBehaviorComponent, WeightBasedPricingBehaviorComponent,
-    WeightBasedPriceRange
+    WeightBasedPriceRange, WeightBasedPricingBehaviorComponent,
+    WeightLimitsBehaviorComponent
 )
 from ._service_payment import (
     CustomPaymentProcessor, PaymentMethod, PaymentProcessor, PaymentUrls
@@ -142,6 +142,8 @@ __all__ = [
     "TaxClass",
     "TranslatableShoopModel",
     "WaivingCostBehaviorComponent",
+    "WeightBasedPriceRange",
+    "WeightBasedPricingBehaviorComponent",
     "WeightLimitsBehaviorComponent",
 ]
 

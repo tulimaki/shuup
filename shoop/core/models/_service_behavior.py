@@ -94,15 +94,44 @@ class OutOfRangeBehaviorChoices(Enum):
         MAKE_UNAVAILABLE = _("make unavailable")
 
 
-class WeightBasedPricingBehaviorComponent(ServiceBehaviorComponent):
-    name = _("Weight-based pricing")
-    help_text = _("Based on weight")
-
-    out_of_range_behavior = EnumIntegerField(OutOfRangeBehaviorChoices, default=OutOfRangeBehaviorChoices.HIGHEST_PRICE, verbose_name=_("out of range behavior"))
-
-
 class WeightBasedPriceRange(models.Model):
-    component = models.ForeignKey("WeightBasedPricingBehaviorComponent", related_name="ranges", on_delete=models.CASCADE)
+    description = TranslatedField(any_language=True)
     min_value = MeasurementField(unit="g", verbose_name=_("min weight"), blank=True, null=True)
     max_value = MeasurementField(unit="g", verbose_name=_("max weight"), blank=True, null=True)
     price_value = MoneyValueField()
+
+    def get_costs(self, service, source):
+        # TODO: If source weight matches with range return ServiceCost with ranges description
+        return
+
+
+class WeightBasedPricingBehaviorComponent(ServiceBehaviorComponent):
+    name = _("Weight-based pricing")
+    help_text = _("Based on weight")  # TODO: Better help text
+
+    description = TranslatedField(any_language=True)
+    out_of_range_behavior = EnumIntegerField(
+        OutOfRangeBehaviorChoices,
+        default=OutOfRangeBehaviorChoices.HIGHEST_PRICE,
+        verbose_name=_("out of range behavior"))
+    ranges = models.ManyToManyField(WeightBasedPriceRange, related_name="+")
+
+    def get_costs(self, service, source):
+        for range in self.ranges.all():
+            costs = range.get_costs(service, source)
+            if costs:
+                yield costs
+                return
+
+        if self.out_of_range_behavior == OutOfRangeBehaviorChoices.HIGHEST_PRICE:
+            highest_price = self.components.all().order_by('-price_value').first()
+            if highest_price:
+                yield ServiceCost(highest_price, self.safe_translation_getter('description'))
+
+    def get_unavailability_reasons(self, service, source):
+        for range in self.ranges.all():
+            costs = range.get_costs(service, source)
+            if costs:
+                return
+
+        yield ValidationError(_("Source weight does not match with any pricing range."))
