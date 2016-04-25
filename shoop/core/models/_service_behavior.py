@@ -8,9 +8,9 @@
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from parler.models import TranslatedField, TranslatedFields, TranslatableModel
+from parler.models import TranslatableModel, TranslatedField, TranslatedFields
 
-from shoop.core.fields import MoneyValueField, MeasurementField
+from shoop.core.fields import MeasurementField, MoneyValueField
 
 from ._service_base import (
     ServiceBehaviorComponent, ServiceCost,
@@ -144,3 +144,8 @@ class WeightBasedPricingBehaviorComponent(ServiceBehaviorComponent):
             price = source.create_price(range.price_value)
             description = range.safe_translation_getter('description')
             yield ServiceCost(price, description)
+
+    def get_unavailability_reasons(self, service, source):
+        range = self._get_matching_range_with_lowest_price(source)
+        if not range:
+            yield ValidationError(_("Weight does not match with any range."), code="out_of_range")
