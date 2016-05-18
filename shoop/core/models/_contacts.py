@@ -237,8 +237,8 @@ class PersonContact(Contact):
     )
     gender = EnumField(Gender, default=Gender.UNDISCLOSED, max_length=4, verbose_name=_('gender'))
     birth_date = models.DateField(blank=True, null=True, verbose_name=_('birth date'))
-    first_name = models.CharField(max_length=30, blank=True, verbose_name=_('first name'))
-    last_name = models.CharField(max_length=50, blank=True, verbose_name=_('last name'))
+    first_name = models.CharField(max_length=60, blank=True, verbose_name=_('first name'))
+    last_name = models.CharField(max_length=60, blank=True, verbose_name=_('last name'))
     # TODO: Figure out how/when/if the name and email fields are updated from users
 
     class Meta:
