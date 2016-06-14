@@ -207,6 +207,11 @@ class CompanyContact(Contact):
         max_length=32, blank=True,
         verbose_name=_("tax number"),
         help_text=_("e.g. EIN in US or VAT code in Europe"))
+    sellers = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, blank=True, null=True, related_name="contact",
+        verbose_name=_('user')
+    )
+
 
     class Meta:
         verbose_name = _('company')
