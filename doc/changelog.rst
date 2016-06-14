@@ -73,6 +73,7 @@ Localization
 Admin
 ~~~~~
 
+- Add account manger for contact
 - Add PersonContact choice widget
 - Show stock in order creator
 - Fix bug: Fix decimal precision issues on order creation

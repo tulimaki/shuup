@@ -118,6 +118,7 @@ class Contact(PolymorphicShoopModel):
         "CustomerTaxGroup", blank=True, null=True, on_delete=models.PROTECT, verbose_name=_('tax group')
     )
     merchant_notes = models.TextField(blank=True, verbose_name=_('merchant notes'))
+    account_manager = models.ForeignKey("PersonContact", blank=True, null=True, verbose_name=_('account manager'))
 
     def __str__(self):
         return self.full_name
@@ -207,11 +208,6 @@ class CompanyContact(Contact):
         max_length=32, blank=True,
         verbose_name=_("tax number"),
         help_text=_("e.g. EIN in US or VAT code in Europe"))
-    sellers = models.ManyToManyField(
-        settings.AUTH_USER_MODEL, blank=True, null=True, related_name="contact",
-        verbose_name=_('user')
-    )
-
 
     class Meta:
         verbose_name = _('company')
