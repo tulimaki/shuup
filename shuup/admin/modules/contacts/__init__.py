@@ -82,7 +82,7 @@ class ContactModule(AdminModule):
                 relevance = 100 - i
                 yield SearchResult(
                     text=six.text_type(contact), url=get_model_url(contact),
-                    category=self.category, relevance=relevance
+                    category=_("Contacts"), relevance=relevance
                 )
 
     def get_model_url(self, object, kind):
