@@ -12,6 +12,7 @@ Unreleased
 Core
 ~~~~
 
+- Fix shipping status for orders with refunds
 - Fix bug in order total price rounding
 - Fix bug with duplicates in `Product.objects.list_visible()`
 - Fix restocking issues with refunded products
@@ -32,6 +33,8 @@ Localization
 Admin
 ~~~~~
 
+- Prevent picotable from reloading after every change
+- Add ability to copy category visibility settings to products
 - Reorganize main menu
 - Show customer comment on order detail page
 - Redirect to order detail page on order submission
@@ -92,6 +95,8 @@ Discount Pricing
 
 Simple CMS
 ~~~~~~~~~~
+
+- Fix plugin links
 
 Default Tax
 ~~~~~~~~~~~
