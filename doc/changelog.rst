@@ -34,6 +34,15 @@ Localization
 Admin
 ~~~~~
 
+- Show orderability errors in package product management
+- Show stocks in package product management
+- Add link to order line product detail page in order editor
+- Add product line quick add to order creator
+- Add product barcode field to searchable select2 fields
+- Filter out deleted products from Stock Management list view
+- Show newest contacts and users first in admin list views
+- Show list of shipments in order view
+- Fix customer, creator, and ordered by links on order detail page
 - Prevent picotable from reloading after every change
 - Add ability to copy category visibility settings to products
 - Reorganize main menu
