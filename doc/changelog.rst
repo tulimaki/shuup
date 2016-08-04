@@ -30,6 +30,9 @@ Xtheme
 Classic Gray Theme
 ~~~~~~~~~~~~~~~~~~
 
+- Move plugins to Xtheme. Move static_resources, templates and views under
+  front and front apps.
+
 Simple Supplier
 ~~~~~~~~~~~~~~~
 
