@@ -1,0 +1,23 @@
+{%- import "shuup/front/macros.jinja" as macros with context -%}
+
+{% macro render_company_contact_form(form) %}
+    <div class="well">
+        <fieldset>
+            <legend>{% trans %}Company information{% endtrans %}</legend>
+            {% for field in form.visible_fields() %}
+                {{ macros.render_field(field) }}
+            {% endfor %}
+        </fieldset>
+    </div>
+{% endmacro %}
+
+{% macro render_person_contact_form(form) %}
+    <div class="well">
+        <fieldset>
+            <legend>{% trans %}User information{% endtrans %}</legend>
+            {% for field in form.visible_fields() %}
+                {{ macros.render_field(field) }}
+            {% endfor %}
+        </fieldset>
+    </div>
+{% endmacro %}

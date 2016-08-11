@@ -1,0 +1,18 @@
+{% macro default_breadcrumb(home, active) %}
+    <ol class="breadcrumb">
+        <li><a href="/">{{ home }}</a></li>
+        <li class="active">{{ active }}</li>
+    </ol>
+{% endmacro %}
+
+{% macro customer_information() %}
+    {{ default_breadcrumb(_("Home"), _("User account information")) }}
+{% endmacro %}
+
+{% macro company_information() %}
+    {{ default_breadcrumb(_("Home"), _("Company account information")) }}
+{% endmacro %}
+
+{% macro change_password() %}
+    {{ default_breadcrumb(_("Home"), _("Change password")) }}
+{% endmacro %}
