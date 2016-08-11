@@ -1,8 +1,6 @@
 {% extends "shuup/front/base.jinja" %}
 
-{% block title -%}
-    {{ _("Order History") }}
-{%- endblock %}
+{% block title -%}{{ _("Order History") }}{%- endblock %}
 
 {% block breadcrumb %}
     <ol class="breadcrumb">
@@ -36,7 +34,11 @@
                             <td>{{ order.order_date|datetime }}</td>
                             <td>{{ order.get_status_display() }}</td>
                             <td class="text-right">{{ order.taxful_total_price|money }}</td>
-                            <td class="text-right"><a href="{{ url("shuup:show-order", pk=order.pk) }}"><i class="fa fa-search"></i> {% trans %}Details{% endtrans %}</a></td>
+                            <td class="text-right">
+                                <a href="{{ url("shuup:show-order", pk=order.pk) }}">
+                                    <i class="fa fa-search"></i> {% trans %}Details{% endtrans %}
+                                </a>
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -44,6 +46,8 @@
         </div>
     </div>
     {% else %}
-        <p class="lead"><i class="fa fa-info-circle text-info"></i> {{ _("You haven't made any orders yet.") }}</p>
+        <p class="lead">
+            <i class="fa fa-info-circle text-info"></i> {{ _("You haven't made any orders yet.") }}
+        </p>
     {% endif %}
 {% endblock %}
