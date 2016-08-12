@@ -12,6 +12,7 @@ Unreleased
 Core
 ~~~~
 
+- Fix `FormattedDecimalField` default value for form fields
 - Combine `TreeManager` and `TranslatableManager` querysets for categories
 - Exclude deleted orders from valid queryset
 - Enable soft delete for shipments
@@ -22,6 +23,12 @@ Localization
 Admin
 ~~~~~
 
+- Add contact type filter to contact list view
+- Allow billing address to be used as shipping address on contact creation
+- Split person contact and company contact creation into separate actions
+- Rearrange product creation and edit pages so that all pertinent info is
+  visible simultaneously
+- Allow content blocks to be initialized as collapsed
 - Add ``admin_product_toolbar_action_item`` provider for product edit toolbar
 - Add deprecation warning for ``admin_contact_toolbar_button`` usages
 - Add ``admin_contact_toolbar_action_item`` provider for contact toolbar
