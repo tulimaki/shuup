@@ -58,6 +58,8 @@ Guide
 General/miscellaneous
 ~~~~~~~~~~~~~~~~~~~~~
 
+- MultiLanguageModelForm: Use Parler default as a default
+
 SHUUP 0.4.4
 -----------
 
