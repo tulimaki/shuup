@@ -40,6 +40,9 @@ When using multiple language_dependent_content_tabs in a single page, do remembe
                 {% endif %}
             </div>
         {% endfor %}
+        <p class="text-center">
+            {% trans %}Partially translated languages does not fallback to default language{% endtrans %}
+        </p>
     </div>
 </div>
 {% endmacro %}
