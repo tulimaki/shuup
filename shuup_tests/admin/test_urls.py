@@ -52,7 +52,3 @@ def test_model_url_with_permissions():
 def test_invalid_admin_url():
     with pytest.raises(ImproperlyConfigured):
         admin_url("", "")
-
-
-def test_admin_url_prefix():
-    assert admin_url("", "foo", prefix="bar")._callback_str == "bar.foo"

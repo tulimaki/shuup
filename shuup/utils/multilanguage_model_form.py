@@ -49,8 +49,16 @@ class MultiLanguageModelForm(TranslatableModelForm):
 
         # We're not mutating the existing fields, so the shallow copy should be okay
         self.base_fields = self.base_fields.copy()
+        fields_with_model = [
+            (f, f.model if f.model != translations_model else None)
+            for f in translations_model._meta.get_fields()
+            if not f.is_relation
+                or f.one_to_one
+                or (f.many_to_one and f.related_model)
+        ]
+
         self.translation_fields = [
-            f for (f, _) in translations_model._meta.get_fields_with_model()
+            f for (f, _) in fields_with_model
             if f.name not in ('language_code', 'master', 'id') and f.name in self.base_fields
         ]
         self.trans_field_map = defaultdict(dict)

@@ -14,8 +14,9 @@ import six
 from django.conf import settings
 from django.contrib.auth.views import redirect_to_login
 from django.core.exceptions import ImproperlyConfigured
-from django.core.urlresolvers import (
-    get_callable, NoReverseMatch, RegexURLPattern, reverse
+from django.urls import reverse
+from django.urls.resolvers import (
+    get_callable, NoReverseMatch, RegexURLPattern
 )
 from django.http.response import HttpResponseForbidden
 from django.utils.encoding import force_str, force_text
@@ -39,6 +40,9 @@ class AdminRegexURLPattern(RegexURLPattern):
         self.permissions = tuple(permissions)
         self.require_authentication = require_authentication
         if callable(callback):
+            callback = self.wrap_with_permissions(callback)
+        else:
+            callback = get_callable(callback)
             callback = self.wrap_with_permissions(callback)
         super(AdminRegexURLPattern, self).__init__(regex, callback, default_args, name)
 
@@ -97,14 +101,15 @@ class AdminRegexURLPattern(RegexURLPattern):
 
         return _wrapped_view
 
-    @property
-    def callback(self):
-        if self._callback is not None:
-            return self._callback
+#    @property
+#    def callback(self):
+#        if self.callback is not None:
+#            return self.callback
+#
+#        callback = get_callable(self._callback_str)
+#        self.callback = self.wrap_with_permissions(callback)
+#        return self.callback
 
-        callback = get_callable(self._callback_str)
-        self._callback = self.wrap_with_permissions(callback)
-        return self._callback
 
 
 def admin_url(regex, view, kwargs=None, name=None, prefix='', require_authentication=True, permissions=()):

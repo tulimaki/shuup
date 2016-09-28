@@ -16,31 +16,31 @@ class Migration(migrations.Migration):
         migrations.AlterModelManagers(
             name='carrier',
             managers=[
-                ('_default_manager', django.db.models.manager.Manager()),
+                ('objects', django.db.models.manager.Manager()),
             ],
         ),
         migrations.AlterModelManagers(
             name='customcarrier',
             managers=[
-                ('_default_manager', django.db.models.manager.Manager()),
+                ('objects', django.db.models.manager.Manager()),
             ],
         ),
         migrations.AlterModelManagers(
             name='custompaymentprocessor',
             managers=[
-                ('_default_manager', django.db.models.manager.Manager()),
+                ('objects', django.db.models.manager.Manager()),
             ],
         ),
         migrations.AlterModelManagers(
             name='paymentprocessor',
             managers=[
-                ('_default_manager', django.db.models.manager.Manager()),
+                ('objects', django.db.models.manager.Manager()),
             ],
         ),
         migrations.AlterModelManagers(
             name='serviceprovider',
             managers=[
-                ('_default_manager', django.db.models.manager.Manager()),
+                ('objects', django.db.models.manager.Manager()),
             ],
         ),
     ]

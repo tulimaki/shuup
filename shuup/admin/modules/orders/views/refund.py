@@ -122,8 +122,8 @@ class OrderCreateRefundView(UpdateView):
     def _get_line_number_choices(self):
         return [("", "---")] + [((i), (i+1)) for i in self._get_refundable_line_numbers()]
 
-    def get_form(self, form_class):
-        formset = super(OrderCreateRefundView, self).get_form(form_class)
+    def get_form(self):
+        formset = super(OrderCreateRefundView, self).get_form()
 
         # Line orderings are zero-indexed, but shouldn't display that way
         choices = self._get_line_number_choices()

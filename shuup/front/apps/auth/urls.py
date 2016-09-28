@@ -5,15 +5,14 @@
 #
 # This source code is licensed under the AGPLv3 license found in the
 # LICENSE file in the root directory of this source tree.
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 from .views import (
     LoginView, LogoutView, RecoverPasswordCompleteView,
     RecoverPasswordConfirmView, RecoverPasswordSentView, RecoverPasswordView
 )
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     url(r'^login/$',
         LoginView.as_view(),
         name='login'),
@@ -32,4 +31,4 @@ urlpatterns = patterns(
     url(r'^recover-password/complete/$',
         RecoverPasswordCompleteView.as_view(),
         name='recover_password_complete'),
-)
+]

@@ -108,9 +108,9 @@ class OrderCreateShipmentView(UpdateView):
         kwargs.pop("instance")
         return kwargs
 
-    def get_form(self, form_class):
+    def get_form(self):
         default_field_keys = set()
-        form = super(OrderCreateShipmentView, self).get_form(form_class)
+        form = super(OrderCreateShipmentView, self).get_form()
         order = self.object
         form.fields["supplier"] = forms.ModelChoiceField(
             queryset=Supplier.objects.all(),
