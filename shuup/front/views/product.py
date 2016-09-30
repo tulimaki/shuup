@@ -8,15 +8,28 @@
 from django.shortcuts import redirect
 from django.utils.translation import ugettext as _
 from django.utils.translation import get_language
-from django.views.generic import DetailView
+from django.views.generic import DetailView, View
 
 from shuup.core.models import AttributeVisibility, Product, ProductMode
 from shuup.front.utils.views import cache_product_things
 from shuup.utils.excs import extract_messages, Problem
+from shuup.utils.importing import cached_load
 from shuup.utils.numbers import get_string_sort_order
 
 
-class ProductDetailView(DetailView):
+class ProductDetailView(View):
+    def dispatch(self, request, *args, **kwargs):
+        return get_product_view()(request, *args, **kwargs)
+
+
+def get_product_view():
+    view = cached_load("SHUUP_PRODUCT_VIEW_SPEC")
+    if hasattr(view, "as_view"):  # pragma: no branch
+        view = view.as_view()
+    return view
+
+
+class DefaultProductDetailView(DetailView):
     template_name = "shuup/front/product/detail.jinja"
     model = Product
     context_object_name = "product"
@@ -25,7 +38,7 @@ class ProductDetailView(DetailView):
         return Product.objects.language(get_language()).select_related("primary_image")
 
     def get_context_data(self, **kwargs):
-        context = super(ProductDetailView, self).get_context_data(**kwargs)
+        context = super(DefaultProductDetailView, self).get_context_data(**kwargs)
         language = self.language = get_language()
         product = self.object
         context["category"] = self.shop_product.primary_category
@@ -88,4 +101,4 @@ class ProductDetailView(DetailView):
         if errors:
             raise Problem("\n".join(extract_messages(errors)))
 
-        return super(ProductDetailView, self).get(request, *args, **kwargs)
+        return super(DefaultProductDetailView, self).get(request, *args, **kwargs)

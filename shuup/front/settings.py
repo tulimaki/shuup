@@ -46,6 +46,11 @@ SHUUP_BASKET_CLASS_SPEC = (
 SHUUP_BASKET_STORAGE_CLASS_SPEC = (
     "shuup.front.basket.storage:DatabaseBasketStorage")
 
+
+SHUUP_CATEGORY_VIEW_SPEC = (
+    "shuup.front.views.category:DefaultCategoryView"
+)
+
 #: Spec string for the Django CBV (or an API-compliant class) for the checkout view.
 #:
 #: This is used to customize the behavior of the checkout process; most likely to
@@ -63,3 +68,10 @@ SHUUP_CHECKOUT_VIEW_SPEC = (
 #:
 #: Handled error cases are: 400, 403, 404, and 500
 SHUUP_FRONT_INSTALL_ERROR_HANDLERS = True
+
+
+SHUUP_PRODUCT_VIEW_SPEC = (
+    "shuup.front.views.product:DefaultProductDetailView"
+)
+
+

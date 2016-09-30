@@ -9,13 +9,26 @@ from __future__ import with_statement
 
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from django.views.generic import DetailView
+from django.views.generic import DetailView, View
 
 from shuup.core.models import Category, Manufacturer, Product
 from shuup.front.utils.product_sorting import (
     PRODUCT_SORT_CHOICES, sort_products
 )
 from shuup.front.utils.views import cache_product_things
+from shuup.utils.importing import cached_load
+
+
+class CategoryView(View):
+    def dispatch(self, request, *args, **kwargs):
+        return get_category_view()(request, *args, **kwargs)
+
+
+def get_category_view():
+    view = cached_load("SHUUP_CATEGORY_VIEW_SPEC")
+    if hasattr(view, "as_view"):  # pragma: no branch
+        view = view.as_view()
+    return view
 
 
 class ProductListForm(forms.Form):
@@ -29,7 +42,7 @@ class ProductListForm(forms.Form):
     )
 
 
-class CategoryView(DetailView):
+class DefaultCategoryView(DetailView):
     template_name = "shuup/front/product/category.jinja"
     model = Category
     template_object_name = "category"
@@ -41,7 +54,7 @@ class CategoryView(DetailView):
         )
 
     def get_context_data(self, **kwargs):
-        context = super(CategoryView, self).get_context_data(**kwargs)
+        context = super(DefaultCategoryView, self).get_context_data(**kwargs)
         category = self.object
         context["form"] = form = ProductListForm(data=self.request.GET)
         form.full_clean()
