@@ -45,6 +45,8 @@ class BaseCheckoutView(View):
 
 class DefaultCheckoutView(BaseCheckoutView):
     phase_specs = [
+        "shuup.front.checkout.checkout_method:CheckoutMethodPhase",
+        "shuup.front.checkout.checkout_method:RegisterPhase",
         "shuup.front.checkout.addresses:AddressesPhase",
         "shuup.front.checkout.methods:MethodsPhase",
         "shuup.front.checkout.methods:ShippingMethodPhase",
