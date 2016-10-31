@@ -6,6 +6,7 @@
 # LICENSE file in the root directory of this source tree.
 import decimal
 
+from shuup.core.fields.utils import ensure_decimal_places
 from shuup.utils.numbers import bankers_round
 
 from ._price import TaxfulPrice, TaxlessPrice
@@ -158,6 +159,10 @@ class Priceful(object):
 
     @property
     def tax_rate(self):
+        return ensure_decimal_places(self.raw_tax_rate)
+
+    @property
+    def raw_tax_rate(self):
         """
         :rtype: decimal.Decimal
         """
