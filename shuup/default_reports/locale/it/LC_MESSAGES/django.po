@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Shuup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-11 19:53+0000\n"
-"PO-Revision-Date: 2016-10-22 08:22+0000\n"
+"POT-Creation-Date: 2016-10-25 18:30+0000\n"
+"PO-Revision-Date: 2016-10-27 21:32+0000\n"
 "Last-Translator: Marco Badan <marco.badan@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/shuup/shuup/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -42,6 +42,15 @@ msgstr "Totale Iva Esclusa"
 msgid "Taxful Total"
 msgstr "Totale IVA Inclusa"
 
+msgid "Sales Per Hour"
+msgstr "Vendite Per Ora"
+
+msgid "Hour"
+msgstr "Ora"
+
+msgid "Order Amount"
+msgstr "Importo Ordine"
+
 msgid "Total Sales"
 msgstr "Totale Vendite"
 
@@ -50,9 +59,3 @@ msgstr "Nome Negozio"
 
 msgid "Currency"
 msgstr "Valuta"
-
-msgid "Order Amount"
-msgstr "Importo Ordine"
-
-msgid "Sales Per Hour"
-msgstr "Vendite Per Ora"

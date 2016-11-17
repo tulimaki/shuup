@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Shuup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-21 18:42+0000\n"
-"PO-Revision-Date: 2016-10-23 10:03+0000\n"
-"Last-Translator: Marco Badan <marco.badan@gmail.com>\n"
+"POT-Creation-Date: 2016-11-11 01:58+0000\n"
+"PO-Revision-Date: 2016-11-15 09:44+0000\n"
+"Last-Translator: Shuup Admin <admin@shuup.com>\n"
 "Language-Team: Italian (http://www.transifex.com/shuup/shuup/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -148,6 +148,33 @@ msgstr "Un cliente con lo stesso %s esiste già"
 msgid "Click to select user %s."
 msgstr "CLicca per selezionare l'utente %s."
 
+msgid "Save customer details while creating order"
+msgstr "Salva i dettagli cliente mentre crei l'ordine"
+
+msgid ""
+"Checking this box will save entered customer data to your contacts list."
+msgstr ""
+
+msgid "Ship to billing address"
+msgstr "Spedisci all'indirizzo di fatturazione"
+
+msgid ""
+"Checking this will make the shipping address the same as the billing "
+"address."
+msgstr ""
+
+msgid "Order for company"
+msgstr "Ordine per azienda"
+
+msgid "Check this if the order is for a company or business with a tax ID."
+msgstr ""
+
+msgid "Billing Address"
+msgstr "Indirizzi Fatturazione"
+
+msgid "Shipping Address"
+msgstr "Indirrizzi Spedizione"
+
 msgid "Full Name"
 msgstr "Nome completo"
 
@@ -184,6 +211,27 @@ msgstr "Stato Pagamento"
 msgid "Order Status"
 msgstr "Stato Ordine"
 
+msgid "Search by name or email"
+msgstr ""
+
+msgid "Customer Search"
+msgstr ""
+
+msgid ""
+"Search for existing customers by searching by name or email or click the "
+"magnifying glass for more fine-grained filtering. Clear the search filter to"
+" create an order for a new customer."
+msgstr ""
+
+msgid "Customer"
+msgstr "Cliente"
+
+msgid "View Details"
+msgstr "Visualizza Dettagl"
+
+msgid "A new customer will be created based on billing address."
+msgstr "Un nuovo utente sarà creato su questo indirizzo di fatturazione."
+
 msgid "Customer Information"
 msgstr "Informazioni Cliente"
 
@@ -198,36 +246,6 @@ msgstr "Chiudi"
 
 msgid "Warning: No customer account is currently associated with this order."
 msgstr "Attenzione: nessun account utente è ora associato con questo ordine."
-
-msgid "A new customer will be created based on billing address."
-msgstr "Un nuovo utente sarà creato su questo indirizzo di fatturazione."
-
-msgid "Customer"
-msgstr "Cliente"
-
-msgid "Select Existing Customer"
-msgstr "Seleziona un cliente esistente"
-
-msgid "New Customer"
-msgstr "Nuovo Cliente"
-
-msgid "View Details"
-msgstr "Visualizza Dettagl"
-
-msgid "Save customer details while creating order"
-msgstr "Salva i dettagli cliente mentre crei l'ordine"
-
-msgid "Ship to billing address"
-msgstr "Spedisci all'indirizzo di fatturazione"
-
-msgid "Order for company"
-msgstr "Ordine per azienda"
-
-msgid "Billing Address"
-msgstr "Indirizzi Fatturazione"
-
-msgid "Shipping Address"
-msgstr "Indirrizzi Spedizione"
 
 msgid "Back"
 msgstr "Indietro"
@@ -273,29 +291,75 @@ msgstr "Seleziona prodotto"
 msgid "Text/Comment"
 msgstr "Testo/Commento"
 
+msgid ""
+"Enter a comment or text note about the order. This could be anything from "
+"special order requests to special shipping needs."
+msgstr ""
+
 msgid "Qty"
 msgstr "Qtà"
+
+msgid "Enter the number of units of the product ordered."
+msgstr ""
+
+msgid ""
+"Enter the regular base price for a single unit of the product. If an "
+"existing product is selected, the price is already determined in product "
+"settings. Total price will be automatically calculated."
+msgstr ""
 
 msgid "Total Price"
 msgstr "Prezzo Totale"
 
+msgid ""
+"Enter the total amount for the line item. Unit price will be automatically "
+"calculated."
+msgstr ""
+
 msgid "Base Unit Price"
 msgstr "Prezzo Unitario Base"
+
+msgid ""
+"Enter the regular base price for a single unit of the product. If an "
+"existing product is selected, the price is already determined in product "
+"settings."
+msgstr ""
+
+msgid ""
+"Enter the total discounted price for a single product unit in the order. "
+"Discount percent, Total Discount Amount, and Line Total will be "
+"automatically calculated."
+msgstr ""
 
 msgid "Discount Percent"
 msgstr "Percentuale Sconto"
 
+msgid ""
+"Enter the discount percentage (%) for the line item. Discounted Unit Price, "
+"Total Discount Amount, and Line Total will be automatically."
+msgstr ""
+
 msgid "Total Discount Amount"
 msgstr "Ammontare Total di Sconto"
+
+msgid ""
+"Enter the total discount amount for the line item. Discounted Unit Price, "
+"Discount percent, and Line Total will be automatically calculated."
+msgstr ""
 
 msgid "Line Total"
 msgstr "Totale Linea"
 
+msgid ""
+"Enter the total amount for the line item. Discounted Unit Price, Discount "
+"percent, and Total Discount Amount will be automatically calculated."
+msgstr ""
+
 msgid "Orderline type"
 msgstr "Tipo Linea d'ordine"
 
-msgid "Missing JavaScript dependencies detected"
-msgstr "Riscontrate dipendenze JavaScript mancanti"
+msgid "Search product by name, SKU, or barcode"
+msgstr ""
 
 msgid ""
 "If your product prices vary based on customer, you might want to select "
@@ -303,34 +367,42 @@ msgid ""
 msgstr "Se i prezzi del tuo prodotto cambiano in base al cliente, dovresti prima selezionare un cliente."
 
 #, javascript-format
-msgid "All prices are in %s currency."
-msgstr "Tutti i pressi sono in %s."
+msgid "All prices are in %s and include taxes."
+msgstr ""
 
-msgid "All prices include taxes."
-msgstr "Tutti i prezzi sono tasse incluse."
+#, javascript-format
+msgid "All prices are in %s. Taxes not included"
+msgstr ""
 
-msgid "Taxes not included."
-msgstr "Tasse escluse"
-
-msgid "Add new line"
-msgstr "Aggiungi una linea"
-
-msgid "Quick add product line"
-msgstr "Aggiungi velocemente un rigo prodotto"
+msgid "Product Quick Adder"
+msgstr ""
 
 msgid ""
-"Search product by name, SKU, or barcode and press button to add product "
-"line."
-msgstr "Cerca prodotti per nome, SKU o codice a barre e premi il bottone per aggiungere una"
+"Search for products to add to the order by searching by name, SKU, or "
+"barcode or click the magnifying glass for more fine-grained filtering."
+msgstr ""
 
 msgid "Automatically add selected product"
 msgstr "Aggiungi il prodotto selezionato automaticamente"
 
+msgid "Add new line"
+msgstr "Aggiungi una linea"
+
 msgid "No shipping method"
 msgstr "Nessun metodo di spedizione."
 
+msgid ""
+"Select a shipping method for the order. These methods are defined in "
+"shipping settings."
+msgstr ""
+
 msgid "No payment method"
 msgstr "Nessun metodo di pagamento"
+
+msgid ""
+"Select a payment method for the order. These methods are defined in payment "
+"settings."
+msgstr ""
 
 msgid "Shop"
 msgstr "Negozio"
@@ -341,29 +413,78 @@ msgstr "Prodotto"
 msgid "Other"
 msgstr "Altri"
 
+msgid "billing"
+msgstr ""
+
+msgid "shipping"
+msgstr ""
+
+#, javascript-format
+msgid "Enter the name for the %s address."
+msgstr ""
+
 msgid "Tax number"
 msgstr "Codice Tasse"
+
+msgid "Enter the company tax (ID) number."
+msgstr ""
+
+#, javascript-format
+msgid "Enter the best %s contact phone number."
+msgstr ""
+
+#, javascript-format
+msgid ""
+"Enter the %s email address for transaction receipts and communications."
+msgstr ""
 
 msgid "Street"
 msgstr "Indirizzo"
 
+#, javascript-format
+msgid "Enter the %s street address."
+msgstr ""
+
 msgid "Street (2)"
 msgstr "Indirizzo (2)"
+
+#, javascript-format
+msgid "Enter the %s street address (2)."
+msgstr ""
 
 msgid "ZIP / Postal code"
 msgstr "CAP"
 
+#, javascript-format
+msgid "Enter the zip or postal code of the %s address."
+msgstr ""
+
 msgid "City"
 msgstr "Città"
+
+#, javascript-format
+msgid "Enter the city of the %s address."
+msgstr ""
 
 msgid "Region"
 msgstr "Provincia"
 
+#, javascript-format
+msgid "Enter the region, state, or province of the %s address."
+msgstr ""
+
 msgid "Country"
 msgstr "Nazione"
 
+#, javascript-format
+msgid "Enter the country of the %s address."
+msgstr ""
+
 msgid "No records found."
 msgstr "Nessun risutato trovato"
+
+msgid "Missing JavaScript dependencies detected"
+msgstr "Riscontrate dipendenze JavaScript mancanti"
 
 msgid "Identifier"
 msgstr "Identificativo"
@@ -435,6 +556,119 @@ msgstr "Nessun risultato trovato"
 
 msgid "Searching..."
 msgstr "Sto cercando..."
+
+msgid "Quicklinks"
+msgstr ""
+
+msgid ""
+"These are the main things you will want to do to get your store up and "
+"running, and the things you do most often."
+msgstr ""
+
+msgid "Orders"
+msgstr ""
+
+msgid "Here you can track your orders and shoppers’ carts."
+msgstr ""
+
+msgid ""
+"Filters are setup to find the orders or shopping carts you are looking for, "
+"based on anything. There are order filters like customer’s name, date range,"
+" if it has been shipped or paid, and basket filters like how many products "
+"are in the basket or if the cart was abandoned."
+msgstr ""
+
+msgid "Products"
+msgstr ""
+
+msgid ""
+"All your products and product options are in here, there’s a bunch. "
+"Manufacturers, suppliers, and your inventory and stock management are "
+"inside. You can add more products and categories here too."
+msgstr ""
+
+msgid "Contacts"
+msgstr ""
+
+msgid ""
+"All your shopper data is inside. Check out your best customers, setup "
+"special user groups, and get info to target them so that they want to buy."
+msgstr ""
+
+msgid "Reports"
+msgstr ""
+
+msgid ""
+"Here you can create all types of reports and export them in multiple "
+"formats. Get the sales data you need and see how and where you are making "
+"money."
+msgstr ""
+
+msgid "Campaigns"
+msgstr ""
+
+msgid ""
+"Here you can create sales, coupons, and marketing campaigns that entice your"
+" shoppers. Set them up based on catalog or basket and make recommended "
+"product upsells and crossells. Or do something unique that will create "
+"loyalty and happy shoppers."
+msgstr ""
+
+msgid "Storefront"
+msgstr ""
+
+msgid ""
+"This is the place to customize your site and add pages, shops, and sales "
+"carousels. You can add media like photos and videos or completely change the"
+" look of your store. It’s super customizable to make it exactly how you "
+"want."
+msgstr ""
+
+msgid "Addons"
+msgstr ""
+
+msgid ""
+"This is your connection interface. Addons and other systems you use can be "
+"attached to your store through powerful data connections. Supercharge your "
+"site and gather crazy amounts of data with integrations to CRMs and ERPs, "
+"POS’s and PIM’s, or any other acronym you can think of."
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+msgid ""
+"Here are the main options for your store. Its got everything from taxes and "
+"tax rules, payment and shipping methods, to notification settings. Tweak "
+"away."
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid ""
+"Find anything that is inside your store. This includes settings, products, "
+"users, and addons."
+msgstr ""
+
+msgid "View your storefront"
+msgstr ""
+
+msgid "Check out your shop and all the cool changes you’ve made."
+msgstr ""
+
+msgid "We're done!"
+msgstr ""
+
+msgid "You have completed the tutorial."
+msgstr ""
+
+msgid ""
+"If you need to run it again, fire it up from the menu in the top right."
+msgstr ""
+
+msgid "Learn more at the Shuup Help Center"
+msgstr ""
 
 msgid "Mass actions"
 msgstr "Azioni di Gruppo"

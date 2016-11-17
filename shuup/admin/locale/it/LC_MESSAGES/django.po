@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Shuup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-21 18:42+0000\n"
-"PO-Revision-Date: 2016-10-23 10:06+0000\n"
-"Last-Translator: Marco Badan <marco.badan@gmail.com>\n"
+"POT-Creation-Date: 2016-11-12 01:49+0000\n"
+"PO-Revision-Date: 2016-11-15 08:39+0000\n"
+"Last-Translator: Shuup Admin <admin@shuup.com>\n"
 "Language-Team: Italian (http://www.transifex.com/shuup/shuup/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -112,12 +112,6 @@ msgstr "Categoria Primaria"
 msgid "Set this category as a primary for selected products."
 msgstr "Imposta questa categoria come primaria per i prodotti selezionati."
 
-msgid "Default Category"
-msgstr "Categoria Predefinita"
-
-msgid "Update product default category while setting primary category."
-msgstr "Aggiorna la categoria predefinita del prodotto impostando la categoria primaria."
-
 msgid "Additional Category"
 msgstr "Categoria Aggiuntiva"
 
@@ -190,6 +184,9 @@ msgstr "Numero di membri"
 msgid "User %(bind_user)s already has a contact"
 msgstr "L'utente %(bind_user)s ha già un contatto"
 
+msgid "Language"
+msgstr "Lingua"
+
 msgid "Gender"
 msgstr "Sesso"
 
@@ -210,9 +207,6 @@ msgstr "Azienda: Componenti"
 
 msgid "Select Language"
 msgstr "Seleziona Lingua"
-
-msgid "Language"
-msgstr "Lingua"
 
 msgid "Contact Group"
 msgstr "Gruppo Contatti"
@@ -413,6 +407,12 @@ msgstr "%(file)s spostati da %(old)s a %(new)s."
 msgid "Show orders"
 msgstr "Mostra Ordini"
 
+msgid "Statuses"
+msgstr ""
+
+msgid "List Statuses"
+msgstr ""
+
 msgid "Outstanding Orders"
 msgstr "Ordini in sospeso"
 
@@ -470,14 +470,11 @@ msgstr "Stampa PDF Consegna"
 msgid "Payments"
 msgstr "Pagamenti"
 
-msgid "Order Contents"
-msgstr "Contenuto Ordini"
+msgid "Shipments"
+msgstr "Spedizioni"
 
 msgid "Log Entries"
 msgstr "Log"
-
-msgid "Shipments"
-msgstr "Spedizioni"
 
 msgid "Admin comment/notes"
 msgstr "commento/note amministratore"
@@ -502,6 +499,9 @@ msgstr "Questo ordine non può essere modificato, ora."
 
 msgid "Create Payment"
 msgstr "Crea Pagamento"
+
+msgid "Set Paid"
+msgstr ""
 
 msgid "Create Shipment"
 msgstr "Crea Spedizione"
@@ -572,6 +572,18 @@ msgstr "Il Pagamento %s è stato creato."
 msgid "Order has already been paid"
 msgstr "L'ordine è gia stato saldato"
 
+msgid "Only orders which are not paid can be set as paid."
+msgstr ""
+
+msgid "Only zero price orders can be set as paid without creating a payment."
+msgstr ""
+
+msgid "Zero amount payment"
+msgstr ""
+
+msgid "Order marked as paid."
+msgstr ""
+
 msgid "Line number"
 msgstr "Numero linea"
 
@@ -639,6 +651,18 @@ msgstr "La spedizione %s è stata creata."
 #, python-format
 msgid "Shipment %s has been deleted."
 msgstr "La spedizione %s è stata cancellata."
+
+msgid "Order Statuses"
+msgstr ""
+
+msgid "Public Name"
+msgstr ""
+
+msgid "Role"
+msgstr ""
+
+msgid "Default"
+msgstr ""
 
 msgid "Permission Groups"
 msgstr "Gruppo di Permessi"
@@ -1000,19 +1024,13 @@ msgstr "Questo campo non può essere modificato in quanto sono presenti degli or
 msgid "Currency"
 msgstr "Valuta"
 
-msgid "Languages"
-msgstr "Lingue"
-
-msgid "Supported Languages"
-msgstr "Lingue Supportate"
-
 msgid "Shop name"
 msgstr "Nome Negozio"
 
 msgid ""
-"Show storefront products with tax pre-calculated into the price. Note this "
-"behavior can be overridden for customer groups."
-msgstr "Mostra i prodotti con iva precalcolata nel prezzo.\nNota che questo comportamento può essere sovrascritto per gruppi cliente."
+"This option defines whether product prices entered in admin include taxes. "
+"Note this behavior can be overridden with customer group pricing."
+msgstr ""
 
 msgid "Shop Owner Name"
 msgstr "Nome Proprietario Negozio"
@@ -1031,9 +1049,6 @@ msgstr "Il tuo negozio è aperto ora!"
 
 msgid "Domain"
 msgstr "Dominio"
-
-msgid "Please select the languages supported by your shop"
-msgstr "Seleziona le lingue supportate dal tuo negozio"
 
 msgid "Please enter your shop details"
 msgstr "Inserisci le informazioni sul tuo negozio"
@@ -1273,6 +1288,9 @@ msgstr "ID Supporto:"
 msgid "Hello"
 msgstr "Ciao"
 
+msgid "Show Tour"
+msgstr ""
+
 msgid "Log out"
 msgstr "Esci"
 
@@ -1287,6 +1305,20 @@ msgstr "Immagine categoria"
 
 msgid "* Products that has this category as a primary category."
 msgstr "* I prodotti che hanno questa categoria come primaria."
+
+msgid "Add a new product category"
+msgstr ""
+
+msgid ""
+"You are adding a new product category. When people search your store, they "
+"can find your product under the category you choose for it, like the aisle "
+"signs at the supermarket."
+msgstr ""
+
+msgid ""
+"You can add a name, description, picture or anything you want to make it "
+"stand out."
+msgstr ""
 
 msgid "General information"
 msgstr "Informazioni Generali"
@@ -1358,6 +1390,20 @@ msgstr "Flusso di attività"
 msgid "Shuup %(version)s"
 msgstr "Shuup %(version)s"
 
+msgid ""
+"This is the dashboard for your store. It’s like the flight deck for your "
+"ecommerce spaceship. You can control everything from here."
+msgstr ""
+
+msgid ""
+"Check out your shoppers’ info, add more products or categories, setup "
+"marketing campaigns, see orders and sales stats, and track the money you’ve "
+"made."
+msgstr ""
+
+msgid "Every setting you could possibly need is in here."
+msgstr ""
+
 msgid "Table Columns"
 msgstr "Colonne Tabella"
 
@@ -1368,6 +1414,12 @@ msgid ""
 "You're almost done! Complete the following steps to sell your products "
 "online"
 msgstr "Hai quasi finito! Completa i passaggi seguenti per vendere i tuoi prodotti online."
+
+msgid "Time to setup your shop."
+msgstr ""
+
+msgid "We just need a few details to begin."
+msgstr ""
 
 msgid "Date"
 msgstr "Data"
@@ -1390,11 +1442,20 @@ msgstr "Commento"
 msgid "Save comment"
 msgstr "Salva commento"
 
+msgid "Comment saved."
+msgstr ""
+
 msgid "There was an error updating the admin comment."
 msgstr "C'è stato un errore durante l'aggiornamento del commento amministratore."
 
 msgid "Description"
 msgstr "Descrizion"
+
+msgid "No payments have been created yet."
+msgstr ""
+
+msgid "Order Contents"
+msgstr "Contenuto Ordini"
 
 msgid "Text"
 msgstr "Testo"
@@ -1434,6 +1495,9 @@ msgstr "Usa l'input qui sotto per aggiungere nuovi log."
 
 msgid "Add to Log"
 msgstr "Aggiungi al Log"
+
+msgid "Log entry added."
+msgstr ""
 
 msgid "There was an error adding the log entry."
 msgstr "C'e' stato un errore inserendo la riga di log."
@@ -1500,8 +1564,8 @@ msgstr "Segna tutti Da Spedire"
 msgid "Ship All"
 msgstr "Spedisci Tutti"
 
-msgid "Details & Status"
-msgstr "Dettagli e Stato"
+msgid "Details"
+msgstr ""
 
 msgid "Order Number"
 msgstr "Numero Ordine"
@@ -1532,6 +1596,9 @@ msgstr "Commento Cliente"
 
 msgid "Tracking codes"
 msgstr "Codici di Tracking"
+
+msgid "Address Information"
+msgstr ""
 
 msgid "Error!"
 msgstr "Errore!"
@@ -1582,6 +1649,20 @@ msgstr "Nessun ordine trovato"
 
 msgid "This product is currently not orderable."
 msgstr "Questo prodotto non è acquistabile al momento"
+
+msgid "You are adding a product."
+msgstr ""
+
+msgid ""
+"To make it stand out, give it an awesome description and picture. This is "
+"what will help your shoppers learn about your products. It will also help "
+"shoppers find them in the store and on the web."
+msgstr ""
+
+msgid ""
+"You can set its price or size and many other things in the option boxes for "
+"each product."
+msgstr ""
 
 msgid "Cross-sells"
 msgstr "Coss-sells."
@@ -1753,6 +1834,9 @@ msgstr "Invia Email Recupero Passwor"
 msgid ""
 "Please fill out the following information to get your store up and running"
 msgstr "Completa le seguenti informazioni per avere il tuo negozio attivo e funzionante"
+
+msgid "Click here for help"
+msgstr ""
 
 msgid "Setup can be continued later from the admin dashboard"
 msgstr "Il setup può essere completato più tardi dalla dashboard di amministrazione"

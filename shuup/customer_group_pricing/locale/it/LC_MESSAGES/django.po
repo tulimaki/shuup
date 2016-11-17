@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-01 22:46+0000\n"
+"POT-Creation-Date: 2016-10-25 18:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Marco Badan <marco.badan@gmail.com>, 2016\n"
 "Language-Team: Italian (https://www.transifex.com/shuup/teams/55306/it/)\n"
@@ -46,9 +46,6 @@ msgstr "prezzi prodotto"
 
 msgid "Customer Group Pricing"
 msgstr "Listino Gruppo Clienti"
-
-msgid "Default price"
-msgstr "Prezzo predefinito"
 
 msgid "Other shops"
 msgstr "Altri negozi"

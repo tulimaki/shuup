@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Shuup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-23 21:46+0000\n"
-"PO-Revision-Date: 2016-10-23 10:09+0000\n"
-"Last-Translator: Marco Badan <marco.badan@gmail.com>\n"
+"POT-Creation-Date: 2016-11-08 23:07+0000\n"
+"PO-Revision-Date: 2016-11-10 09:21+0000\n"
+"Last-Translator: Shuup Admin <admin@shuup.com>\n"
 "Language-Team: Italian (http://www.transifex.com/shuup/shuup/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -371,7 +371,7 @@ msgid "counters"
 msgstr "contatori"
 
 msgid "added"
-msgstr "aggiunt"
+msgstr "aggiunto"
 
 msgid "URL"
 msgstr "URL"
@@ -487,14 +487,61 @@ msgstr "spedito interamente"
 msgid "none"
 msgstr "nessuno"
 
-msgid "initial"
-msgstr "iniziale"
+msgid "Initial"
+msgstr ""
 
-msgid "complete"
-msgstr "completo"
+msgid "Processing"
+msgstr ""
+
+msgid "Complete"
+msgstr ""
+
+msgid "Canceled"
+msgstr ""
+
+msgid "Received"
+msgstr ""
+
+msgid "In Progress"
+msgstr ""
+
+msgid ""
+"Internal identifier for status. This is used to identify the statuses in "
+"Shuup."
+msgstr ""
+
+msgid "The processing order of statuses. Default is always processed first."
+msgstr ""
+
+msgid "Role of status. One role can have multiple order statuses."
+msgstr ""
 
 msgid "default"
 msgstr "predefinito"
+
+msgid "Defines if the status should be considered as default."
+msgstr ""
+
+msgid "is active"
+msgstr ""
+
+msgid "Define if the status is usable."
+msgstr ""
+
+msgid "Name of the order status"
+msgstr ""
+
+msgid "public name"
+msgstr "nome pubblico"
+
+msgid "The name shown for customer in shop front."
+msgstr ""
+
+msgid "order status"
+msgstr ""
+
+msgid "order statuses"
+msgstr ""
 
 msgid "modified on"
 msgstr "modificato il"
@@ -702,6 +749,9 @@ msgstr "sempre visibile"
 msgid "suppliers"
 msgstr "fornitori"
 
+msgid "visibility"
+msgstr ""
+
 msgid "purchasable"
 msgstr "acquistabile"
 
@@ -892,9 +942,6 @@ msgstr "centro del profitto"
 
 msgid "cost center"
 msgstr "centro dei costi"
-
-msgid "only used for administration and reporting"
-msgstr "usato solo per l'amministrazione e i report"
 
 msgid "width (mm)"
 msgstr "larghezza (mm)"
@@ -1181,11 +1228,8 @@ msgstr "modalità di manutenzione"
 msgid "contact address"
 msgstr "indirizzo di contatto"
 
-msgid "public name"
-msgstr "nome pubblico"
-
 msgid "maintenance message"
-msgstr "messaggio di manutenzion"
+msgstr "messaggio di manutenzione"
 
 msgid "alert limit"
 msgstr "soglia limite"
@@ -1298,6 +1342,9 @@ msgstr "Non ivato"
 
 msgid "This field cannot be changed since it is protected."
 msgstr "Questo campo non può essere modificato perchè protetto."
+
+msgid "Region"
+msgstr ""
 
 msgid "First Last"
 msgstr "Primo Ultimo"
