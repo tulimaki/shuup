@@ -25,9 +25,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Shuup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-21 18:42+0000\n"
-"PO-Revision-Date: 2016-10-26 02:14+0000\n"
-"Last-Translator: Panu Tulimäki <panu@shuup.com>\n"
+"POT-Creation-Date: 2016-11-12 01:49+0000\n"
+"PO-Revision-Date: 2016-11-15 08:39+0000\n"
+"Last-Translator: Shuup Admin <admin@shuup.com>\n"
 "Language-Team: Finnish (Finland) (http://www.transifex.com/shuup/shuup/language/fi_FI/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -127,12 +127,6 @@ msgstr "Pääkategoria"
 msgid "Set this category as a primary for selected products."
 msgstr "Aseta tämä kategoria ensisijaiseksi valituille tuotteille."
 
-msgid "Default Category"
-msgstr "Oletuskategoria"
-
-msgid "Update product default category while setting primary category."
-msgstr "Päivitä tuotteiden oletuskategoria samalla kun asetat ensisijaisen kategorian."
-
 msgid "Additional Category"
 msgstr "Lisäkategoria"
 
@@ -205,6 +199,9 @@ msgstr "Jäsenien määrä"
 msgid "User %(bind_user)s already has a contact"
 msgstr "Käyttäjällä %(bind_user)s on jo kontakti"
 
+msgid "Language"
+msgstr "Kieli"
+
 msgid "Gender"
 msgstr "Sukupuoli"
 
@@ -225,9 +222,6 @@ msgstr "Yritys: Jäsenet"
 
 msgid "Select Language"
 msgstr "Valitse kieli"
-
-msgid "Language"
-msgstr "Kieli"
 
 msgid "Contact Group"
 msgstr "Kontaktiryhmä"
@@ -428,6 +422,12 @@ msgstr "%(file)s siirretty sijainnista %(old)s sijaintiin %(new)s."
 msgid "Show orders"
 msgstr "Näytä tilaukset"
 
+msgid "Statuses"
+msgstr ""
+
+msgid "List Statuses"
+msgstr ""
+
 msgid "Outstanding Orders"
 msgstr "Avoimet tilaukset"
 
@@ -485,14 +485,11 @@ msgstr "Tulosta lähete PDF:t"
 msgid "Payments"
 msgstr "Maksut"
 
-msgid "Order Contents"
-msgstr "Tilauksen sisältö"
+msgid "Shipments"
+msgstr "Lähetykset"
 
 msgid "Log Entries"
 msgstr "Lokimerkinnät"
-
-msgid "Shipments"
-msgstr "Lähetykset"
 
 msgid "Admin comment/notes"
 msgstr "Pääkäyttäjän kommentti/muistiinpanot"
@@ -517,6 +514,9 @@ msgstr "Tätä tilausta ei voi muokata tällä hetkellä"
 
 msgid "Create Payment"
 msgstr "Luo maksu"
+
+msgid "Set Paid"
+msgstr ""
 
 msgid "Create Shipment"
 msgstr "Luo lähetys"
@@ -587,6 +587,18 @@ msgstr "Maksu %s luotu"
 msgid "Order has already been paid"
 msgstr "Tilaus on jo maksettu"
 
+msgid "Only orders which are not paid can be set as paid."
+msgstr ""
+
+msgid "Only zero price orders can be set as paid without creating a payment."
+msgstr ""
+
+msgid "Zero amount payment"
+msgstr ""
+
+msgid "Order marked as paid."
+msgstr ""
+
 msgid "Line number"
 msgstr "Rivinumero"
 
@@ -654,6 +666,18 @@ msgstr "Lähetys %s luotu."
 #, python-format
 msgid "Shipment %s has been deleted."
 msgstr "Toimitus %s on poistettu."
+
+msgid "Order Statuses"
+msgstr ""
+
+msgid "Public Name"
+msgstr ""
+
+msgid "Role"
+msgstr ""
+
+msgid "Default"
+msgstr ""
 
 msgid "Permission Groups"
 msgstr "Käyttöoikeusryhmät"
@@ -1015,19 +1039,13 @@ msgstr "Tätä kenttää ei voi muuttaa, koska tälle kaupalle on olemassa tilau
 msgid "Currency"
 msgstr "Valuutta"
 
-msgid "Languages"
-msgstr "Kielet"
-
-msgid "Supported Languages"
-msgstr "Tuetut kielet"
-
 msgid "Shop name"
 msgstr "Kaupan nimi"
 
 msgid ""
-"Show storefront products with tax pre-calculated into the price. Note this "
-"behavior can be overridden for customer groups."
-msgstr "Näytä kaupan hinnat verottomina (hallinta). Kontaktiryhmillä voi erikseen säätää loppukäyttäjälle näytettävät hinnat."
+"This option defines whether product prices entered in admin include taxes. "
+"Note this behavior can be overridden with customer group pricing."
+msgstr ""
 
 msgid "Shop Owner Name"
 msgstr "Kaupan omistajan nimi"
@@ -1046,9 +1064,6 @@ msgstr "Kauppasi on nyt auki!"
 
 msgid "Domain"
 msgstr "Verkkotunnus"
-
-msgid "Please select the languages supported by your shop"
-msgstr "Ole hyvä ja valitse kielet kaupallesi"
 
 msgid "Please enter your shop details"
 msgstr "Ole hyvä ja aseta kaupan tiedot"
@@ -1288,6 +1303,9 @@ msgstr "Tukinumero: "
 msgid "Hello"
 msgstr "Hei"
 
+msgid "Show Tour"
+msgstr ""
+
 msgid "Log out"
 msgstr "Kirjaudu ulos"
 
@@ -1302,6 +1320,20 @@ msgstr "Kategorian kuva"
 
 msgid "* Products that has this category as a primary category."
 msgstr "* Tuotteet joilla on tämä kategoria ensisijaisena kategoriana."
+
+msgid "Add a new product category"
+msgstr ""
+
+msgid ""
+"You are adding a new product category. When people search your store, they "
+"can find your product under the category you choose for it, like the aisle "
+"signs at the supermarket."
+msgstr ""
+
+msgid ""
+"You can add a name, description, picture or anything you want to make it "
+"stand out."
+msgstr ""
 
 msgid "General information"
 msgstr "Yleiset tiedot"
@@ -1373,6 +1405,20 @@ msgstr "Syöte"
 msgid "Shuup %(version)s"
 msgstr "Shuup %(version)s"
 
+msgid ""
+"This is the dashboard for your store. It’s like the flight deck for your "
+"ecommerce spaceship. You can control everything from here."
+msgstr ""
+
+msgid ""
+"Check out your shoppers’ info, add more products or categories, setup "
+"marketing campaigns, see orders and sales stats, and track the money you’ve "
+"made."
+msgstr ""
+
+msgid "Every setting you could possibly need is in here."
+msgstr ""
+
 msgid "Table Columns"
 msgstr "Taulun sarakkeet"
 
@@ -1383,6 +1429,12 @@ msgid ""
 "You're almost done! Complete the following steps to sell your products "
 "online"
 msgstr "Olet melkein valmis! Suorita seuraavat vaiheet aloittaaksesi kaupanteon."
+
+msgid "Time to setup your shop."
+msgstr ""
+
+msgid "We just need a few details to begin."
+msgstr ""
 
 msgid "Date"
 msgstr "Päivämäärä"
@@ -1405,11 +1457,20 @@ msgstr "Kommentti"
 msgid "Save comment"
 msgstr "Tallenna kommentti"
 
+msgid "Comment saved."
+msgstr ""
+
 msgid "There was an error updating the admin comment."
 msgstr "Kommentin päivitys ei onnistunut."
 
 msgid "Description"
 msgstr "Kuvaus"
+
+msgid "No payments have been created yet."
+msgstr ""
+
+msgid "Order Contents"
+msgstr "Tilauksen sisältö"
 
 msgid "Text"
 msgstr "Teksti"
@@ -1449,6 +1510,9 @@ msgstr "Lisää uusia lokimerkintöjä alla."
 
 msgid "Add to Log"
 msgstr "Lisää lokiin"
+
+msgid "Log entry added."
+msgstr ""
 
 msgid "There was an error adding the log entry."
 msgstr "Lokimerkinnän lisäämisessä tapahtui virhe."
@@ -1515,8 +1579,8 @@ msgstr "Aseta kaikki tuotteet lähetettäväksi"
 msgid "Ship All"
 msgstr "Lähetä kaikki"
 
-msgid "Details & Status"
-msgstr "Tiedot & Tila"
+msgid "Details"
+msgstr ""
 
 msgid "Order Number"
 msgstr "Tilausnumero"
@@ -1547,6 +1611,9 @@ msgstr "Asiakaskommentti"
 
 msgid "Tracking codes"
 msgstr "Seurantakoodit"
+
+msgid "Address Information"
+msgstr ""
 
 msgid "Error!"
 msgstr "Virhe!"
@@ -1597,6 +1664,20 @@ msgstr "Tilauksia ei löytynyt"
 
 msgid "This product is currently not orderable."
 msgstr "Tämä tuote ei ole tällä hetkellä tilattavissa."
+
+msgid "You are adding a product."
+msgstr ""
+
+msgid ""
+"To make it stand out, give it an awesome description and picture. This is "
+"what will help your shoppers learn about your products. It will also help "
+"shoppers find them in the store and on the web."
+msgstr ""
+
+msgid ""
+"You can set its price or size and many other things in the option boxes for "
+"each product."
+msgstr ""
 
 msgid "Cross-sells"
 msgstr "Ristiinmyynnit"
@@ -1768,6 +1849,9 @@ msgstr "Lähetä palautussähköposti"
 msgid ""
 "Please fill out the following information to get your store up and running"
 msgstr "Ole hyvä ja täytä seuraavat tiedot avataksesi kaupan"
+
+msgid "Click here for help"
+msgstr ""
 
 msgid "Setup can be continued later from the admin dashboard"
 msgstr "Asennusta voidaan jatkaa myöhemmin hallinnasta"

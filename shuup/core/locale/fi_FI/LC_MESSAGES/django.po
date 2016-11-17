@@ -14,6 +14,7 @@
 # Panu Tulimäki <panu@shuup.com>, 2016
 # Rauli L. <rauli.laine@iki.fi>, 2015
 # Shuup Admin <admin@shuup.com>, 2015-2016
+# Shuup Admin <admin@shuup.com>, 2016
 # Teemu Selkälä <teemu.selkala@anders.fi>, 2015
 # tomijarvi <tomi@jarvi.pro>, 2015
 # Tuomas Suutari <tuomas.suutari@anders.fi>, 2015
@@ -22,9 +23,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Shuup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-23 21:46+0000\n"
-"PO-Revision-Date: 2016-10-25 23:34+0000\n"
-"Last-Translator: Panu Tulimäki <panu@shuup.com>\n"
+"POT-Creation-Date: 2016-11-08 23:07+0000\n"
+"PO-Revision-Date: 2016-11-10 09:21+0000\n"
+"Last-Translator: Shuup Admin <admin@shuup.com>\n"
 "Language-Team: Finnish (Finland) (http://www.transifex.com/shuup/shuup/language/fi_FI/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -500,14 +501,61 @@ msgstr "täysin toimitettu"
 msgid "none"
 msgstr "ei mitään"
 
-msgid "initial"
-msgstr "alk"
+msgid "Initial"
+msgstr ""
 
-msgid "complete"
-msgstr "valmis"
+msgid "Processing"
+msgstr ""
+
+msgid "Complete"
+msgstr ""
+
+msgid "Canceled"
+msgstr ""
+
+msgid "Received"
+msgstr ""
+
+msgid "In Progress"
+msgstr ""
+
+msgid ""
+"Internal identifier for status. This is used to identify the statuses in "
+"Shuup."
+msgstr ""
+
+msgid "The processing order of statuses. Default is always processed first."
+msgstr ""
+
+msgid "Role of status. One role can have multiple order statuses."
+msgstr ""
 
 msgid "default"
 msgstr "oletus"
+
+msgid "Defines if the status should be considered as default."
+msgstr ""
+
+msgid "is active"
+msgstr ""
+
+msgid "Define if the status is usable."
+msgstr ""
+
+msgid "Name of the order status"
+msgstr ""
+
+msgid "public name"
+msgstr "julkinen nimi"
+
+msgid "The name shown for customer in shop front."
+msgstr ""
+
+msgid "order status"
+msgstr ""
+
+msgid "order statuses"
+msgstr ""
 
 msgid "modified on"
 msgstr "muutettu"
@@ -715,6 +763,9 @@ msgstr "aina näkyvissä"
 msgid "suppliers"
 msgstr "toimittajat"
 
+msgid "visibility"
+msgstr "näkyvyys"
+
 msgid "purchasable"
 msgstr "ostettavissa"
 
@@ -905,9 +956,6 @@ msgstr "tulosyksikkö"
 
 msgid "cost center"
 msgstr "kustannusyksikkö"
-
-msgid "only used for administration and reporting"
-msgstr "käytetään vain ylläpitoon ja raportointiin"
 
 msgid "width (mm)"
 msgstr "leveys (mm)"
@@ -1194,9 +1242,6 @@ msgstr "huoltotila"
 msgid "contact address"
 msgstr "yhteystiedot"
 
-msgid "public name"
-msgstr "julkinen nimi"
-
 msgid "maintenance message"
 msgstr "huoltotilan viesti"
 
@@ -1311,6 +1356,9 @@ msgstr "Verottamaton"
 
 msgid "This field cannot be changed since it is protected."
 msgstr "Tätä kenttää ei voi muuttaa, koska se on suojattu."
+
+msgid "Region"
+msgstr "Alue"
 
 msgid "First Last"
 msgstr "Ensimmäinen Viimeinen"
