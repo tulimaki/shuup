@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Shuup\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-04-11 12:32+0000\n"
-"PO-Revision-Date: 2016-07-27 23:45+0000\n"
+"PO-Revision-Date: 2016-11-11 15:53+0000\n"
 "Last-Translator: Jonathan Hess <jhess666@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/shuup/shuup/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -20,143 +20,143 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "Addons"
-msgstr "Extensões"
+msgstr ""
 
 #, python-format
 msgid "Enable %s"
-msgstr "Habilitar %s"
+msgstr ""
 
 #, python-format
 msgid "%d new addons enabled."
-msgstr "%d novas extensões habilitadas."
+msgstr ""
 
 #, python-format
 msgid "%d previously enabled addons disabled."
-msgstr "%d extensões anteriormente habilitadas desabilitadas."
+msgstr ""
 
 msgid "No changes were made."
-msgstr "Não foram feitas alterações."
+msgstr ""
 
 msgid "Save addon changes"
-msgstr "Salvar alterações das extensões"
+msgstr ""
 
 msgid "Upload new addon"
-msgstr "Enviar nova extensão"
+msgstr ""
 
 msgid "Reload application"
-msgstr "Recarregar aplicação"
+msgstr ""
 
 msgid ""
 "There are no viable reload methods available. Please contact your system "
 "administrator."
-msgstr "Não há métodos de reinicialização viáveis disponíveis. Entre em contato com o administrador do sistema."
+msgstr ""
 
 msgid "Reload Method"
-msgstr "Método de Reinicialização"
+msgstr ""
 
 msgid "Reloading."
-msgstr "Recarregando."
+msgstr ""
 
 msgid "Addon file (ZIP)"
-msgstr "Arquivo de extensão (ZIP)"
+msgstr ""
 
 msgid "Only upload addon files you trust."
-msgstr "Só faça o upload de arquivos de extensão que você confia."
+msgstr ""
 
 msgid "Only ZIP files are supported"
-msgstr "Somente arquivos ZIP são suportados"
+msgstr ""
 
 msgid "Upload"
-msgstr "Fazer upload"
+msgstr ""
 
 msgid "Install Addon"
-msgstr "Instalar Extensão"
+msgstr ""
 
 msgid "Installed addons"
-msgstr "Extensões instaladas"
+msgstr ""
 
 msgid "Addon name"
-msgstr "Nome da extensão"
+msgstr ""
 
 msgid "Is enabled"
-msgstr "Está habilitado"
+msgstr ""
 
 msgid "You don't have any installed addons"
-msgstr "Você não tem nenhuma extensão instalada"
+msgstr ""
 
 msgid "Reload Application Server"
-msgstr "Recarregar Servidor de Aplicações"
+msgstr ""
 
 msgid ""
 "When you reload the application server, it may take some time for the new "
 "instance of your application to properly initialize."
-msgstr "Quando você recarrega o servidor de aplicações, pode demorar algum tempo até que a nova instância do seu aplicativo inicialize corretamente."
+msgstr ""
 
 msgid ""
 "In addition, there is always a chance for the server to not properly "
 "initialize at all, in which case you may need to troubleshoot the problem "
 "yourself (or have a system administrator handy)."
-msgstr "Além disso, há sempre a chance de o servidor não inicializar corretamente, neste caso, pode ser necessário que você tente solucionar o problema por conta própria (ou tenha um administrador do sistema à disposição)."
+msgstr ""
 
 msgid "Reload steps"
-msgstr "Etapas da reinicialização"
+msgstr ""
 
 msgid ""
 "Finalize installations for newly installed addons (migrate and collect "
 "static resources)"
-msgstr "Finalizar instalações para as extensões recém-instaladas (migrar e coletar recursos estáticos)"
+msgstr ""
 
 msgid "Reload application server"
-msgstr "Recarregar servidor de aplicações"
+msgstr ""
 
 msgid "Reload initiated."
-msgstr "Reinicialização iniciada."
+msgstr ""
 
 msgid "Error while reloading application."
-msgstr "Erro ao recarregar aplicação."
+msgstr ""
 
 msgid "Finalizing installations."
-msgstr "Finalizando instalações."
+msgstr ""
 
 msgid "Your Shuup seems to be back up!"
-msgstr "Seu Shuup parece estar de volta!"
+msgstr ""
 
 msgid "Your Shuup is not up yet. Trying again soon."
-msgstr "Seu Shuup ainda não está de pé. Tentando novamente dentro de alguns instantes."
+msgstr ""
 
 msgid "Select file"
-msgstr "Selecionar arquivo"
+msgstr ""
 
 msgid "Installation Finished"
-msgstr "Instalação Concluída"
+msgstr ""
 
 msgid "Installation Failed"
-msgstr "Falha na Instalação"
+msgstr ""
 
 msgid "Success"
-msgstr "Sucesso"
+msgstr ""
 
 #, python-format
 msgid ""
 "Next, <a href=\"%(addon_list_url)s\" class=\"text-success\"><strong>activate"
 " the newly installed addon</strong></a> and <a href=\"%(addon_reload_url)s\""
 " class=\"text-success\"><strong>reload your application server</strong></a>."
-msgstr "Em seguida, <a href=\"%(addon_list_url)s\" class=\"text-success\"><strong>ative a extensão recém-instalada</strong></a> e <a href=\"%(addon_reload_url)s\" class=\"text-success\"><strong>recarregue o seu servidor de aplicações</strong></a>."
+msgstr ""
 
 msgid "Error"
-msgstr "Erro"
+msgstr ""
 
 msgid "Installer Log"
-msgstr "Log do Instalador"
+msgstr ""
 
 msgid "Upload Addon - Install"
-msgstr "Enviar Extensão - Instalar"
+msgstr ""
 
 msgid "Package Information"
-msgstr "Informações do Pacote"
+msgstr ""
 
 msgid "No package information could be extracted."
-msgstr "Nenhuma informação do pacote pôde ser extraída."
+msgstr ""
 
 msgid "File List"
-msgstr "Lista de Arquivos"
+msgstr ""

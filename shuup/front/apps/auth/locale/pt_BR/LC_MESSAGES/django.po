@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Shuup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-11 00:26+0000\n"
-"PO-Revision-Date: 2016-08-22 11:23+0000\n"
+"POT-Creation-Date: 2016-10-25 05:02+0000\n"
+"PO-Revision-Date: 2016-11-11 15:53+0000\n"
 "Last-Translator: Jonathan Hess <jhess666@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/shuup/shuup/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -25,93 +25,93 @@ msgid ""
 "Please enter a correct %(username)s and password. Note that both fields may "
 "be case-sensitive. In case of multiple accounts with same email only "
 "username can be used to login."
-msgstr "Por favor, digite um %(username)s e senha corretos. Note que ambos os campos podem ser sensíveis a maiúsculas e minúsculas. No caso de múltiplas contas com o mesmo e-mail somente o nome de usuário poderá ser usado para fazer o login."
+msgstr ""
 
 msgid "This account is inactive."
-msgstr "Esta conta está inativa."
+msgstr ""
 
 msgid "Username or email address"
-msgstr "Nome de usuário ou endereço de e-mail"
+msgstr ""
 
 msgid "Username"
-msgstr "Nome de usuário"
+msgstr ""
 
 msgid "Email"
-msgstr "E-mail"
+msgstr ""
 
 msgid "Please provide either username or email, not both."
-msgstr "Por favor, forneça um nome de usuário ou um e-mail, nunca ambos."
+msgstr ""
 
 msgid "Please provide either username or email."
-msgstr "Por favor, forneça um nome de usuário ou um e-mail."
+msgstr ""
 
 msgid "shop"
-msgstr "loja"
+msgstr ""
 
 msgid "Log in"
-msgstr "Entrar"
+msgstr ""
 
 #, python-format
 msgid "You have already logged in as <strong>%(username)s</strong>"
-msgstr "Você já está conectado como <strong>%(username)s</strong>"
+msgstr ""
 
 msgid "Go to Homepage"
-msgstr "Ir para a Página Inicial"
+msgstr ""
 
 msgid "Forgot your password?"
-msgstr "Esqueceu sua senha?"
+msgstr ""
 
 msgid "New user? Register here!"
-msgstr "Novo usuário? Cadastre-se aqui!"
+msgstr ""
 
 msgid "Logged out"
-msgstr "Desconectado"
+msgstr ""
 
 msgid "You have been logged out. Thank you for visiting!"
-msgstr "Você foi desconectado. Obrigado pela visita!"
+msgstr ""
 
 msgid "Recover your password"
-msgstr "Recupere sua senha"
+msgstr ""
 
 msgid "You can recover your password with either username or email."
-msgstr "Você pode recuperar a sua senha tendo em mãos um nome de usuário ou e-mail."
+msgstr ""
 
 msgid "Send password recovery instructions"
-msgstr "Enviar instruções de recuperação de senha"
+msgstr ""
 
 msgid "Password Changed"
-msgstr "Senha Alterada"
+msgstr ""
 
 msgid "Your password has been changed and you have been logged in."
-msgstr "Sua senha foi alterada e você foi autenticado."
+msgstr ""
 
 msgid "Password Recovery"
-msgstr "Recuperação de Senha"
+msgstr ""
 
 msgid "Change Password"
-msgstr "Alterar Senha"
+msgstr ""
 
 #, python-format
 msgid "Hi %(fullname)s"
-msgstr "Oi %(fullname)s"
+msgstr ""
 
 #, python-format
 msgid "In case you've forgotten, your username is %(username)s."
-msgstr "Caso tenha esquecido, seu nome de usuário é %(username)s."
+msgstr ""
 
 #, python-format
 msgid ""
 "You're receiving this email because you requested a password reset for your "
 "user account at %(site_name)s."
-msgstr "Você está recebendo este e-mail porque solicitou a redefinição de senha para sua conta de usuário em %(site_name)s."
+msgstr ""
 
 msgid "Please go to the following page and choose a new password:"
-msgstr "Por favor, vá para a seguinte página e escolha uma nova senha:"
+msgstr ""
 
 msgid ""
 "If an user account is associated with the information you entered, you "
 "should receive instructions on how to reset your password shortly."
-msgstr "Se uma conta de usuário estiver associada às informações digitadas, você deverá receber instruções sobre como redefinir sua senha logo em breve."
+msgstr ""
 
 msgid "This recovery link is invalid."
-msgstr "Este link de recuperação é inválido."
+msgstr ""

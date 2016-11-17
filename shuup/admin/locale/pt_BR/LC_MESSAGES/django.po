@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Shuup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-01 23:27+0000\n"
-"PO-Revision-Date: 2016-09-02 11:39+0000\n"
-"Last-Translator: Jonathan Hess <jhess666@gmail.com>\n"
+"POT-Creation-Date: 2016-11-12 01:49+0000\n"
+"PO-Revision-Date: 2016-11-15 08:39+0000\n"
+"Last-Translator: Shuup Admin <admin@shuup.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/shuup/shuup/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,1592 +20,1910 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "Home"
-msgstr "Início"
+msgstr ""
+
+#, python-format
+msgid ""
+"Please enter a correct %(username)s and password. Note that both fields may "
+"be case-sensitive. In case of multiple accounts with same email only "
+"username can be used to login."
+msgstr ""
+
+msgid "This account is inactive."
+msgstr ""
+
+msgid "Username or email address"
+msgstr ""
 
 msgid "Browse"
-msgstr "Procurar"
+msgstr ""
 
 msgid "Clear"
-msgstr "Limpar"
+msgstr ""
 
 msgid "Select"
-msgstr "Selecionar"
+msgstr ""
 
 msgid "Orders"
-msgstr "Pedidos"
+msgstr ""
 
 msgid "Products"
-msgstr "Produtos"
+msgstr ""
 
 msgid "Contacts"
-msgstr "Contatos"
+msgstr ""
 
 msgid "Reports"
-msgstr "Relatórios"
+msgstr ""
 
 msgid "Campaigns"
-msgstr "Campanhas"
+msgstr ""
 
 msgid "Storefront"
-msgstr "Frente de loja"
+msgstr ""
 
 msgid "Addons"
-msgstr "Extensões"
+msgstr ""
 
 msgid "Settings"
-msgstr "Configurações"
+msgstr ""
 
 msgid "Attributes"
-msgstr "Atributos"
+msgstr ""
 
 msgid "Identifier"
-msgstr "Identificador"
+msgstr ""
 
 msgid "Filter by identifier..."
-msgstr "Filtrar por identificador..."
+msgstr ""
 
 msgid "Name"
-msgstr "Nome"
+msgstr ""
 
 msgid "Filter by name..."
-msgstr "Filtrar por nome..."
+msgstr ""
 
 msgid "Type"
-msgstr "Tipo"
+msgstr ""
 
 msgid "Visibility Mode"
-msgstr "Modo de Visibilidade"
+msgstr ""
 
 msgid "Searchable"
-msgstr "Pesquisável"
+msgstr ""
 
 msgid "Used in # Product Types"
-msgstr "Utilizado por # Tipos de Produtos"
+msgstr ""
 
 msgid "Categories"
-msgstr "Categorias"
+msgstr ""
+
+msgid "Add a product category to organize your products"
+msgstr ""
+
+msgid "Add a category"
+msgstr ""
 
 msgid "Primary Category"
-msgstr "Categoria Principal"
+msgstr ""
 
 msgid "Set this category as a primary for selected products."
-msgstr "Define esta categoria como categoria principal para os produtos selecionados."
-
-msgid "Default Category"
-msgstr "Categoria Padrão"
-
-msgid "Update product default category while setting primary category."
-msgstr "Atualiza a categoria de produtos padrão enquanto configura a categoria principal."
+msgstr ""
 
 msgid "Additional Category"
-msgstr "Categoria Adicional"
+msgstr ""
 
 msgid "Add selected products to this category"
-msgstr "Adiciona os produtos selecionados a esta categoria"
+msgstr ""
 
 msgid "Remove Products"
-msgstr "Remover Produtos"
+msgstr ""
 
 msgid "Remove selected products from this category"
-msgstr "Remove os produtos selecionados desta categoria"
+msgstr ""
 
 msgid "Invalid category"
-msgstr "Categoria inválida"
+msgstr ""
 
 #, python-format
 msgid "Visibility settings copied to %d product(s)"
-msgstr "Configurações de visibilidade copiadas para %d produto(s)"
+msgstr ""
 
 #, python-format
 msgid "%s has been deleted."
-msgstr "%s foi excluído."
+msgstr ""
 
 msgid "Status"
-msgstr "Status"
+msgstr ""
 
 msgid "Visibility"
-msgstr "Visibilidade"
+msgstr ""
 
 msgid "Contact Groups"
-msgstr "Grupos de Contatos"
+msgstr ""
 
 msgid "Price display mode"
-msgstr "Modo de exibição do preço"
+msgstr ""
 
 msgid "unspecified"
-msgstr "não especificado"
+msgstr ""
 
 msgid "show prices with taxes included"
-msgstr "mostrar preços com impostos inclusos"
+msgstr ""
 
 msgid "show pre-tax prices"
-msgstr "mostrar preços sem impostos"
+msgstr ""
 
 msgid "hide prices"
-msgstr "ocultar preços"
+msgstr ""
 
 msgid "member"
-msgstr "membro"
+msgstr ""
 
 msgid "Remove"
-msgstr "Remover"
+msgstr ""
 
 #, python-format
 msgid "%(count)s member added"
 msgid_plural "%(count)s members added"
-msgstr[0] "%(count)s membro adicionado"
-msgstr[1] "%(count)s membros adicionados"
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%(count)s member removed"
 msgid_plural "%(count)s members removed"
-msgstr[0] "%(count)s membro removido"
-msgstr[1] "%(count)s membros removidos"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Number of Members"
-msgstr "Número de Membros"
+msgstr ""
 
 #, python-format
 msgid "User %(bind_user)s already has a contact"
-msgstr "O usuário %(bind_user)s já tem um contato"
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Gender"
+msgstr ""
+
+msgid "Merchant Notes"
+msgstr ""
+
+msgid "Website URL"
+msgstr ""
+
+msgid "Account Manager"
+msgstr ""
+
+msgid "Company: Tax Number"
+msgstr ""
+
+msgid "Company: Members"
+msgstr ""
+
+msgid "Select Language"
+msgstr ""
+
+msgid "Contact Group"
+msgstr ""
+
+msgid "Edit Contacts"
+msgstr ""
+
+msgid "Set Contact Groups"
+msgstr ""
 
 msgid "Basic Information"
-msgstr "Informações Básicas"
+msgstr ""
 
 msgid "Addresses"
-msgstr "Endereços"
+msgstr ""
 
 msgid "Members"
-msgstr "Membros"
+msgstr ""
 
 msgid "The Shuup frontend is not enabled."
-msgstr "O front-end do Shuup não está habilitado."
+msgstr ""
 
 msgid "Contact has no associated user."
-msgstr "Contato não tem nenhum usuário associado."
+msgstr ""
 
 msgid "User has no associated email."
-msgstr "O usuário não tem nenhum e-mail associado."
+msgstr ""
 
 msgid "Reset password"
-msgstr "Redefinir senha"
+msgstr ""
 
 msgid "Send a password renewal email."
-msgstr "Enviar e-mail de renovação de senha."
+msgstr ""
 
 #, python-format
 msgid "Are you sure you wish to send a password recovery email to %s?"
-msgstr "Tem certeza que deseja enviar um e-mail de recuperação de senha para %s?"
+msgstr ""
 
 msgid "New User"
-msgstr "Novo Usuário"
+msgstr ""
 
 msgid "Create an user for the contact."
-msgstr "Criar um usuário para o contato."
+msgstr ""
 
 msgid "New Order"
-msgstr "Novo Pedido"
+msgstr ""
 
 msgid "Create an order for the contact."
-msgstr "Criar um pedido para o contato."
+msgstr ""
 
 msgid "Deactivate Contact"
-msgstr "Desativar Contato"
+msgstr ""
 
 msgid "Activate Contact"
-msgstr "Ativar Contato"
+msgstr ""
 
 msgid "Actions"
-msgstr "Ações"
+msgstr ""
 
 msgid "Edit..."
-msgstr "Editar..."
+msgstr ""
 
 msgid "You can not deactivate a superuser."
-msgstr "Você não pode desativar um superusuário."
+msgstr ""
 
 msgid "You can not deactivate yourself."
-msgstr "Você não pode desativar-se."
+msgstr ""
 
 #, python-format
 msgid "%(contact)s is now %(state)s."
-msgstr "%(contact)s está %(state)s agora."
+msgstr ""
 
 msgid "active"
-msgstr "ativo"
+msgstr ""
 
 msgid "inactive"
-msgstr "inativo"
+msgstr ""
 
 msgid "New Company"
-msgstr "Nova Empresa"
+msgstr ""
 
 msgid "New Contact"
-msgstr "Novo Contato"
+msgstr ""
 
 msgid "Person"
-msgstr "Pessoa"
+msgstr ""
 
 msgid "Company"
-msgstr "Empresa"
+msgstr ""
 
 msgid "Email"
-msgstr "E-mail"
+msgstr ""
 
 msgid "Phone"
-msgstr "Telefone"
+msgstr ""
 
 msgid "Active"
-msgstr "Ativo"
+msgstr ""
 
 msgid "no"
-msgstr "não"
+msgstr ""
 
 msgid "yes"
-msgstr "sim"
+msgstr ""
 
 msgid "# Orders"
-msgstr "# Pedidos"
+msgstr ""
 
 msgid "Groups"
-msgstr "Grupos"
+msgstr ""
 
 msgid "Contact"
-msgstr "Contato"
+msgstr ""
 
 msgid "Inactive"
-msgstr "Inativo"
+msgstr ""
 
 #, python-format
 msgid "Email: %s"
-msgstr "E-mail: %s"
+msgstr ""
 
 #, python-format
 msgid "Phone: %s"
-msgstr "Telefone: %s"
+msgstr ""
 
 #, python-format
 msgid "%d orders"
-msgstr "%d pedidos"
+msgstr ""
+
+msgid "Mass Edit: Contacts"
+msgstr ""
+
+msgid "Contacts changed successfully"
+msgstr ""
+
+msgid "Mass Edit: Contact Groups"
+msgstr ""
+
+msgid "Contacts Groups changed successfully"
+msgstr ""
 
 msgid "The contact does not have an associated user."
-msgstr "O contato não tem um usuário associado."
+msgstr ""
 
 msgid "Customers Dashboard"
-msgstr "Painel de Clientes"
+msgstr ""
 
 msgid "Active customers"
-msgstr "Clientes ativos"
+msgstr ""
 
 msgid "Based on orders within 30 days"
-msgstr "Baseado nos pedidos dos últimos 30 dias"
+msgstr ""
 
 msgid "Demo"
-msgstr "Demo"
+msgstr ""
 
 msgid "Manufacturers"
-msgstr "Fabricantes"
+msgstr ""
 
 msgid "Media"
-msgstr "Mídia"
+msgstr ""
 
 msgid "Media browser"
-msgstr "Navegador de mídias"
+msgstr ""
 
 msgid "Root"
-msgstr "Raiz"
+msgstr ""
 
 #, python-brace-format
 msgid "{num} subfolders moved to {folder}."
-msgstr "{num} subpastas movidas para {folder}."
+msgstr ""
 
 #, python-brace-format
 msgid "{num} files moved to {folder}."
-msgstr "{num} arquivos movidos para {folder}."
+msgstr ""
 
 #, python-format
 msgid "Folder %s deleted."
-msgstr "Pasta %s excluída."
+msgstr ""
 
 #, python-format
 msgid "%(file)s uploaded to %(folder)s"
-msgstr "%(file)s enviado para %(folder)s"
+msgstr ""
 
 msgid "Folder renamed."
-msgstr "Pasta renomeada."
+msgstr ""
 
 msgid "File renamed."
-msgstr "Arquivo renomeado."
+msgstr ""
 
 msgid "File deleted."
-msgstr "Arquivo excluído."
+msgstr ""
 
 #, python-format
 msgid "%(file)s moved from %(old)s to %(new)s."
-msgstr "%(file)s movido de %(old)s para %(new)s."
+msgstr ""
 
 msgid "Show orders"
-msgstr "Mostrar pedidos"
+msgstr ""
+
+msgid "Statuses"
+msgstr ""
+
+msgid "List Statuses"
+msgstr ""
 
 msgid "Outstanding Orders"
-msgstr "Pedidos Pendentes"
+msgstr ""
 
 #, python-format
 msgid "%d outstanding orders"
-msgstr "%d pedidos pendentes"
+msgstr ""
 
 #, python-format
 msgid "The quantity '%(quantity)s' (for line %(text)s) is invalid (%(error)s)"
-msgstr "A quantidade '%(quantity)s' (para o item %(text)s) é inválida (%(error)s)"
+msgstr ""
 
 #, python-format
 msgid "The price '%(price)s' (for line %(text)s) is invalid (%(error)s)"
-msgstr "O preço '%(price)s' (para o item %(text)s) é inválido (%(error)s)"
+msgstr ""
 
 #, python-format
 msgid "The discount '%(discount)s' (for line %(text)s is invalid (%(error)s)"
-msgstr "O desconto '%(discount)s' (para o item %(text)s) é inválido (%(error)s)"
+msgstr ""
 
 msgid "Product line does not have a product set."
-msgstr "O item de produto não tem um produto definido."
+msgstr ""
 
 #, python-format
 msgid "Product %s does not exist."
-msgstr "Produto %s não existe."
+msgstr ""
 
 #, python-format
 msgid "Product %(product)s is not available in the %(shop)s shop."
-msgstr "O produto %(product)s não está disponível na loja %(shop)s."
+msgstr ""
 
 msgid "Please add lines to the order."
-msgstr "Por favor, adicione itens ao pedido."
+msgstr ""
 
 msgid "Tax number is not set for company."
-msgstr "Número de contribuinte não está definido para a empresa."
+msgstr ""
 
 msgid "Please choose a valid shop."
-msgstr "Por favor, escolha uma loja válida."
+msgstr ""
 
 msgid "Please select shipping method."
-msgstr "Por favor, selecione a forma de entrega."
+msgstr ""
 
 msgid "Please select payment method."
-msgstr "Por favor, selecione a forma de pagamento."
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Print Confirmation PDF(s)"
+msgstr ""
+
+msgid "Print Delivery PDF(s)"
+msgstr ""
 
 msgid "Payments"
-msgstr "Pagamentos"
-
-msgid "Order Contents"
-msgstr "Conteúdo do Pedido"
-
-msgid "Log Entries"
-msgstr "Entradas de Log"
+msgstr ""
 
 msgid "Shipments"
-msgstr "Remessas"
+msgstr ""
+
+msgid "Log Entries"
+msgstr ""
+
+msgid "Admin comment/notes"
+msgstr ""
 
 msgid "Set Complete"
-msgstr "Definir como Completo"
+msgstr ""
 
 msgid "This order can not be set as complete at this point"
-msgstr "Este pedido não pode ser definido como completo neste momento"
+msgstr ""
 
 msgid "Cancel Order"
-msgstr "Cancelar Pedido"
+msgstr ""
 
 msgid "Paid, shipped, or canceled orders cannot be canceled"
-msgstr "Pedidos pagos, enviados ou cancelados não podem ser cancelados"
+msgstr ""
 
 msgid "Edit order"
-msgstr "Editar pedido"
+msgstr ""
 
 msgid "This order cannot modified at this point"
-msgstr "Este pedido não pode ser modificado neste momento"
+msgstr ""
 
 msgid "Create Payment"
-msgstr "Criar Pagamento"
+msgstr ""
+
+msgid "Set Paid"
+msgstr ""
 
 msgid "Create Shipment"
-msgstr "Criar Remessa"
+msgstr ""
 
 msgid "Create Refund"
-msgstr "Criar Devolução"
+msgstr ""
 
 msgid "Unable to set order as completed at this point"
-msgstr "Não é possível definir o pedido como completo a esta altura"
+msgstr ""
 
 #, python-brace-format
 msgid "Order status changed: {old_status} to {new_status}"
-msgstr "Status do pedido mudou: {old_status} para {new_status}"
+msgstr ""
 
 msgid "Create Order"
-msgstr "Criar Pedido"
+msgstr ""
 
 #, python-format
 msgid "Contact %s does not exist."
-msgstr "O contato %s não existe."
+msgstr ""
 
 #, python-format
 msgid "Order %(identifier)s updated."
-msgstr "Pedido %(identifier)s atualizado."
+msgstr ""
 
 #, python-format
 msgid "Order %(identifier)s created."
-msgstr "Pedido %(identifier)s criado."
+msgstr ""
 
 msgid "Could not proceed with order:"
-msgstr "Não foi possível efetuar o pedido:"
+msgstr ""
 
 msgid "Could not finalize order:"
-msgstr "Não foi possível finalizar o pedido:"
+msgstr ""
 
 msgid "Order"
-msgstr "Pedido"
+msgstr ""
 
 msgid "Order Date"
-msgstr "Data do Pedido"
+msgstr ""
 
 msgid "Customer"
-msgstr "Cliente"
+msgstr ""
 
 msgid "Payment Status"
-msgstr "Status do Pagamento"
+msgstr ""
 
 msgid "Shipping Status"
-msgstr "Status de Entrega"
+msgstr ""
 
 msgid "Total"
-msgstr "Total"
+msgstr ""
 
 #, python-format
 msgid "Create Payment -- %s"
-msgstr "Criar Pagamento -- %s"
+msgstr ""
 
 msgid "Payment amount"
-msgstr "Valor do pagamento"
+msgstr ""
 
 msgid "Payment amount cannot be 0"
-msgstr "Valor do pagamento não pode ser 0"
+msgstr ""
 
 #, python-format
 msgid "Payment %s created."
-msgstr "Pagamento %s criado."
+msgstr ""
 
 msgid "Order has already been paid"
-msgstr "Pedido já foi pago"
+msgstr ""
+
+msgid "Only orders which are not paid can be set as paid."
+msgstr ""
+
+msgid "Only zero price orders can be set as paid without creating a payment."
+msgstr ""
+
+msgid "Zero amount payment"
+msgstr ""
+
+msgid "Order marked as paid."
+msgstr ""
 
 msgid "Line number"
-msgstr "Número do item"
+msgstr ""
 
 msgid "Quantity"
-msgstr "Quantidade"
+msgstr ""
 
 msgid "Amount"
-msgstr "Valor"
+msgstr ""
 
 msgid "Total incl. tax to refund"
-msgstr "Total incl. imposto a restituir"
+msgstr ""
 
 msgid "Restock products"
-msgstr "Reabastecer produtos"
+msgstr ""
 
 #, python-format
 msgid "Create Refund -- %s"
-msgstr "Criar Devolução -- %s"
+msgstr ""
 
 msgid "Refund Entire Order"
-msgstr "Devolver Pedido Inteiro"
+msgstr ""
 
 msgid "This order already has existing refunds"
-msgstr "Este pedido já tem devoluções existentes"
+msgstr ""
 
 msgid "Refund amount cannot be 0"
-msgstr "Valor da devolução não pode ser 0"
+msgstr ""
 
 msgid "Refund amount exceeds order amount."
-msgstr "Valor da devolução excede o valor do pedido."
+msgstr ""
 
 msgid "Refund amounts should match sign on parent line."
-msgstr "Os valores de devolução devem coincidir com o sinal no item pai."
+msgstr ""
 
 msgid "Refund created."
-msgstr "Devolução criada."
+msgstr ""
 
 #, python-format
 msgid "Create Full Refund -- %s"
-msgstr "Criar Devolução Total -- %s"
-
-msgid "Cancel"
-msgstr "Cancelar"
+msgstr ""
 
 msgid "Could not create full refund."
-msgstr "Não foi possível criar a devolução total."
+msgstr ""
 
 msgid "Full refund created."
-msgstr "Devolução total criada."
+msgstr ""
 
 #, python-format
 msgid "Create Shipment -- %s"
-msgstr "Criar Remessa -- %s"
+msgstr ""
 
 msgid "Supplier"
-msgstr "Fornecedor"
+msgstr ""
 
 msgid "No products to ship."
-msgstr "Nenhum produto a enviar."
+msgstr ""
 
 msgid "Shipping address is not set."
-msgstr "Endereço de entrega não está definido."
+msgstr ""
 
 #, python-format
 msgid "Shipment %s created."
-msgstr "Remessa %s criada."
+msgstr ""
 
 #, python-format
 msgid "Shipment %s has been deleted."
-msgstr "A remessa %s foi excluída."
+msgstr ""
+
+msgid "Order Statuses"
+msgstr ""
+
+msgid "Public Name"
+msgstr ""
+
+msgid "Role"
+msgstr ""
+
+msgid "Default"
+msgstr ""
 
 msgid "Permission Groups"
-msgstr "Grupos de Permissões"
+msgstr ""
 
 msgid "Module Permissions"
-msgstr "Permissões do Módulo"
+msgstr ""
 
 msgid ""
 "Modules with the same permissions as selected modules will be added "
 "automatically."
-msgstr "Módulos com as mesmas permissões dos módulos selecionados serão adicionados automaticamente."
+msgstr ""
 
 msgid "Product Types"
-msgstr "Tipos de Produtos"
+msgstr ""
 
 msgid "Product types"
-msgstr "Tipos de produtos"
+msgstr ""
 
 msgid "Number of Attributes"
-msgstr "Número de Atributos"
+msgstr ""
 
 #, python-format
 msgid "Create Product Called \"%s\""
-msgstr "Criar Produto Chamado \"%s\""
+msgstr ""
 
 #, python-format
 msgid "Create Product with SKU \"%s\""
-msgstr "Criar Produto com a SKU \"%s\""
+msgstr ""
+
+msgid "Add a product"
+msgstr ""
+
+msgid "Import products"
+msgstr ""
+
+msgid "Add a product to see it in your store"
+msgstr ""
+
+msgid "Given value is already in use, please use unique SKU and try again."
+msgstr ""
 
 msgid ""
 "Number of units that can be purchased after the product is out of stock. Set"
 " to blank for product to be purchasable without limits"
-msgstr "Número de unidades que podem ser compradas depois que o produto estiver esgotado. Deixe em branco para que o produto possa ser adquirido sem limites"
+msgstr ""
 
 msgid "Minimum Purchase Quantity must be greater than 0."
-msgstr "Quantidade Mínima de Compra deve ser maior do que 0."
+msgstr ""
 
 msgid "Backorder maximum must be greater than or equal to 0."
-msgstr "Máximo de pedidos em espera deve ser maior do que ou igual a 0."
+msgstr ""
 
 #, python-format
 msgid "Thumbnail generation of %(media)s failed: %(error)s"
-msgstr "A geração de miniaturas de %(media)s falhou: %(error)s"
+msgstr ""
 
 msgid "Use only URL or file, not both"
-msgstr "Use apenas URL ou arquivo, nunca ambos"
+msgstr ""
 
 msgid "Is primary"
-msgstr "É principal"
+msgstr ""
 
 msgid "Only images allowed in this field"
-msgstr "Somente imagens são permitidas neste campo"
+msgstr ""
 
 #, python-format
 msgid "Unable to make package %(product)s: %(error)s"
-msgstr "Não é possível criar o pacote %(product)s: %(error)s"
+msgstr ""
 
 #, python-format
 msgid "New: %d"
-msgstr "Novo: %d"
+msgstr ""
 
 #, python-format
 msgid "Removed: %d"
-msgstr "Removido: %d"
+msgstr ""
 
 #, python-format
 msgid "Couldn't add product %s to own package"
-msgstr "Não foi possível adicionar o produto %s ao próprio pacote"
+msgstr ""
 
 msgid "child"
-msgstr "filho"
+msgstr ""
 
 msgid "Unlink"
-msgstr "Desvincular"
+msgstr ""
 
 #, python-format
 msgid "Unable to link %(product)s: %(error)s"
-msgstr "Não é possível vincular %(product)s: %(error)s"
+msgstr ""
 
 msgid "variable combination"
-msgstr "combinação de variáveis"
+msgstr ""
+
+msgid "Set visible"
+msgstr ""
+
+msgid "Set invisible"
+msgstr ""
+
+msgid "Export CSV"
+msgstr ""
+
+msgid "Edit products"
+msgstr ""
 
 #, python-format
 msgid "%s has been marked deleted."
-msgstr "%s foi marcado como excluído."
+msgstr ""
 
 msgid "Minimum Purchase Quantity has been rounded to match Sales Unit."
-msgstr "Quantidade Mínima de Compra foi arredondada para corresponder à Unidade de Vendas."
+msgstr ""
 
 #, python-format
 msgid "Changes to shop instance for %s saved"
-msgstr "Alterações à instância da loja %s salvas"
+msgstr ""
 
 msgid "Product is not available."
-msgstr "O produto não está disponível."
+msgstr ""
 
 msgid "Product"
-msgstr "Produto"
+msgstr ""
 
 #, python-format
 msgid "Edit Cross-Sell: %s"
-msgstr "Editar Venda Cruzada: %s"
+msgstr ""
 
 msgid "Save"
-msgstr "Salvar"
+msgstr ""
 
 msgid "Changes saved."
-msgstr "Alterações salvas."
+msgstr ""
 
 #, python-format
 msgid "Edit Media: %s"
-msgstr "Editar Mídia: %s"
+msgstr ""
 
 msgid "Are you sure? This will remove all products from package."
-msgstr "Você tem certeza? Esta ação irá remover todos os produtos do pacote."
+msgstr ""
 
 msgid "Clear package"
-msgstr "Limpar pacote"
+msgstr ""
 
 #, python-format
 msgid "Edit Package: %s"
-msgstr "Editar Pacote: %s"
+msgstr ""
 
 msgid "Package cleared."
-msgstr "Pacote apagado."
+msgstr ""
 
 msgid ""
 "Are you sure? This will unlink all children and remove all variation "
 "variables."
-msgstr "Você tem certeza? Esta ação irá desvincular todos os filhos e remover todas as variáveis de variação."
+msgstr ""
 
 msgid "Clear variation"
-msgstr "Limpar variação"
+msgstr ""
 
 msgid ""
 "Are you sure? This will remove all variation variables, converting children "
 "to direct links."
-msgstr "Você tem certeza? Esta ação irá remover todas as variáveis de variação, convertendo os filhos em links diretos."
+msgstr ""
 
 msgid "Convert to simple variation"
-msgstr "Converter para variação simples"
+msgstr ""
 
 #, python-format
 msgid "Edit Variation: %s"
-msgstr "Editar Variação: %s"
+msgstr ""
 
 msgid "Variation cleared."
-msgstr "Variação apagada."
+msgstr ""
 
 msgid "Variation simplified."
-msgstr "Variação simplificada."
+msgstr ""
 
 msgid "SKU"
-msgstr "SKU"
+msgstr ""
 
 msgid "Filter by SKU..."
-msgstr "Filtrar por SKU..."
+msgstr ""
 
 msgid "Barcode"
-msgstr "Código de barras"
+msgstr ""
 
 msgid "Filter by barcode..."
-msgstr "Filtrar por código de barras..."
+msgstr ""
 
 msgid "Mode"
-msgstr "Modo"
+msgstr ""
+
+msgid "Purchasable"
+msgstr ""
+
+msgid "Mass Edit: Products"
+msgstr ""
+
+msgid "Products changed successfully"
+msgstr ""
 
 msgid "Save as a copy"
-msgstr "Salvar como uma cópia"
+msgstr ""
 
 msgid "Manage Cross-Selling"
-msgstr "Gerenciar Vendas Cruzadas"
+msgstr ""
 
 msgid "Cross-Selling"
-msgstr "Vendas Cruzadas"
+msgstr ""
 
 #, python-format
 msgid "Child: %s"
-msgstr "Filho: %s"
+msgstr ""
 
 #, python-format
 msgid "Parent: %s"
-msgstr "Pai: %s"
+msgstr ""
 
 #, python-format
 msgid "Sibling: %s"
-msgstr "Irmão: %s"
+msgstr ""
 
 msgid "Variations"
-msgstr "Variações"
+msgstr ""
 
 msgid "Manage Variations"
-msgstr "Gerenciar Variações"
+msgstr ""
 
 msgid "Packages"
-msgstr "Pacotes"
+msgstr ""
 
 msgid "Manage Package"
-msgstr "Gerenciar Pacote"
+msgstr ""
 
 msgid "Convert to Package Parent"
-msgstr "Converter para Pacote Pai"
+msgstr ""
 
 msgid "Convert to Variation Parent"
-msgstr "Converter para Variação Pai"
+msgstr ""
 
 msgid "Sales Dashboard"
-msgstr "Painel de Vendas"
+msgstr ""
 
 msgid "Sales per Month (last year)"
-msgstr "Vendas por Mês (último ano)"
+msgstr ""
 
 #, python-format
 msgid "Sales (%(currency)s)"
-msgstr "Vendas (%(currency)s)"
+msgstr ""
 
 #, python-format
 msgid "Based on %d orders"
-msgstr "Baseado em %d pedidos"
+msgstr ""
 
 msgid "Today's Sales"
-msgstr "Vendas de Hoje"
+msgstr ""
 
 msgid "Lifetime Sales"
-msgstr "Vendas Acumuladas"
+msgstr ""
 
 msgid "Average Purchase"
-msgstr "Ticket Médio"
+msgstr ""
 
 msgid "Open Orders Value"
-msgstr "Valor de Pedidos Abertos"
+msgstr ""
 
 msgid "Sales Units"
-msgstr "Unidades de Vendas"
+msgstr ""
 
 msgid "Short Name"
-msgstr "Nome Abreviado"
+msgstr ""
 
 msgid "Allowed decimals"
-msgstr "Casas decimais permitidas"
+msgstr ""
 
 msgid "Service Providers"
-msgstr "Prestadoras de Serviços"
+msgstr ""
 
 msgid "Payment and Shipping"
-msgstr "Pagamento e Entrega"
+msgstr ""
+
+msgid "Service name"
+msgstr ""
+
+msgid "The name shown in the shop checkout process."
+msgstr ""
+
+msgid "Instructions"
+msgstr ""
+
+msgid "additional instructions shown in the shop checkout process."
+msgstr ""
 
 #, python-format
 msgid "Edit %(model)s"
-msgstr "Editar %(model)s"
+msgstr ""
 
 #, python-brace-format
 msgid "Create {service_name}"
-msgstr "Criar {service_name}"
+msgstr ""
 
-msgid "Shipping Methods"
-msgstr "Formas de Entrega"
+msgid "Provider"
+msgstr ""
 
-msgid "Payment Methods"
-msgstr "Formas de Pagamento"
-
-msgid "Service"
-msgstr "Serviço"
-
-msgid "Select carrier before filling other fields."
-msgstr "Selecione a transportadora antes de preencher os demais campos."
-
-msgid "Select payment processor before filling other fields."
-msgstr "Selecione o processador de pagamentos antes de preencher os demais campos."
-
-msgid "Price"
-msgstr "Preço"
-
-msgid "Waive limit"
-msgstr "Limite de isenção"
-
-msgid "Service choice"
-msgstr "Escolha do serviço"
-
-msgid "Enabled"
-msgstr "Habilitado"
-
-msgid "Shop"
-msgstr "Loja"
+msgid "Please add shipping methods for your shop"
+msgstr ""
 
 msgid "Carrier"
-msgstr "Transportadora"
+msgstr ""
+
+msgid "Payment Methods"
+msgstr ""
+
+msgid "Please add payment methods for your shop"
+msgstr ""
 
 msgid "Payment Processor"
-msgstr "Processador de Pagamentos"
+msgstr ""
+
+msgid "Shipping Methods"
+msgstr ""
+
+msgid "Service"
+msgstr ""
+
+msgid "Select carrier before filling other fields."
+msgstr ""
+
+msgid "Select payment processor before filling other fields."
+msgstr ""
+
+msgid "Price"
+msgstr ""
+
+msgid "Waive limit"
+msgstr ""
+
+msgid "Service choice"
+msgstr ""
+
+msgid "Enabled"
+msgstr ""
+
+msgid "Shop"
+msgstr ""
 
 msgid "Weight-based pricing range"
-msgstr "Faixa de preços com base no peso"
+msgstr ""
 
 msgid "Settings saved"
-msgstr "Configurações salvas"
+msgstr ""
 
 msgid "Shops"
-msgstr "Lojas"
+msgstr ""
 
 msgid ""
 "This field cannot be changed since there are existing orders for this shop."
-msgstr "Este campo não pode ser alterado pois existem pedidos em aberto para esta loja."
+msgstr ""
 
 msgid "Currency"
-msgstr "Moeda"
+msgstr ""
 
-msgid "Languages"
-msgstr "Idiomas"
+msgid "Shop name"
+msgstr ""
+
+msgid ""
+"This option defines whether product prices entered in admin include taxes. "
+"Note this behavior can be overridden with customer group pricing."
+msgstr ""
+
+msgid "Shop Owner Name"
+msgstr ""
+
+msgid "Zip/Postal code"
+msgstr ""
+
+msgid "State/Province"
+msgstr ""
+
+msgid "There are still some pending actions to complete!"
+msgstr ""
+
+msgid "Your store is now live!"
+msgstr ""
 
 msgid "Domain"
-msgstr "Domínio"
+msgstr ""
+
+msgid "Please enter your shop details"
+msgstr ""
+
+msgid "Default Tax Class"
+msgstr ""
 
 msgid "Suppliers"
-msgstr "Fornecedores"
+msgstr ""
 
 #, python-format
 msgid "No %s module"
-msgstr "Nenhum módulo %s"
+msgstr ""
 
 msgid "Module"
-msgstr "Módulo"
+msgstr ""
 
 msgid "System"
-msgstr "Sistema"
+msgstr ""
 
 msgid "Telemetry"
-msgstr "Telemetria"
+msgstr ""
 
 msgid ""
 "Statistics will be periodically sent to Shuup.com after 24 hours. Click here"
 " for more information."
-msgstr "As estatísticas serão enviadas periodicamente a Shuup.com após 24 horas. Clique aqui para obter mais informações."
+msgstr ""
 
 msgid "Taxes"
-msgstr "Impostos"
+msgstr ""
 
 msgid "Customer Tax Groups"
-msgstr "Grupos de Impostos do Cliente"
+msgstr ""
 
 msgid "Tax Classes"
-msgstr "Classes Fiscais"
+msgstr ""
 
 msgid "Code"
-msgstr "Código"
+msgstr ""
 
 msgid "Rate"
-msgstr "Taxa"
+msgstr ""
 
 msgid "Users"
-msgstr "Usuários"
+msgstr ""
+
+msgid "Add some users to help manage your shop"
+msgstr ""
+
+msgid "Add a user"
+msgstr ""
 
 msgid "Password"
-msgstr "Senha"
+msgstr ""
 
 msgid "Permissions"
-msgstr "Permissões"
+msgstr ""
 
 msgid "See the permissions view to change these."
-msgstr "Consulte a view de permissões para alterá-las."
+msgstr ""
 
 msgid "staff"
-msgstr "membro da equipe"
+msgstr ""
 
 msgid "superuser"
-msgstr "superusuário"
+msgstr ""
 
 msgid "No special permissions"
-msgstr "Sem permissões especiais"
+msgstr ""
 
 msgid "No permission groups"
-msgstr "Nenhum grupo de permissões"
+msgstr ""
 
 msgid "Change Password"
-msgstr "Alterar Senha"
+msgstr ""
 
 msgid "User has no email address"
-msgstr "O usuário não tem endereço de e-mail"
+msgstr ""
 
 msgid "Send Password Reset Email"
-msgstr "Enviar E-mail de Redefinição de Senha"
+msgstr ""
 
 msgid "Edit Permissions"
-msgstr "Editar Permissões"
+msgstr ""
 
 msgid "Contact Details"
-msgstr "Detalhes do Contato"
+msgstr ""
 
 msgid "Create a new contact and associate it with this user"
-msgstr "Criar um novo contato e associá-lo a este usuário"
+msgstr ""
 
 msgid "Activate User"
-msgstr "Ativar Usuário"
+msgstr ""
 
 msgid "Deactivate User"
-msgstr "Desativar Usuário"
+msgstr ""
 
 msgid "Login as User"
-msgstr "Entrar como Usuário"
+msgstr ""
 
 #, python-format
 msgid "User bound to contact %(contact)s."
-msgstr "Usuário vinculado ao contato %(contact)s."
+msgstr ""
 
 #, python-format
 msgid "%(user)s is now %(state)s."
-msgstr "%(user)s está %(state)s agora."
+msgstr ""
 
 msgid "No shop configured."
-msgstr "Nenhuma loja configurada."
+msgstr ""
 
 msgid "You are already logged in."
-msgstr "Você já está conectado."
+msgstr ""
 
 msgid "This user is not active."
-msgstr "Este usuário não está ativo."
+msgstr ""
 
 #, python-brace-format
 msgid "You're now logged in as {username}"
-msgstr "Você agora está conectado como {username}"
+msgstr ""
 
 msgid "Username"
-msgstr "Nome de usuário"
+msgstr ""
 
 msgid "First Name"
-msgstr "Primeiro Nome"
+msgstr ""
 
 msgid "Last Name"
-msgstr "Sobrenome"
+msgstr ""
 
 msgid "Staff"
-msgstr "Membro da equipe"
+msgstr ""
 
 msgid "Superuser"
-msgstr "Superusuário"
+msgstr ""
 
 #, python-format
 msgid "First Name: %s"
-msgstr "Primeiro Nome: %s"
+msgstr ""
 
 #, python-format
 msgid "Last Name: %s"
-msgstr "Sobrenome: %s"
+msgstr ""
 
 msgid "User"
-msgstr "Usuário"
+msgstr ""
 
 msgid "The two password fields didn't match."
-msgstr "Os dois campos de senha não conferem."
+msgstr ""
 
 msgid "Your old password was entered incorrectly. Please enter it again."
-msgstr "Sua senha antiga foi digitada incorretamente. Por favor, insira-a novamente."
+msgstr ""
 
 msgid "Your Password"
-msgstr "Sua Senha"
+msgstr ""
 
 msgid "For security purposes, we need your current password."
-msgstr "Por motivos de segurança, precisamos de sua senha atual."
+msgstr ""
 
 msgid "New Password"
-msgstr "Nova Senha"
+msgstr ""
 
 msgid "New Password (again)"
-msgstr "Nova Senha (confirmação)"
+msgstr ""
 
 msgid "You can not change the password of a superuser."
-msgstr "Você não pode alterar a senha de um superusuário."
+msgstr ""
 
 msgid "Change User Password"
-msgstr "Alterar Senha do Usuário"
+msgstr ""
 
 #, python-format
 msgid "Password changed for %s."
-msgstr "Senha alterada para %s."
+msgstr ""
 
 msgid "Reset User Password"
-msgstr "Redefinir Senha do Usuário"
+msgstr ""
 
 msgid ""
 "The `shuup.front.apps.auth` app needs to be enabled for password reset."
-msgstr "O app `shuup.front.apps.auth` precisa estar habilitado para a redefinição de senha."
+msgstr ""
 
 #, python-format
 msgid "Password recovery email sent to %(email)s"
-msgstr "E-mail de recuperação de senha enviado para %(email)s"
+msgstr ""
 
 msgid "Sending the password recovery email failed."
-msgstr "O envio do e-mail de recuperação de senha falhou."
+msgstr ""
 
 msgid "You can't unset this status for yourself."
-msgstr "Você não pode desatribuir este status para si mesmo."
+msgstr ""
 
 msgid "Change User Permissions"
-msgstr "Alterar Permissões do Usuário"
+msgstr ""
 
 #, python-format
 msgid "Change Permissions: %s"
-msgstr "Alterar Permissões: %s"
+msgstr ""
 
 #, python-format
 msgid "Permissions changed for %s."
-msgstr "Permissões alteradas para %s."
+msgstr ""
 
 msgid "New Attribute"
-msgstr "Novo Atributo"
+msgstr ""
 
 msgid "Login"
-msgstr "Entrar"
+msgstr ""
 
 msgid "Logged out"
-msgstr "Desconectado"
+msgstr ""
 
 msgid "You have been logged out. Good bye!"
-msgstr "Você foi desconectado. Tchau!"
+msgstr ""
 
 msgid "Log in again"
-msgstr "Entrar novamente"
+msgstr ""
 
 msgid "Visit shop"
-msgstr "Visitar loja"
+msgstr ""
+
+msgid "Quicklinks"
+msgstr ""
 
 msgid "Menu"
-msgstr "Menu"
+msgstr ""
 
 msgid "Dashboard"
-msgstr "Painel de controle"
+msgstr ""
 
 msgid "Search for"
-msgstr "Procurar por"
+msgstr ""
+
+msgid "Support ID: "
+msgstr ""
 
 msgid "Hello"
-msgstr "Olá"
+msgstr ""
+
+msgid "Show Tour"
+msgstr ""
 
 msgid "Log out"
-msgstr "Sair"
+msgstr ""
 
 msgid "General Information"
-msgstr "Informações Gerais"
+msgstr ""
 
 msgid "Copy visibility settings to products"
-msgstr "Copiar configurações de visibilidade para os produtos"
+msgstr ""
 
 msgid "Category Image"
-msgstr "Imagem da Categoria"
+msgstr ""
 
 msgid "* Products that has this category as a primary category."
-msgstr "* Produtos que tem esta categoria como categoria principal."
+msgstr ""
+
+msgid "Add a new product category"
+msgstr ""
+
+msgid ""
+"You are adding a new product category. When people search your store, they "
+"can find your product under the category you choose for it, like the aisle "
+"signs at the supermarket."
+msgstr ""
+
+msgid ""
+"You can add a name, description, picture or anything you want to make it "
+"stand out."
+msgstr ""
 
 msgid "General information"
-msgstr "Informações gerais"
+msgstr ""
 
 msgid "Add Members"
-msgstr "Adicionar Membros"
+msgstr ""
 
 msgid "Add more"
-msgstr "Adicionar mais"
+msgstr ""
 
 msgid "Billing address"
-msgstr "Endereço de cobrança"
+msgstr ""
 
 msgid "No billing address defined."
-msgstr "Nenhum endereço de cobrança definido."
+msgstr ""
 
 msgid "Shipping address"
-msgstr "Endereço de entrega"
+msgstr ""
 
 msgid "No shipping address defined."
-msgstr "Nenhum endereço de entrega definido."
+msgstr ""
 
 msgid "Full Name"
-msgstr "Nome Completo"
+msgstr ""
 
 msgid "No groups"
-msgstr "Nenhum grupo"
+msgstr ""
 
 msgid "Bound User"
-msgstr "Usuário Vinculado"
+msgstr ""
 
 msgid "Companies"
-msgstr "Empresas"
-
-msgid "Account Manager"
-msgstr "Administrador da Conta"
-
-msgid "Merchant Notes"
-msgstr "Notas do Lojista"
+msgstr ""
 
 msgid "No members."
-msgstr "Nenhum membro."
+msgstr ""
 
 msgid "Use billing address as shipping address"
-msgstr "Usar o endereço de cobrança como endereço de entrega"
+msgstr ""
 
 msgid "Billing Address"
-msgstr "Endereço de Cobrança"
+msgstr ""
 
 msgid "Shipping Address"
-msgstr "Endereço de Entrega"
+msgstr ""
 
 msgid "Basic details"
-msgstr "Detalhes básicos"
+msgstr ""
 
 msgid "Remove block"
-msgstr "Remover bloco"
+msgstr ""
 
 msgid "Resize block"
-msgstr "Redimensionar bloco"
+msgstr ""
 
 msgid "Welcome!"
-msgstr "Bem-vindo!"
+msgstr ""
 
 msgid "Notifications"
-msgstr "Notificações"
+msgstr ""
 
 msgid "Mark as read"
-msgstr "Marcar como lido"
+msgstr ""
 
 msgid "Activity Feed"
-msgstr "Feed de Atividades"
+msgstr ""
 
 #, python-format
 msgid "Shuup %(version)s"
-msgstr "Shuup %(version)s"
+msgstr ""
+
+msgid ""
+"This is the dashboard for your store. It’s like the flight deck for your "
+"ecommerce spaceship. You can control everything from here."
+msgstr ""
+
+msgid ""
+"Check out your shoppers’ info, add more products or categories, setup "
+"marketing campaigns, see orders and sales stats, and track the money you’ve "
+"made."
+msgstr ""
+
+msgid "Every setting you could possibly need is in here."
+msgstr ""
 
 msgid "Table Columns"
-msgstr "Colunas da Tabela"
+msgstr ""
+
+msgid "Welcome to Shuup!"
+msgstr ""
+
+msgid ""
+"You're almost done! Complete the following steps to sell your products "
+"online"
+msgstr ""
+
+msgid "Time to setup your shop."
+msgstr ""
+
+msgid "We just need a few details to begin."
+msgstr ""
 
 msgid "Date"
-msgstr "Data"
+msgstr ""
 
 msgid "Order Status"
-msgstr "Status do Pedido"
+msgstr ""
+
+msgid "Save and Exit"
+msgstr ""
 
 msgid "Edit"
-msgstr "Editar"
+msgstr ""
 
 msgid "Upload"
-msgstr "Fazer upload"
+msgstr ""
+
+msgid "Comment"
+msgstr ""
+
+msgid "Save comment"
+msgstr ""
+
+msgid "Comment saved."
+msgstr ""
+
+msgid "There was an error updating the admin comment."
+msgstr ""
 
 msgid "Description"
-msgstr "Descrição"
+msgstr ""
+
+msgid "No payments have been created yet."
+msgstr ""
+
+msgid "Order Contents"
+msgstr ""
 
 msgid "Text"
-msgstr "Texto"
+msgstr ""
 
 msgid "Taxless Unit Price"
-msgstr "Preço Unitário sem Impostos"
+msgstr ""
 
 msgid "Taxless Discount"
-msgstr "Desconto sem Impostos"
+msgstr ""
 
 msgid "Taxless Discount Percentage"
-msgstr "%% de Desconto sem Impostos"
+msgstr ""
 
 msgid "Tax"
-msgstr "Imposto"
+msgstr ""
 
 msgid "Taxless Total"
-msgstr "Total sem Impostos"
+msgstr ""
 
 msgid "Total incl. Tax"
-msgstr "Total incl. Imposto"
+msgstr ""
 
 msgid "Discount"
-msgstr "Desconto"
+msgstr ""
 
 msgid "Taxless"
-msgstr "Sem impostos"
+msgstr ""
 
 msgid "Message"
-msgstr "Mensagem"
+msgstr ""
 
 msgid "No log entries have been added yet."
-msgstr "Nenhuma entrada de log foi adicionada ainda."
+msgstr ""
 
 msgid "Use the input below to add new log entries."
-msgstr "Use o campo abaixo para adicionar novas entradas de log."
+msgstr ""
 
 msgid "Add to Log"
-msgstr "Adicionar ao Log"
+msgstr ""
+
+msgid "Log entry added."
+msgstr ""
 
 msgid "There was an error adding the log entry."
-msgstr "Houve um erro ao adicionar a entrada de log."
+msgstr ""
 
 msgid "Tracking Code"
-msgstr "Código de Rastreamento"
+msgstr ""
 
 msgid "Created"
-msgstr "Criado"
+msgstr ""
 
 msgid "Delete"
-msgstr "Excluir"
+msgstr ""
 
 msgid "No shipments have been created yet."
-msgstr "Nenhuma remessa foi criada ainda."
+msgstr ""
 
 msgid ""
 "Shipped shipments should not be deleted. Deletion will affect products "
 "physical stock count. Delete anyway?"
-msgstr "Remessas enviadas não devem ser excluídas. A exclusão afetará a contagem de estoque físico dos produtos. Excluir assim mesmo?"
+msgstr ""
 
 msgid "Line #"
-msgstr "Item #"
+msgstr ""
 
 msgid "Refunded Quantity"
-msgstr "Quantidade Devolvida"
+msgstr ""
 
 msgid "Refund Amount"
-msgstr "Valor de Devolução"
+msgstr ""
 
 msgid "Are you sure you want to create a full refund?"
-msgstr "Tem certeza que deseja criar uma devolução total?"
+msgstr ""
 
 msgid "Confirm Refund"
-msgstr "Confirmar Devolução"
+msgstr ""
 
 msgid "Paid"
-msgstr "Pago"
+msgstr ""
 
 msgid "Remaining"
-msgstr "Restante"
+msgstr ""
 
 msgid "Refunded"
-msgstr "Devolvido"
+msgstr ""
 
 msgid "Add More Refunds "
-msgstr "Adicionar Mais Devoluções"
+msgstr ""
 
 msgid "To Ship"
-msgstr "A Enviar"
+msgstr ""
 
 msgid "Ordered"
-msgstr "Comprado"
+msgstr ""
 
 msgid "Shipped"
-msgstr "Enviado"
+msgstr ""
 
 msgid "Unshipped"
-msgstr "Não enviado"
+msgstr ""
 
 msgid "Set All Products To Ship"
-msgstr "Colocar Todos os Produtos para Entrega"
+msgstr ""
 
 msgid "Ship All"
-msgstr "Enviar Tudo"
+msgstr ""
 
-msgid "Details & Status"
-msgstr "Detalhes & Status"
+msgid "Details"
+msgstr ""
 
 msgid "Order Number"
-msgstr "Número do Pedido"
+msgstr ""
 
 msgid "Reference"
-msgstr "Referência"
+msgstr ""
 
 msgid "Label"
-msgstr "Rótulo"
+msgstr ""
 
 msgid "Ordered by"
-msgstr "Comprado por"
+msgstr ""
 
 msgid "Creator"
-msgstr "Criador"
+msgstr ""
 
 msgid "Tax number"
-msgstr "Número de contribuinte"
+msgstr ""
 
 msgid "Total Price (taxless)"
-msgstr "Preço Total (sem impostos)"
+msgstr ""
 
 msgid "Total Price"
-msgstr "Preço Total"
+msgstr ""
 
 msgid "Customer Comment"
-msgstr "Comentário do Cliente"
+msgstr ""
 
 msgid "Tracking codes"
-msgstr "Códigos de rastreamento"
+msgstr ""
+
+msgid "Address Information"
+msgstr ""
 
 msgid "Error!"
-msgstr "Erro!"
+msgstr ""
 
 msgid "Additional Details"
-msgstr "Detalhes Adicionais"
+msgstr ""
 
 msgid "Manufacturer"
-msgstr "Fabricante"
+msgstr ""
 
 msgid "Shipping & Payment"
-msgstr "Entrega & Pagamento"
+msgstr ""
 
 #, python-format
 msgid "Product image %(index)s"
-msgstr "Imagem do produto %(index)s"
+msgstr ""
 
 #, python-format
 msgid "Product media %(index)s"
-msgstr "Mídia do produto %(index)s"
+msgstr ""
 
 msgid "Primary image"
-msgstr "Imagem principal"
+msgstr ""
 
 msgid "Set as primary image"
-msgstr "Definir como imagem principal"
+msgstr ""
 
 msgid "No image"
-msgstr "Nenhuma imagem"
+msgstr ""
 
 msgid "Advanced options"
-msgstr "Opções avançadas"
+msgstr ""
 
 msgid "Product Images"
-msgstr "Imagens do Produto"
+msgstr ""
 
 msgid "Product Media"
-msgstr "Mídia do Produto"
+msgstr ""
 
 msgid "Add new image"
-msgstr "Adicionar nova imagem"
+msgstr ""
 
 msgid "Add new media"
-msgstr "Adicionar nova mídia"
+msgstr ""
 
 msgid "No orders found"
-msgstr "Nenhum pedido encontrado"
+msgstr ""
 
 msgid "This product is currently not orderable."
-msgstr "Este produto está indisponível para compra no momento."
+msgstr ""
+
+msgid "You are adding a product."
+msgstr ""
+
+msgid ""
+"To make it stand out, give it an awesome description and picture. This is "
+"what will help your shoppers learn about your products. It will also help "
+"shoppers find them in the store and on the web."
+msgstr ""
+
+msgid ""
+"You can set its price or size and many other things in the option boxes for "
+"each product."
+msgstr ""
 
 msgid "Cross-sells"
-msgstr "Vendas cruzadas"
+msgstr ""
 
 msgid "Cross-sell"
-msgstr "Venda cruzada"
+msgstr ""
 
 msgid "File "
-msgstr "Arquivo"
+msgstr ""
 
 msgid "Package Products"
-msgstr "Pacote de Produtos"
+msgstr ""
 
 #, python-format
 msgid "Logical count: %(logical_count)s %(sales_unit)s"
-msgstr "Estoque lógico: %(logical_count)s %(sales_unit)s"
+msgstr ""
 
 #, python-format
 msgid "Physical count: %(physical_count)s %(sales_unit)s"
-msgstr "Estoque físico: %(physical_count)s %(sales_unit)s"
+msgstr ""
 
 msgid "This product is not yet a package."
-msgstr "Este produto ainda não é um pacote."
+msgstr ""
 
 msgid "To create a package, choose products below."
-msgstr "Para criar um pacote, escolha os produtos abaixo."
+msgstr ""
 
 msgid "Simple Variation Children"
-msgstr "Filhos da Variação Simples"
+msgstr ""
 
 msgid "Variable Children"
-msgstr "Variáveis Filhos"
+msgstr ""
 
 msgid "Combination"
-msgstr "Combinação"
+msgstr ""
 
 msgid "Variables"
-msgstr "Variáveis"
+msgstr ""
 
 msgid "This product is not yet a variation."
-msgstr "Este produto ainda não é uma variação."
+msgstr ""
 
 msgid "To create a simple variation, choose products below."
-msgstr "Para criar uma variação simples, escolha os produtos abaixo."
+msgstr ""
 
 msgid ""
 "To create a variation with multiple variables, create the variables on the "
 "Variables tab and then link them to products here."
-msgstr "Para criar uma variação com múltiplas variáveis, crie as variáveis na guia Variáveis e, em seguida, vincule-as aos produtos aqui."
+msgstr ""
+
+msgid "Manually process payments"
+msgstr ""
+
+msgid "Manage payments outside of Shuup"
+msgstr ""
+
+msgid "Manual"
+msgstr ""
+
+msgid "Manual process shipping"
+msgstr ""
+
+msgid "Handle shipping outside of Shuup"
+msgstr ""
+
+msgid "Activate"
+msgstr ""
 
 msgid ""
 "Define price based basket weight range. Range minimum is counted in range "
 "only as zero."
-msgstr "Define o preço baseado na faixa de pesos do carrinho. Mínimo do intervalo é contabilizado na faixa como zero apenas."
+msgstr ""
 
 msgid "Behavior"
-msgstr "Comportamento"
+msgstr ""
 
 msgid "Behavior component type"
-msgstr "Tipo do componente de comportamento"
+msgstr ""
 
 msgid "Add component"
-msgstr "Adicionar componente"
+msgstr ""
 
 msgid "Shop Logo"
-msgstr "Logotipo da Loja"
+msgstr ""
 
 msgid "Maintenance Mode"
-msgstr "Modo de Manutenção"
+msgstr ""
 
 msgid "Contact Address"
-msgstr "Endereço de Contato"
+msgstr ""
 
 msgid "About Shuup Telemetry"
-msgstr "Sobre a Telemetria do Shuup"
+msgstr ""
 
 msgid "Shuup will occasionally send telemetry data to a Shuup.com server."
-msgstr "O Shuup ocasionalmente enviará dados de telemetria a um servidor Shuup.com."
+msgstr ""
 
 #, python-format
 msgid ""
 "The data contains an unique installation key, as well as the hostname of the"
 " installation (as sent by the visiting browser; currently "
 "<code>%(host)s</code>)."
-msgstr "Os dados contém uma chave de instalação única, bem como o hostname da instalação (como enviado pelo navegador visitante; atualmente <code>%(host)s</code>)."
+msgstr ""
 
 msgid ""
 "No business data or other customer information is ever sent. Shuup.com only "
 "uses the telemetry data for statistical purposes and for insights about the "
 "software's installation base."
-msgstr "Nenhum dado de negócio ou outras informações de clientes jamais são enviados. Shuup.com utiliza os dados de telemetria apenas para fins estatísticos e para insights sobre a base de instalação do software."
+msgstr ""
 
 msgid "Opt-in / opt-out"
-msgstr "Optar por / não optar"
+msgstr ""
 
 msgid ""
 "You are currently <span class=\"lead label label-success\">opted in</span> "
 "to send telemetry data to Shuup.com."
-msgstr "Você está atualmente <span class=\"lead label label-success\">optando por</span> enviar os dados de telemetria a Shuup.com."
+msgstr ""
 
 msgid "Thank you for your valuable contribution."
-msgstr "Obrigado por sua valiosa contribuição."
+msgstr ""
 
 msgid "Opt out"
-msgstr "Não optar"
+msgstr ""
 
 msgid ""
 "You are currently <span class=\"label label-warning\">opted out</span> of "
 "Shuup telemetry."
-msgstr "Você está atualmente <span class=\"label label-warning\">não optando</span> pela telemetria do Shuup."
+msgstr ""
 
 msgid "Opt in"
-msgstr "Optar por"
+msgstr ""
 
 msgid "Last Telemetry"
-msgstr "Última Telemetria"
+msgstr ""
 
 msgid ""
 "Telemetry submission is currently suspended; data will only be sent 24 hours"
 " after installation if still opted in at that point."
-msgstr "A transmissão da telemetria está suspensa no momento; os dados só serão enviados 24 horas após a instalação se ainda optar por enviá-los na ocasião."
+msgstr ""
 
 #, python-format
 msgid ""
 "Telemetry data was last submitted at %(submission_datetime)s - "
 "(%(submission_timesince)s) ago"
-msgstr "Os dados de telemetria foram transmitidos pela última vez em %(submission_datetime)s - (%(submission_timesince)s) atrás"
+msgstr ""
 
 msgid "See the data that was submitted."
-msgstr "Ver os dados que foram transmitidos."
+msgstr ""
 
 msgid "Telemetry data has not yet been submitted."
-msgstr "Os dados de telemetria ainda não foram transmitidos."
+msgstr ""
 
 msgid "Telemetry Data"
-msgstr "Dados de Telemetria"
+msgstr ""
 
 msgid "Here is an example of the data that would be submitted right now."
-msgstr "Aqui está uma amostra dos dados que seriam transmitidos agora."
+msgstr ""
 
 msgid "User Information"
-msgstr "Informações do Usuário"
+msgstr ""
 
 #, python-format
 msgid "Send a password reset email to %(email)s?"
-msgstr "Enviar e-mail de redefinição de senha para %(email)s?"
+msgstr ""
 
 msgid "Send Reset Email"
-msgstr "Enviar E-mail de Redefinição"
+msgstr ""
+
+msgid ""
+"Please fill out the following information to get your store up and running"
+msgstr ""
+
+msgid "Click here for help"
+msgstr ""
+
+msgid "Setup can be continued later from the admin dashboard"
+msgstr ""
 
 msgid "Create new"
-msgstr "Criar novo"
+msgstr ""
 
 #, python-format
 msgid "New %(model)s"
-msgstr "Novo %(model)s"
+msgstr ""
 
 msgid "Discard Changes"
-msgstr "Descartar Alterações"
-
-msgid "Save and Exit"
-msgstr "Salvar e Sair"
+msgstr ""
 
 msgid "Save and Create New"
-msgstr "Salvar e Criar Novo"
+msgstr ""
 
 #, python-format
 msgid "Are you sure you wish to delete %s?"
-msgstr "Tem certeza que deseja excluir %s?"
+msgstr ""
 
 #, python-format
 msgid "Showing %(per_page)s of %(n_items)s %(verbose_name_plural)s"
-msgstr "Mostrando %(per_page)s de %(n_items)s %(verbose_name_plural)s"
+msgstr ""
 
 msgid "objects"
-msgstr "objetos"
+msgstr ""
+
+msgid "Unknown error"
+msgstr ""
+
+msgid "Mass Action"
+msgstr ""
 
 #, python-format
 msgid "Can't view this page. %(reason)s"
-msgstr "Não é possível visualizar esta página. %(reason)s"
+msgstr ""
 
 msgid "Log in with different credentials..."
-msgstr "Entrar com outras credenciais..."
+msgstr ""
 
 msgid "You must be logged in."
-msgstr "Você precisa estar autenticado."
+msgstr ""
 
 msgid "You must be a staff member."
-msgstr "Você precisa ser um membro da equipe."
+msgstr ""
 
 #, python-format
 msgid "You do not have the required permissions: %s"
-msgstr "Você não tem as permissões necessárias: %s"
+msgstr ""
 
 #, python-format
 msgid "New %s created."
-msgstr "Novo %s criado."
+msgstr ""
 
 #, python-format
 msgid "%s edited."
-msgstr "%s editado."
+msgstr ""
 
 #, python-format
 msgid "New %s"
-msgstr "Novo %s"
+msgstr ""
 
 #, python-format
 msgid "Unnamed %s"
-msgstr "%s sem nome"
+msgstr ""
 
 #, python-format
 msgid "Only one %(model)s permitted."
-msgstr "Apenas um %(model)s permitido."
+msgstr ""
+
+msgid "Mass Edit"
+msgstr ""
+
+msgid "Complete the setup wizard"
+msgstr ""
+
+msgid "Complete wizard"
+msgstr ""
+
+msgid "Publish your store"
+msgstr ""
+
+msgid "Let customers browse your store and make purchases"
+msgstr ""
+
+msgid "Publish shop"
+msgstr ""
 
 #, python-format
 msgid "Couldn't get selections for %s."
-msgstr "Não foi possível obter seleções para %s."
+msgstr ""
