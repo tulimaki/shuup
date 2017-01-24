@@ -5,6 +5,7 @@
 #
 # This source code is licensed under the OSL-3.0 license found in the
 # LICENSE file in the root directory of this source tree.
+from django.conf import settings
 from django.contrib.auth.models import Permission
 
 
@@ -20,7 +21,7 @@ def get_default_model_permissions(model):
     permissions = set()
 
     for default in model._meta.default_permissions:
-        permissions.add("%s.%s_%s" % (model._meta.app_label, default, model._meta.model_name))
+        permissions.add(get_permission_string_for_model(model, default))
 
     return permissions
 
@@ -38,7 +39,7 @@ def get_missing_permissions(user, permissions):
     :rtype: set[str]
     """
     if callable(getattr(user, 'has_perm', None)):
-        missing_permissions = set(p for p in set(permissions) if not user.has_perm(p))
+        missing_permissions = set(p for p in set(permissions) if p is not None and not user.has_perm(p))
     else:
         missing_permissions = set(permissions)
 
@@ -74,3 +75,35 @@ def get_permission_object_from_string(permission_string):
     """
     app_label, codename = permission_string.split(".")
     return Permission.objects.get(content_type__app_label=app_label, codename=codename)
+
+
+def user_has_permission(perm, user, obj):
+    permission_str = get_permission_string_for_object(obj, perm)
+    if not permission_str:
+        return False
+
+    check_per_object_permission = settings.SHUUP_CHECK_PER_OBJECT_PERMISSIONS and obj.pk
+    return user.has_perm(permission_str, obj=(obj if check_per_object_permission else None))
+
+
+def get_permission_string_for_model(model, perm):
+    if not model:
+        return
+    model_permission = validate_and_get_permission(model, perm)
+    if not model_permission:
+        return
+    return "%s.%s_%s" % (model._meta.app_label, model_permission, model._meta.model_name)
+
+
+def validate_and_get_permission(model, perm):
+    for default in model._meta.default_permissions:
+        if default == perm:
+            return default
+    for permission_code, permission_str in model._meta.permissions:
+        if permission_code == perm:
+            return permission_code
+
+
+def get_permission_string_for_object(obj, perm):
+    model = type(obj)
+    return get_permission_string_for_model(model, perm) if hasattr(model, "_meta") else None
