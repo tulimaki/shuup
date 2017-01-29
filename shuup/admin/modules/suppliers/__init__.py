@@ -25,7 +25,7 @@ class SupplierModule(AdminModule):
             url_prefix="^suppliers",
             view_template="shuup.admin.modules.suppliers.views.Supplier%sView",
             name_template="supplier.%s",
-            permissions=get_default_model_permissions(Supplier)
+            model=Supplier
         )
 
     def get_menu_entries(self, request):
@@ -41,7 +41,7 @@ class SupplierModule(AdminModule):
         ]
 
     def get_required_permissions(self):
-        return get_default_model_permissions(Supplier)
+        return ["shuup.view_supplier"]
 
     def get_model_url(self, object, kind):
         return derive_model_url(Supplier, "shuup_admin:supplier", object, kind)

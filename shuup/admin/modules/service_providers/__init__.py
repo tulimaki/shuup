@@ -35,7 +35,7 @@ class ServiceProviderModule(AdminModule):
             url_prefix="^service_provider",
             view_template="shuup.admin.modules.service_providers.views.ServiceProvider%sView",
             name_template="service_provider.%s",
-            permissions=get_default_model_permissions(ServiceProvider)
+            model=ServiceProvider
         )
 
     def get_menu_category_icons(self):
@@ -54,7 +54,7 @@ class ServiceProviderModule(AdminModule):
         ]
 
     def get_required_permissions(self):
-        return get_default_model_permissions(ServiceProvider)
+        return ["shuup.view_serviceprovider"]
 
     def get_model_url(self, object, kind):
         return derive_model_url(ServiceProvider, "shuup_admin:service_provider", object, kind)

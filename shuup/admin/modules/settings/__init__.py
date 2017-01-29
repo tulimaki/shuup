@@ -26,7 +26,7 @@ class SettingsModule(AdminModule):
                 "^settings/$",
                 "shuup.admin.modules.settings.views.SystemSettingsView",
                 name="settings.list",
-                permissions=get_default_model_permissions(Shop)
+                permissions=["shuup.add_shop"]
             ),
         ]
 

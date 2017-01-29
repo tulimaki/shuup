@@ -27,21 +27,21 @@ class CampaignAdminModule(AdminModule):
             url_prefix="^campaigns/basket",
             view_template="shuup.campaigns.admin_module.views.BasketCampaign%sView",
             name_template="basket_campaign.%s",
-            permissions=get_default_model_permissions(BasketCampaign)
+            model=BasketCampaign
         )
 
         coupon_urls = get_edit_and_list_urls(
             url_prefix="^campaigns/coupons",
             view_template="shuup.campaigns.admin_module.views.Coupon%sView",
             name_template="coupon.%s",
-            permissions=get_default_model_permissions(Coupon)
+            model=Coupon
         )
 
         return basket_campaign_urls + coupon_urls + get_edit_and_list_urls(
             url_prefix="^campaigns/catalog",
             view_template="shuup.campaigns.admin_module.views.CatalogCampaign%sView",
             name_template="catalog_campaign.%s",
-            permissions=get_default_model_permissions(CatalogCampaign)
+            model=CatalogCampaign
         )
 
     def get_menu_category_icons(self):

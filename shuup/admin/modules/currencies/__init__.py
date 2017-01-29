@@ -25,7 +25,7 @@ class CurrencyModule(AdminModule):
             url_prefix="^currencies",
             view_template="shuup.admin.modules.currencies.views.Currency%sView",
             name_template="currency.%s",
-            permissions=get_default_model_permissions(Currency)
+            model=Currency
         )
 
     def get_menu_entries(self, request):
@@ -41,7 +41,7 @@ class CurrencyModule(AdminModule):
         ]
 
     def get_required_permissions(self):
-        return get_default_model_permissions(Currency)
+        return ["shuup.change_currency"]
 
     def get_model_url(self, object, kind):
         return derive_model_url(Currency, "shuup_admin:currency", object, kind)
