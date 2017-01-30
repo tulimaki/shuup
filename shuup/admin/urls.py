@@ -19,6 +19,7 @@ from django.views.i18n import set_language
 from shuup.admin.forms import EmailAuthenticationForm
 from shuup.admin.module_registry import get_module_urls
 from shuup.admin.utils.urls import admin_url, AdminRegexURLPattern
+from shuup.admin.views.permissions import set_shop
 from shuup.admin.views.dashboard import DashboardView
 from shuup.admin.views.home import HomeView
 from shuup.admin.views.menu import MenuView
@@ -66,6 +67,11 @@ def get_urls():
             r'^set-language/$',
             csrf_exempt(set_language),
             name="set-language"
+        ),
+        admin_url(
+            r'^set-shop/$',
+            csrf_exempt(set_shop),
+            name="set-shop"
         ),
     ])
 

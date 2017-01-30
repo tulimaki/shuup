@@ -37,7 +37,7 @@ class DashboardView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         try_send_telemetry(request)
-        if not setup_wizard_complete():
+        if not setup_wizard_complete(request):
             return HttpResponseRedirect(reverse("shuup_admin:wizard"))
         elif request.shop.maintenance_mode:
             return HttpResponseRedirect(reverse("shuup_admin:home"))

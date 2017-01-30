@@ -47,7 +47,7 @@ class CategoryBaseForm(ShuupAdminForm):
     def __init__(self, **kwargs):
         if not settings.SHUUP_ENABLE_MULTIPLE_SHOPS:
             initial = kwargs.get("initial", {})
-            initial["shops"] = [Shop.objects.first().pk]
+            initial["shops"] = [self.request.session.get("admin_shop").pk]
             kwargs["initial"] = initial
 
         super(CategoryBaseForm, self).__init__(**kwargs)
@@ -64,7 +64,7 @@ class CategoryBaseForm(ShuupAdminForm):
         shops = self.cleaned_data["shops"]
         if settings.SHUUP_ENABLE_MULTIPLE_SHOPS:
             return shops
-        return [Shop.objects.first().pk]
+        return [self.request.session.get("admin_shop").pk]
 
 
 class CategoryProductForm(forms.Form):
