@@ -6,7 +6,7 @@
 # This source code is licensed under the OSL-3.0 license found in the
 # LICENSE file in the root directory of this source tree.
 
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 from parler_rest.fields import TranslatedFieldsField
 from parler_rest.serializers import TranslatableModelSerializer
 from rest_framework.viewsets import ModelViewSet
@@ -15,8 +15,26 @@ from shuup.api.mixins import PermissionHelperMixin, ProtectedModelViewSetMixin
 from shuup.core.models import SalesUnit
 
 
+class _ShortNameAliased(object):
+    def run_validation(self, initial_data):
+        initial_data.setdefault('symbol', initial_data.pop('short_name', None))
+        return super(_ShortNameAliased, self).run_validation(initial_data)
+
+    def to_representation(self, instance):
+        data = super(_ShortNameAliased, self).to_representation(instance)
+        data['short_name'] = data.get('symbol')
+        return data
+
+
+class SalesUnitTranslatedFieldsField(TranslatedFieldsField):
+    def bind(self, field_name, parent):
+        super(SalesUnitTranslatedFieldsField, self).bind(field_name, parent)
+        bases = (_ShortNameAliased, self.serializer_class)
+        self.serializer_class = type('Serializer', bases, {})
+
+
 class SalesUnitSerializer(TranslatableModelSerializer):
-    translations = TranslatedFieldsField(shared_model=SalesUnit)
+    translations = SalesUnitTranslatedFieldsField()
 
     class Meta:
         model = SalesUnit

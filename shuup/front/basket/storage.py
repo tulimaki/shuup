@@ -10,6 +10,7 @@ from __future__ import unicode_literals
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 
+from shuup.core.utils.users import real_user_or_none
 from shuup.core.basket.storage import BaseDatabaseBasketStorage, BasketStorage
 from shuup.front.models import StoredBasket
 
@@ -72,6 +73,27 @@ class DatabaseBasketStorage(BaseDatabaseBasketStorage):
 
     def _get_session_key(self, basket):
         return "basket_%s_key" % basket.basket_name
+
+    def get_basket_kwargs(self, basket):
+        return basket.request.session.get(self._get_session_key(basket))
+
+    def save(self, basket, data):
+        """
+        :type basket: shuup.front.basket.objects.BaseBasket
+        """
+        request = basket.request
+        stored_basket = self._get_stored_basket(basket)
+        stored_basket.data = data
+        stored_basket.taxless_total_price = basket.taxless_total_price_or_none
+        stored_basket.taxful_total_price = basket.taxful_total_price_or_none
+        stored_basket.product_count = basket.smart_product_count
+        stored_basket.customer = (basket.customer or None)
+        stored_basket.orderer = (basket.orderer or None)
+        stored_basket.creator = real_user_or_none(basket.creator)
+        stored_basket.save()
+        stored_basket.products = set(basket.product_ids)
+        basket_get_kwargs = {"pk": stored_basket.pk, "key": stored_basket.key}
+        request.session[self._get_session_key(basket)] = basket_get_kwargs
 
     def get_basket_kwargs(self, basket):
         return basket.request.session.get(self._get_session_key(basket))

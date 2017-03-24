@@ -23,6 +23,12 @@ Core
 - API: add address endpoint
 - API: add person contact endpoint
 - API: add address endpoint
+- Improve OrderSource caching for deserialization speedup
+- Add new product count methods to OrderSource
+- Fix bug in purchase multiple checking of ShopProduct
+- Add unit interface to ShopProduct, OrderLine and SourceLine
+- Add DisplayUnit model
+- Rename ``SalesUnit.short_name`` to ``symbol``
 - Improve variation product orderability check performance
 - Add `created_on` and `modified_on` fields for shop
 - Make shop identifier max length to 128 characters
@@ -34,6 +40,8 @@ Localization
 Admin
 ~~~~~
 
+- Add option to define a custom admin module loader
+- Quick add staff members for shops
 - Main menu is now updateable through provides.
 - Add new provide category called `order_printouts_delivery_extra_fields`
   which can be used to add extra rows to order delivery slip.
@@ -50,6 +58,10 @@ Addons
 Front
 ~~~~~
 
+- Fix bug: Could no change quantities of unorderable lines in the basket
+- Use display units when rendering product quantities
+- Add new provide category called `product_context_extra`
+  which can be used to add extra data to the product context.
 - It's now possible to re-order old order from order history
 - It's now possible for addons to extend front main menu using the
   new `front_menu_extender` provide. See :doc:`provides.rst` for more information.
@@ -94,6 +106,9 @@ Regions
 
 General/miscellaneous
 ~~~~~~~~~~~~~~~~~~~~~
+
+- Fix usages of non-unicode ``gettext_lazy``
+- Improve API documentation of the models with model field descriptions
 
 SHUUP 1.1.0
 -----------

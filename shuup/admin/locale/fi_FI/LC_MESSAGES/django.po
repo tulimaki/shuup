@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Shuup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-03 09:37+0000\n"
+"POT-Creation-Date: 2017-03-18 08:31+0000\n"
 "PO-Revision-Date: 2017-03-01 13:48+0000\n"
 "Last-Translator: Tuomas Suutari <tuomas.suutari@shoop.io>\n"
 "Language-Team: Finnish (Finland) (http://www.transifex.com/shuup/shuup/"
@@ -613,6 +613,9 @@ msgstr "{num} tiedostoa siirretty kansioon {folder}."
 msgid "Folder %s deleted."
 msgstr "Kansio %s poistettu."
 
+msgid "Browse Media"
+msgstr "Selaa mediaa"
+
 #, python-format
 msgid "%(file)s uploaded to %(folder)s"
 msgstr "%(file)s lähetetty kansioon %(folder)s"
@@ -829,8 +832,8 @@ msgstr "Maksu %s luotu"
 msgid "Order has already been paid"
 msgstr "Tilaus on jo maksettu"
 
-msgid "Only orders which are not paid can be set as paid."
-msgstr "Vain maksamattomat tilaukset voidaan asettaa maksetuiksi."
+msgid "Only orders which are not paid or deferred can be set as paid."
+msgstr "Vain maksamattomat tai viivästyneet tilaukset voi asettaa maksetuksi."
 
 msgid "Only zero price orders can be set as paid without creating a payment."
 msgstr ""
@@ -853,7 +856,7 @@ msgstr ""
 "Hyvitettävä tili. Hyvittääksesi vapaan määrän, valitse 'Hyvitä vapaa määrä'."
 
 msgid "Quantity"
-msgstr "Lukumäärä"
+msgstr "Määrä"
 
 msgid "The number of units to refund."
 msgstr "Hyvitettävien yksiköiden määrä."
@@ -1260,8 +1263,11 @@ msgstr "Avoimia tilauksia"
 msgid "Sales Units"
 msgstr "Myyntiyksiköt"
 
-msgid "Short Name"
-msgstr "Lyhyt nimi"
+msgid "Display Units"
+msgstr "Näyttöyksiköt"
+
+msgid "Symbol"
+msgstr "Symboli"
 
 msgid "Allowed decimals"
 msgstr "Sallitut desimaalit"

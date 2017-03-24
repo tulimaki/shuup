@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-21 07:50+0000\n"
+"POT-Creation-Date: 2017-03-18 08:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en <LL@li.org>\n"
@@ -562,6 +562,9 @@ msgstr ""
 msgid "Folder %s deleted."
 msgstr ""
 
+msgid "Browse Media"
+msgstr ""
+
 #, python-format
 msgid "%(file)s uploaded to %(folder)s"
 msgstr ""
@@ -777,7 +780,7 @@ msgstr ""
 msgid "Order has already been paid"
 msgstr ""
 
-msgid "Only orders which are not paid can be set as paid."
+msgid "Only orders which are not paid or deferred can be set as paid."
 msgstr ""
 
 msgid "Only zero price orders can be set as paid without creating a payment."
@@ -1193,7 +1196,10 @@ msgstr ""
 msgid "Sales Units"
 msgstr ""
 
-msgid "Short Name"
+msgid "Display Units"
+msgstr ""
+
+msgid "Symbol"
 msgstr ""
 
 msgid "Allowed decimals"

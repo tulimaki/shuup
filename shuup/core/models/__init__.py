@@ -67,7 +67,7 @@ from ._shops import Shop, ShopStatus
 from ._supplied_products import SuppliedProduct
 from ._suppliers import Supplier, SupplierType
 from ._taxes import CustomerTaxGroup, Tax, TaxClass
-from ._units import SalesUnit
+from ._units import DisplayUnit, PiecesSalesUnit, SalesUnit, UnitInterface
 
 __all__ = [
     "AbstractOrderLine",
@@ -93,6 +93,7 @@ __all__ = [
     "CustomPaymentProcessor",
     "Currency",
     "DefaultOrderStatus",
+    "DisplayUnit",
     "FixedCostBehaviorComponent",
     "get_company_contact",
     "get_currency_precision",
@@ -118,6 +119,7 @@ __all__ = [
     "PaymentUrls",
     "PersistentCacheEntry",
     "PersonContact",
+    "PiecesSalesUnit",
     "PolymorphicShuupModel",
     "PolymorphicTranslatableShuupModel",
     "Product",
@@ -165,6 +167,7 @@ __all__ = [
     "Tax",
     "TaxClass",
     "TranslatableShuupModel",
+    "UnitInterface",
     "WaivingCostBehaviorComponent",
     "WeightBasedPriceRange",
     "WeightBasedPricingBehaviorComponent",

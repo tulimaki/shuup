@@ -598,6 +598,9 @@ msgstr "{num} filer flyttade till {folder}."
 msgid "Folder %s deleted."
 msgstr "Mappen %s har tagits bort."
 
+msgid "Browse Media"
+msgstr "Bläddra efter media"
+
 #, python-format
 msgid "%(file)s uploaded to %(folder)s"
 msgstr "%(file)s laddades upp til %(folder)s"
@@ -1249,9 +1252,6 @@ msgstr "Värdet av öppna beställningar"
 
 msgid "Sales Units"
 msgstr "Försäljningsenheter"
-
-msgid "Short Name"
-msgstr "Kort namn"
 
 msgid "Allowed decimals"
 msgstr "Tillåtna decimaler"
