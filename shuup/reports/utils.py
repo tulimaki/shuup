@@ -11,7 +11,7 @@ import datetime
 
 import six
 
-from shuup.utils.dates import local_now, try_parse_date
+from shuup.utils import dates
 
 ERROR_MESSAGE = "Error fetching data"
 NO_DATA_MESSAGE = "No results"
@@ -38,21 +38,20 @@ def get_error_data(schema, sales_data):
 
 def parse_date_range_preset(value):
     from shuup.reports.forms import DateRangeChoices
-    now = local_now()
+    now = dates.local_now()
+    today_start = now.replace(hour=0, minute=0, second=0)
     if value == DateRangeChoices.TODAY:
-        midnight = now.replace(hour=0, minute=0, second=0)
-        tomorrow = midnight + datetime.timedelta(days=1) - datetime.timedelta(seconds=1)
-        return (midnight, tomorrow)
+        return (today_start, now)
     if value == DateRangeChoices.RUNNING_WEEK:
-        return (now - datetime.timedelta(days=7), now)
+        return (today_start - datetime.timedelta(days=7), now)
     if value == DateRangeChoices.RUNNING_MONTH:
-        return (now - datetime.timedelta(days=30), now)
+        return (today_start - datetime.timedelta(days=30), now)
     if value == DateRangeChoices.THIS_MONTH:
-        return (now.replace(day=1), now)
+        return (today_start.replace(day=1), now)
     if value == DateRangeChoices.THIS_YEAR:
-        return (now.replace(day=1, month=1), now)
+        return (today_start.replace(day=1, month=1), now)
     if value == DateRangeChoices.ALL_TIME:
-        return (now.replace(year=2000), now)
+        return (today_start.replace(year=2000), now)
 
 
 def parse_date_range(value):
@@ -72,7 +71,7 @@ def parse_date_range(value):
         start, end = value[:2]
     else:
         raise ValueError("Can't split date range: %r" % value)
-    date_range = (try_parse_date(start), try_parse_date(end))
+    date_range = (dates.try_parse_date(start), dates.try_parse_date(end))
     if any(p is None for p in date_range):
         raise ValueError("Invalid date range: %r (parsed as %r)" % (value, date_range))
     return date_range
