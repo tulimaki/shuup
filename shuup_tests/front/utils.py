@@ -5,19 +5,16 @@
 #
 # This source code is licensed under the OSL-3.0 license found in the
 # LICENSE file in the root directory of this source tree.
-from shuup.core.models import StockBehavior
 from shuup.testing.factories import create_package_product
 
 
 def get_unstocked_package_product_and_stocked_child(shop, supplier, child_logical_quantity=1):
     package_product = create_package_product("Package-Product-Test", shop=shop, supplier=supplier, children=1)
-    assert package_product.stock_behavior == StockBehavior.UNSTOCKED
 
     quantity_map = package_product.get_package_child_to_quantity_map()
     assert len(quantity_map.keys()) == 1
 
     child_product = list(quantity_map.keys())[0]
-    child_product.stock_behavior = StockBehavior.STOCKED
     child_product.save()
 
     assert quantity_map[child_product] == 1

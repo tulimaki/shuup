@@ -7,9 +7,7 @@
 # LICENSE file in the root directory of this source tree.
 import pytest
 
-from shuup.core.models import (
-    ProductCrossSell, ProductCrossSellType, StockBehavior
-)
+from shuup.core.models import ProductCrossSell, ProductCrossSellType
 from shuup.testing.factories import (
     create_product, get_default_shop, get_default_supplier
 )
@@ -24,8 +22,8 @@ def test_cross_sell_plugin_renders():
     """
     shop = get_default_shop()
     supplier = get_default_supplier()
-    product = create_product("test-sku", shop=shop, supplier=supplier, stock_behavior=StockBehavior.UNSTOCKED)
-    computed = create_product("test-computed-sku", shop=shop, supplier=supplier, stock_behavior=StockBehavior.UNSTOCKED)
+    product = create_product("test-sku", shop=shop, supplier=supplier)
+    computed = create_product("test-computed-sku", shop=shop, supplier=supplier)
     type = ProductCrossSellType.COMPUTED
 
     ProductCrossSell.objects.create(product1=product, product2=computed, type=type)

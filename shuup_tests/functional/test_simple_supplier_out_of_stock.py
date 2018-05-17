@@ -9,7 +9,7 @@ import random
 
 import pytest
 
-from shuup.core.models import AnonymousContact, Shipment, StockBehavior
+from shuup.core.models import AnonymousContact, Shipment
 from shuup.testing.factories import (
     create_order_with_product, create_product, create_random_person,
     get_default_shop
@@ -22,7 +22,7 @@ from shuup_tests.simple_supplier.utils import get_simple_supplier
 def test_simple_supplier_out_of_stock(rf, anonymous):
     supplier = get_simple_supplier()
     shop = get_default_shop()
-    product = create_product("simple-test-product", shop, supplier, stock_behavior=StockBehavior.STOCKED)
+    product = create_product("simple-test-product", shop, supplier)
 
     if anonymous:
         customer = AnonymousContact()

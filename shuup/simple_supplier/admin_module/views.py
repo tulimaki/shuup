@@ -13,7 +13,7 @@ from django.utils.translation import ugettext
 
 from shuup.admin.utils.picotable import ChoicesFilter, Column, TextFilter
 from shuup.admin.utils.views import PicotableListView
-from shuup.core.models import Product, StockBehavior, Supplier
+from shuup.core.models import Product, Supplier
 from shuup.simple_supplier.forms import AlertLimitForm, StockAdjustmentForm
 from shuup.simple_supplier.models import StockCount
 from shuup.simple_supplier.utils import (
@@ -64,7 +64,7 @@ class StocksListView(PicotableListView):
     def get_queryset(self):
         return StockCount.objects.filter(
             supplier__module_identifier="simple_supplier",
-            product__stock_behavior=StockBehavior.STOCKED,
+            supplier__stock_managed=True,
             product__deleted=False
         ).order_by("product__id")
 

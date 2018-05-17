@@ -9,7 +9,7 @@ from django.core.exceptions import ValidationError
 from django.utils.encoding import force_text
 from django.utils.translation import ugettext_lazy as _
 
-from shuup.core.models import StockBehavior
+from shuup.core.models import ShippingMode
 from shuup.core.stocks import ProductStockStatus
 from shuup.utils.excs import Problem
 
@@ -61,13 +61,16 @@ class BaseSupplierModule(object):
         :type user: django.contrib.auth.models.AbstractUser
         :rtype: iterable[ValidationError]
         """
+        if not self.supplier.stock_managed:
+            return
+        if shop_product.product.shipping_mode != ShippingMode.SHIPPED:
+            return
         stock_status = self.get_stock_status(shop_product.product_id)
         backorder_maximum = shop_product.backorder_maximum
         if stock_status.error:
             yield ValidationError(stock_status.error, code="stock_error")
-        if shop_product.product.stock_behavior == StockBehavior.STOCKED:
-            if backorder_maximum is not None and quantity > stock_status.logical_count + backorder_maximum:
-                yield ValidationError(stock_status.message or _(u"Insufficient stock"), code="stock_insufficient")
+        if backorder_maximum is not None and quantity > stock_status.logical_count + backorder_maximum:
+            yield ValidationError(stock_status.message or _(u"Insufficient stock"), code="stock_insufficient")
 
     def adjust_stock(self, product_id, delta, created_by=None, type=StockAdjustmentType.INVENTORY):
         raise NotImplementedError("Not implemented in BaseSupplierModule")
@@ -85,7 +88,7 @@ class BaseSupplierModule(object):
         for product, quantity in product_quantities.items():
             if quantity > 0:
                 stock_status = self.get_stock_status(product.pk)
-                if (product.stock_behavior == StockBehavior.STOCKED) and (stock_status.physical_count < quantity):
+                if self.supplier.stock_managed and (stock_status.physical_count < quantity):
                     insufficient_stocks[product] = stock_status.physical_count
                 sp = shipment.products.create(product=product, quantity=quantity)
                 sp.cache_values()

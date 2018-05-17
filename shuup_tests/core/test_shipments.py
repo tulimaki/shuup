@@ -11,8 +11,7 @@ import pytest
 from django.conf import settings
 
 from shuup.core.models import (
-    Shipment, ShipmentProduct, ShippingMode, ShippingStatus,
-    StockBehavior
+    Shipment, ShipmentProduct, ShippingMode, ShippingStatus
 )
 from shuup.testing.factories import (
     add_product_to_order, create_empty_order, create_product,
@@ -201,11 +200,11 @@ def test_order_with_only_unshippable_products():
     assert order.can_set_complete()
 
 
-def _get_order(shop, supplier, stocked=False):
+def _get_order(shop, supplier):
     order = create_empty_order(shop=shop)
     order.full_clean()
     order.save()
-    for product_data in _get_product_data(stocked):
+    for product_data in _get_product_data():
         quantity = product_data.pop("quantity")
         product = create_product(
             sku=product_data.pop("sku"),
@@ -220,13 +219,12 @@ def _get_order(shop, supplier, stocked=False):
     return order
 
 
-def _get_product_data(stocked=False):
+def _get_product_data():
     return [
         {
             "sku": "sku1234",
             "net_weight": decimal.Decimal("1"),
             "gross_weight": decimal.Decimal("43.34257"),
-            "quantity": decimal.Decimal("15"),
-            "stock_behavior": StockBehavior.STOCKED if stocked else StockBehavior.UNSTOCKED
+            "quantity": decimal.Decimal("15")
         }
     ]

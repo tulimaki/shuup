@@ -16,8 +16,7 @@ from rest_framework.test import APIClient
 from shuup.core import cache
 from shuup.core.models import (
     ProductMode, ProductVariationLinkStatus, ProductVariationResult,
-    ProductVariationVariable, ProductVariationVariableValue, Shop, ShopProduct,
-    StockBehavior, Supplier
+    ProductVariationVariable, ProductVariationVariableValue, Shop
 )
 from shuup.core.models._product_variation import get_all_available_combinations
 from shuup.testing.factories import create_product, get_default_shop

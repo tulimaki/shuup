@@ -8,7 +8,7 @@
 import pytest
 
 from shuup.core.models import (
-    ProductCrossSell, ProductCrossSellType, StockBehavior
+    ProductCrossSell, ProductCrossSellType
 )
 from shuup.front.template_helpers import product as product_helpers
 from shuup.testing.factories import (
@@ -22,8 +22,7 @@ def _create_cross_sell_products(product, shop, supplier, type, product_count):
         related_product = create_product(
             "{}-test-sku-{}".format(type, count),
             shop=shop,
-            supplier=supplier,
-            stock_behavior=StockBehavior.UNSTOCKED
+            supplier=supplier
         )
         ProductCrossSell.objects.create(product1=product, product2=related_product, type=type)
 
@@ -36,7 +35,7 @@ def test_cross_sell_plugin_type():
     """
     shop = get_default_shop()
     supplier = get_default_supplier()
-    product = create_product("test-sku", shop=shop, supplier=supplier, stock_behavior=StockBehavior.UNSTOCKED)
+    product = create_product("test-sku", shop=shop, supplier=supplier)
     context = get_jinja_context(product=product)
     type_counts = ((ProductCrossSellType.RELATED, 1),
                    (ProductCrossSellType.RECOMMENDED, 2),
@@ -56,7 +55,7 @@ def test_cross_sell_plugin_type():
 def test_cross_sell_plugin_count():
     shop = get_default_shop()
     supplier = get_default_supplier()
-    product = create_product("test-sku", shop=shop, supplier=supplier, stock_behavior=StockBehavior.UNSTOCKED)
+    product = create_product("test-sku", shop=shop, supplier=supplier)
     context = get_jinja_context(product=product)
     total_count = 5
     trim_count = 3

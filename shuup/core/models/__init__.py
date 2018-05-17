@@ -46,7 +46,7 @@ from ._product_variation import (
 )
 from ._products import (
     Product, ProductAttribute, ProductCrossSell, ProductCrossSellType,
-    ProductMode, ProductType, ShippingMode, StockBehavior
+    ProductMode, ProductType, ShippingMode
 )
 from ._service_base import (
     Service, ServiceBehaviorComponent, ServiceChoice, ServiceCost,
@@ -163,7 +163,6 @@ __all__ = [
     "ShopProductVisibility",
     "ShopStatus",
     "StaffOnlyBehaviorComponent",
-    "StockBehavior",
     "SuppliedProduct",
     "Supplier",
     "SupplierType",

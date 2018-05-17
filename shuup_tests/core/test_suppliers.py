@@ -7,7 +7,6 @@
 # LICENSE file in the root directory of this source tree.
 import pytest
 
-from shuup.core.models import StockBehavior
 from shuup.testing.factories import (
     create_random_person, get_default_shop, get_default_shop_product,
     get_default_supplier
@@ -32,9 +31,6 @@ def test_get_suppliable_products():
     # Check for default orderable shop product with unstocked behavior
     assert len(list(supplier.get_suppliable_products(shop, customer=customer))) == 1
 
-    product = shop_product.product
-    product.stock_behavior = StockBehavior.STOCKED
-    product.save()
     # Make sure supplier now omits unorderable product
     assert not list(supplier.get_suppliable_products(shop, customer=customer))
     assert len(list(supplier.get_orderability_errors(shop_product, quantity=1, customer=customer))) == 1

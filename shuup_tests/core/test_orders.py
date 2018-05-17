@@ -20,11 +20,11 @@ from shuup.core.excs import (
 )
 from shuup.core.models import (
     AnonymousContact, Order, OrderLine, OrderLineTax, OrderLineType,
-    OrderStatus, PaymentStatus, ShippingStatus, StockBehavior
+    OrderStatus, PaymentStatus, ShippingStatus
 )
 from shuup.core.pricing import get_pricing_module, TaxfulPrice, TaxlessPrice
 from shuup.testing.factories import (
-    _get_pricing_context, add_product_to_order, create_empty_order,
+    add_product_to_order, create_empty_order,
     create_order_with_product, create_product, get_address,
     get_default_product, get_default_shop, get_default_supplier,
     get_default_tax, get_initial_order_status
@@ -381,8 +381,7 @@ def test_refund_entire_order():
     product = create_product(
         "test-sku",
         shop=get_default_shop(),
-        default_price=10,
-        stock_behavior=StockBehavior.STOCKED
+        default_price=10
     )
     supplier.adjust_stock(product.id, 5)
     check_stock_counts(supplier, product, 5, 5)
@@ -414,8 +413,7 @@ def test_refund_entire_order_with_product_restock():
     product = create_product(
         "test-sku",
         shop=get_default_shop(),
-        default_price=10,
-        stock_behavior=StockBehavior.STOCKED
+        default_price=10
     )
     supplier.adjust_stock(product.id, 5)
     check_stock_counts(supplier, product, 5, 5)
@@ -440,8 +438,7 @@ def test_refund_with_shipment(restock):
     product = create_product(
         "test-sku",
         shop=get_default_shop(),
-        default_price=10,
-        stock_behavior=StockBehavior.STOCKED
+        default_price=10
     )
     # Start out with a supplier with quantity of 10 of a product
     supplier.adjust_stock(product.id, 10)
@@ -495,8 +492,7 @@ def test_refund_without_shipment(restock):
     product = create_product(
         "test-sku",
         shop=get_default_shop(),
-        default_price=10,
-        stock_behavior=StockBehavior.STOCKED
+        default_price=10
     )
     # Start out with a supplier with quantity of 10 of a product
     supplier.adjust_stock(product.id, 10)
@@ -554,8 +550,7 @@ def test_refunds_for_discounted_order_lines():
     product = create_product(
         "test-sku",
         shop=get_default_shop(),
-        default_price=10,
-        stock_behavior=StockBehavior.STOCKED
+        default_price=10
     )
 
     order = create_order_with_product(product, supplier, 2, 200, shop=shop)
@@ -637,8 +632,7 @@ def test_partial_refund_limits(restock):
     product = create_product(
         "test-sku",
         shop=get_default_shop(),
-        default_price=10,
-        stock_behavior=StockBehavior.STOCKED
+        default_price=10
     )
     # Start out with a supplier with quantity of 10 of a product
     supplier.adjust_stock(product.id, 10)
@@ -679,8 +673,7 @@ def test_can_create_shipment():
     product = create_product(
         "test-sku",
         shop=get_default_shop(),
-        default_price=10,
-        stock_behavior=StockBehavior.STOCKED
+        default_price=10
     )
     supplier.adjust_stock(product.id, 10)
 
@@ -706,8 +699,7 @@ def test_can_create_payment():
     product = create_product(
         "test-sku",
         shop=get_default_shop(),
-        default_price=10,
-        stock_behavior=StockBehavior.STOCKED
+        default_price=10
     )
 
     order = create_order_with_product(product, supplier, 1, 200, shop=shop)
@@ -754,8 +746,7 @@ def test_can_create_refund():
     product = create_product(
         "test-sku",
         shop=get_default_shop(),
-        default_price=10,
-        stock_behavior=StockBehavior.STOCKED
+        default_price=10
     )
 
     order = create_order_with_product(product, supplier, 2, 200, shop=shop)
@@ -785,8 +776,7 @@ def test_product_summary():
     product = create_product(
         "test-sku",
         shop=get_default_shop(),
-        default_price=10,
-        stock_behavior=StockBehavior.STOCKED
+        default_price=10
     )
     supplier.adjust_stock(product.id, 5)
 

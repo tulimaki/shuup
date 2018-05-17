@@ -7,7 +7,7 @@
 # LICENSE file in the root directory of this source tree.
 from django.conf import settings
 
-from shuup.core.models import Product, StockBehavior
+from shuup.core.models import Product, ShippingMode
 from shuup.core.stocks import ProductStockStatus
 from shuup.core.suppliers import BaseSupplierModule
 from shuup.core.suppliers.enums import StockAdjustmentType
@@ -70,7 +70,7 @@ class SimpleSupplierModule(BaseSupplierModule):
         if "shuup.notify" in settings.INSTALLED_APPS:
             if sv.alert_limit and sv.physical_count < sv.alert_limit:
                 product = Product.objects.filter(id=product_id).first()
-                if product and product.stock_behavior == StockBehavior.STOCKED:
+                if product and product.shipping_mode == ShippingMode.SHIPPED:
                     from .notify_events import AlertLimitReached
                     for shop in self.supplier.shops.all():
                         AlertLimitReached(supplier=self.supplier, product=product).run(shop=shop)

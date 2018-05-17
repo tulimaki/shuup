@@ -37,7 +37,7 @@ from shuup.core.models import (
     Manufacturer, MutableAddress, Order, OrderLine, OrderLineTax,
     OrderLineType, OrderStatus, PaymentMethod, PersonContact, Product,
     ProductMedia, ProductMediaKind, ProductType, SalesUnit, ShippingMethod,
-    Shop, ShopProduct, ShopProductVisibility, ShopStatus, StockBehavior,
+    Shop, ShopProduct, ShopProductVisibility, ShopStatus,
     Supplier, SupplierType, Tax, TaxClass, WaivingCostBehaviorComponent
 )
 from shuup.core.order_creator import OrderCreator, OrderSource
@@ -561,8 +561,7 @@ def create_product(sku, shop=None, supplier=None, default_price=None, **attrs):
         depth=100,
         net_weight=100,
         gross_weight=100,
-        sales_unit=get_sales_unit(),
-        stock_behavior=StockBehavior.UNSTOCKED
+        sales_unit=get_sales_unit()
     )
     product_attrs.update(attrs)
     product = Product(**product_attrs)

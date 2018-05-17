@@ -29,7 +29,7 @@ from shuup.utils.importing import cached_load
 from shuup.utils.properties import MoneyPropped, PriceProperty
 
 from ._product_media import ProductMediaKind
-from ._products import ProductMode, ProductVisibility, StockBehavior
+from ._products import ProductMode, ProductVisibility, ShippingMode
 from ._units import DisplayUnit, PiecesSalesUnit, UnitInterface
 
 mark_safe_lazy = lazy(mark_safe, six.text_type)
@@ -210,6 +210,12 @@ class ShopProduct(MoneyPropped, TranslatableModel):
                     "Invalid display unit: Internal unit of "
                     "the selected display unit does not match "
                     "with the sales unit of the product")})
+
+            if self.product.shipping_mode == ShippingMode.SHIPPED and not self.suppliers.count():
+                 raise ValidationError({
+                     "suppliers": _("At least one supplier is required to make product shipped.")
+                 })
+
         post_clean.send(type(self), instance=self)
 
     def is_list_visible(self):
@@ -379,7 +385,7 @@ class ShopProduct(MoneyPropped, TranslatableModel):
                         code = getattr(error, "code", None)
                         yield ValidationError("%s: %s" % (child_product, message), code=code)
 
-        if supplier and self.product.stock_behavior == StockBehavior.STOCKED:
+        if supplier and supplier.stock_managed:
             for error in supplier.get_orderability_errors(self, quantity, customer=customer):
                 yield error
 

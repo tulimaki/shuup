@@ -52,7 +52,7 @@ from shuup.utils.properties import (
 
 from ._order_lines import OrderLine, OrderLineType
 from ._order_utils import get_order_identifier, get_reference_number
-from ._products import Product, StockBehavior
+from ._products import Product
 from ._suppliers import Supplier
 
 
@@ -803,23 +803,25 @@ class Order(MoneyPropped, models.Model):
                 if product and quantity > parent_line.max_refundable_quantity:
                     raise RefundExceedsQuantityException
 
-                if (restock_products and quantity and product and (product.stock_behavior == StockBehavior.STOCKED)):
+                supplier = parent_line.supplier
+                if (restock_products and quantity and supplier and supplier.stock_managed):
                     from shuup.core.suppliers.enums import StockAdjustmentType
-                    # restock from the unshipped quantity first
-                    unshipped_quantity_to_restock = min(quantity, product_summary[product.pk]["unshipped"])
+                    # Restock from the not shipped quantity first
+                    not_shipped_quantity_to_restock = min(quantity, product_summary[product.pk]["unshipped"])
                     shipped_quantity_to_restock = min(
-                        quantity - unshipped_quantity_to_restock,
+                        quantity - not_shipped_quantity_to_restock,
                         product_summary[product.pk]["ordered"] - product_summary[product.pk]["refunded"])
 
-                    if unshipped_quantity_to_restock > 0:
-                        product_summary[product.pk]["unshipped"] -= unshipped_quantity_to_restock
-                        parent_line.supplier.adjust_stock(
+                    if not_shipped_quantity_to_restock > 0:
+                        product_summary[product.pk]["unshipped"] -= not_shipped_quantity_to_restock
+                        supplier.adjust_stock(
                             product.id,
-                            unshipped_quantity_to_restock,
+                            not_shipped_quantity_to_restock,
                             created_by=created_by,
                             type=StockAdjustmentType.RESTOCK_LOGICAL)
+
                     if shipped_quantity_to_restock > 0:
-                        parent_line.supplier.adjust_stock(
+                        supplier.adjust_stock(
                             product.id,
                             shipped_quantity_to_restock,
                             created_by=created_by,

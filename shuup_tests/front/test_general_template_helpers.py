@@ -8,7 +8,7 @@
 import pytest
 
 from shuup.core import cache
-from shuup.core.models import Product, ShopProductVisibility, StockBehavior
+from shuup.core.models import Product, ShopProductVisibility
 from shuup.front.template_helpers import general
 from shuup.testing.factories import (
     create_order_with_product, create_product, get_default_product,
@@ -38,8 +38,7 @@ def test_get_listed_products_orderable_only():
     product = create_product(
         "test-sku",
         supplier=simple_supplier,
-        shop=shop,
-        stock_behavior=StockBehavior.STOCKED
+        shop=shop
     )
     assert len(general.get_listed_products(context, n_products, orderable_only=True)) == 0
     assert len(general.get_listed_products(context, n_products, orderable_only=False)) == 1
