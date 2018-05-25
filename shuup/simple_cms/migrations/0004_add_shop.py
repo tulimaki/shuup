@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('shuup', '0043_order_customer_fields'),
-        ('shuup_simple_cms', '0001_squashed_0003_alter_names'),
+        ('shuup_simple_cms', '0003_alter_names'),
     ]
 
     operations = [

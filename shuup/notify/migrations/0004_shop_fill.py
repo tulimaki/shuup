@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.db import migrations
+from django.db import migrations, models
+
+import django.db.models.deletion
 
 
 def fill_shop_scripts(apps, schema_editor):
@@ -17,9 +19,21 @@ def fill_shop_scripts(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('shuup_notify', '0002_shop_scripts')
+        ('shuup_notify', '0003_alter_names')
     ]
 
     operations = [
+        migrations.AddField(
+            model_name='notification',
+            name='shop',
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='shuup.Shop',
+                                    verbose_name='shop'),
+        ),
+        migrations.AddField(
+            model_name='script',
+            name='shop',
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='shuup.Shop',
+                                    verbose_name='shop'),
+        ),
         migrations.RunPython(fill_shop_scripts, migrations.RunPython.noop)
     ]

@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
     ]
 
     dependencies = [
-        ('shuup', '0001_squashed_0039_alter_names'),
+        ('shuup', '0039_alter_names'),
     ]
 
     operations = [
