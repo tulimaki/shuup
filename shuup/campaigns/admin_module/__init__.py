@@ -37,12 +37,7 @@ class CampaignAdminModule(AdminModule):
             permissions=get_default_model_permissions(Coupon)
         )
 
-        return basket_campaign_urls + coupon_urls + get_edit_and_list_urls(
-            url_prefix="^campaigns/catalog",
-            view_template="shuup.campaigns.admin_module.views.CatalogCampaign%sView",
-            name_template="catalog_campaign.%s",
-            permissions=get_default_model_permissions(CatalogCampaign)
-        )
+        return basket_campaign_urls + coupon_urls
 
     def get_menu_category_icons(self):
         return {self.name: "fa fa-bullhorn"}
@@ -50,11 +45,6 @@ class CampaignAdminModule(AdminModule):
     def get_menu_entries(self, request):
         category = CAMPAIGNS_MENU_CATEGORY
         return [
-            MenuEntry(
-                text=_("Catalog Campaigns"), icon="fa fa-file-text",
-                url="shuup_admin:catalog_campaign.list",
-                category=category, ordering=1, aliases=[_("Show Catalog Campaigns")]
-            ),
             MenuEntry(
                 text=_("Basket Campaigns"), icon="fa fa-file-text",
                 url="shuup_admin:basket_campaign.list",
@@ -74,9 +64,6 @@ class CampaignAdminModule(AdminModule):
                 actions=[{
                     "text": _("New basket campaign"),
                     "url": self.get_model_url(BasketCampaign, "new")
-                }, {
-                    "text": _("New catalog campaign"),
-                    "url": self.get_model_url(CatalogCampaign, "new")
                 }, {
                     "text": _("New coupon"),
                     "url": self.get_model_url(Coupon, "new")

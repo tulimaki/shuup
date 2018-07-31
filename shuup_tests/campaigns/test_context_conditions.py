@@ -6,6 +6,8 @@
 # LICENSE file in the root directory of this source tree.
 import pytest
 
+from django.test import override_settings
+
 from shuup.campaigns.models.campaigns import CatalogCampaign
 from shuup.campaigns.models.context_conditions import (
     ContactCondition, ContactGroupCondition
@@ -43,6 +45,7 @@ def assert_product_price_value_with_customer(request, customer, product, price_v
     assert (product.get_price_info(request, quantity=1).price == price(price_value))
 
 
+@override_settings(SHUUP_DISCOUNT_MODULES = ["customer_group_discount", "catalog_campaigns"])
 @pytest.mark.django_db
 def test_context_contact_group_condition(rf):
     original_price_value, discount_value = 123, 15
@@ -63,6 +66,7 @@ def test_context_contact_group_condition(rf):
     assert_product_price_value_with_customer(request, customer, product, original_price_value)
 
 
+@override_settings(SHUUP_DISCOUNT_MODULES = ["customer_group_discount", "catalog_campaigns"])
 @pytest.mark.django_db
 def test_group_condition_with_anonymous_contact(rf):
     original_price_value, discount_value = 6, 4
@@ -76,6 +80,7 @@ def test_group_condition_with_anonymous_contact(rf):
     assert_product_price_value_with_customer(request, request.customer, product, discounted_value)
 
 
+@override_settings(SHUUP_DISCOUNT_MODULES = ["customer_group_discount", "catalog_campaigns"])
 @pytest.mark.django_db
 def test_context_contact_condition(rf):
     original_price_value, discount_value = 2, 1

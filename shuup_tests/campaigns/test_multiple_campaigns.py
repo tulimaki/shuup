@@ -8,6 +8,9 @@
 from decimal import Decimal
 
 import pytest
+
+from django.test import override_settings
+
 from shuup.campaigns.models import (
     BasketCampaign, BasketLineEffect, CatalogCampaign
 )
@@ -28,6 +31,7 @@ from shuup_tests.campaigns import initialize_test
 from shuup_tests.utils import printable_gibberish
 
 
+@override_settings(SHUUP_DISCOUNT_MODULES = ["customer_group_discount", "catalog_campaigns"])
 @pytest.mark.django_db
 def test_multiple_campaigns_cheapest_price(rf):
     request, shop, group = initialize_test(rf, False)

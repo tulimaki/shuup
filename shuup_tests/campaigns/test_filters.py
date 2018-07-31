@@ -6,6 +6,8 @@
 # LICENSE file in the root directory of this source tree.
 import pytest
 from decimal import Decimal
+
+from django.test import override_settings
 from django.utils.encoding import force_text
 
 from shuup.campaigns.models import CatalogCampaign
@@ -95,6 +97,7 @@ def test_product_type_filter(rf):
     assert product_type_filter.name.lower() in force_text(product_type_filter.description)
 
 
+@override_settings(SHUUP_DISCOUNT_MODULES = ["customer_group_discount", "catalog_campaigns"])
 @pytest.mark.django_db
 def test_productfilter_works(rf):
     request, shop, group = initialize_test(rf, False)
