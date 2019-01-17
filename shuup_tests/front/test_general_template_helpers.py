@@ -114,6 +114,48 @@ def test_get_listed_products_filter():
 
 
 @pytest.mark.django_db
+def test_get_listed_products_cache_bump():
+    supplier = get_default_supplier()
+    shop = get_default_shop()
+    product_1 = create_product("test-sku-1", supplier=supplier, shop=shop,)
+
+    from shuup.front.template_helpers import general
+    filter_dict = {"id": product_1.pk}
+
+    cache.clear()
+    context = get_jinja_context()
+
+    set_cached_value_mock = mock.Mock(wraps=context_cache.set_cached_value)
+    def set_cache_value(key, value, timeout=None):
+        if "listed_products" in key:
+            return set_cached_value_mock(key, value, timeout)
+
+    with mock.patch.object(context_cache, "set_cached_value", new=set_cache_value):
+        assert set_cached_value_mock.call_count == 0
+
+        assert general.get_listed_products(context, n_products=2, filter_dict=filter_dict, orderable_only=False)
+        assert set_cached_value_mock.call_count == 1
+
+        # call again, the cache should be returned instead and the set_cached_value shouldn't be called again
+        assert general.get_listed_products(context, n_products=2, filter_dict=filter_dict, orderable_only=False)
+        assert set_cached_value_mock.call_count == 1
+
+        # bump cache
+        product_1.save()
+        assert general.get_listed_products(context, n_products=2, filter_dict=filter_dict, orderable_only=False)
+        assert set_cached_value_mock.call_count == 2
+
+        # use other filters
+        from django.db.models import Q
+        assert general.get_listed_products(context, n_products=2, extra_filters=Q(translations__name__isnull=False))
+        assert set_cached_value_mock.call_count == 3
+
+        # make sure cache is used
+        assert general.get_listed_products(context, n_products=2, extra_filters=Q(translations__name__isnull=False))
+        assert set_cached_value_mock.call_count == 3
+
+
+@pytest.mark.django_db
 def test_get_best_selling_products():
     from shuup.front.template_helpers import general
     context = get_jinja_context()
