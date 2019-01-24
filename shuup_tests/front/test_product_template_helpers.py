@@ -11,6 +11,7 @@ import mock
 
 from shuup.core import cache
 from shuup.core.models import (
+    Attribute, AttributeType, AttributeVisibility, ProductAttribute,
     ProductCrossSell, ProductCrossSellType, StockBehavior
 )
 from shuup.core.utils import context_cache
@@ -55,6 +56,23 @@ def test_cross_sell_plugin_type():
     for type, count in type_counts:
         cache.clear()
         assert len(list(product_helpers.get_product_cross_sells(context, product, type, count))) == count
+
+
+@pytest.mark.django_db
+def test_bought_with_template_helper():
+    shop = get_default_shop()
+    supplier = get_default_supplier()
+    product = create_product("test-sku", shop=shop, supplier=supplier, stock_behavior=StockBehavior.UNSTOCKED)
+    context = get_jinja_context(product=product)
+
+    type = ProductCrossSellType.COMPUTED
+    count = 10
+    _create_cross_sell_products(product, shop, supplier, type, count)
+    assert ProductCrossSell.objects.filter(product1=product, type=type).count() == count
+
+    # Make sure quantities returned by plugin match
+    cache.clear()
+    assert len(list(product_helpers.get_products_bought_with(context, product, count))) == count
 
 
 @pytest.mark.django_db
@@ -104,3 +122,36 @@ def test_cross_sell_plugin_cache_bump():
         ProductCrossSell.objects.filter(product1=product, type=type).first().save()
         assert product_helpers.get_product_cross_sells(context, product, type, trim_count)
         assert set_cached_value_mock.call_count == 2
+
+
+@pytest.mark.django_db
+def test_visible_attributes():
+    shop = get_default_shop()
+    supplier = get_default_supplier()
+    product = create_product("test-sku", shop=shop, supplier=supplier, stock_behavior=StockBehavior.UNSTOCKED)
+
+    _add_attribute_for_product(
+        product, "attr1", AttributeType.BOOLEAN, AttributeVisibility.SHOW_ON_PRODUCT_PAGE, "attr1")
+    _add_attribute_for_product(
+        product, "attr2", AttributeType.BOOLEAN, AttributeVisibility.HIDDEN, "attr2")
+
+    assert len(product_helpers.get_visible_attributes(product)) == 1
+
+    _add_attribute_for_product(
+        product, "attr3", AttributeType.BOOLEAN, AttributeVisibility.SHOW_ON_PRODUCT_PAGE, "attr3")
+
+    assert len(product_helpers.get_visible_attributes(product)) == 2
+
+    new_product = create_product("test-sku-2", shop=shop, supplier=supplier, stock_behavior=StockBehavior.UNSTOCKED)
+    ProductAttribute.objects.create(product=new_product, attribute=Attribute.objects.filter(identifier="attr1").first())
+
+    assert len(product_helpers.get_visible_attributes(product)) == 2
+    assert len(product_helpers.get_visible_attributes(new_product)) == 1
+
+
+def _add_attribute_for_product(product, attr_identifier, attr_type, attr_visibility, attr_name):
+    attribute = Attribute.objects.create(
+        identifier=attr_identifier, type=attr_type,
+        visibility_mode=attr_visibility, name=attr_name)
+    product.type.attributes.add(attribute)
+    ProductAttribute.objects.create(product=product, attribute=attribute)
