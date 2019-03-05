@@ -21,7 +21,7 @@ from polymorphic.models import PolymorphicModel
 from shuup.utils import text
 
 
-class ShuupModel(models.Model):
+class sHuupModel(models.Model):
     """
     Shuup Model.
     """
