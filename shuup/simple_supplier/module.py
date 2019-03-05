@@ -26,18 +26,19 @@ class SimpleSupplierModule(BaseSupplierModule):
         stock_counts = (
             StockCount.objects
             .filter(supplier=self.supplier, product_id__in=product_ids)
-            .values_list("product_id", "physical_count", "logical_count")
+            .values_list("product_id", "physical_count", "logical_count", "stock_managed")
         )
         values = dict(
-            (product_id, (physical_count, logical_count))
-            for (product_id, physical_count, logical_count)
+            (product_id, (physical_count, logical_count, stock_managed))
+            for (product_id, physical_count, logical_count, stock_managed)
             in stock_counts
         )
-        null = (0, 0)
+        null = (0, 0, self.supplier.stock_managed)
         stati = [ProductStockStatus(
             product_id=product_id,
             physical_count=values.get(product_id, null)[0],
-            logical_count=values.get(product_id, null)[1]
+            logical_count=values.get(product_id, null)[1],
+            stock_managed=values.get(product_id, null)[2]
         ) for product_id in product_ids]
         return dict((pss.product_id, pss) for pss in stati)
 
