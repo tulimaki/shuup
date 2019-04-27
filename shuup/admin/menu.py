@@ -139,6 +139,10 @@ MAIN_MENU = [
                 "identifier": "other_settings",
                 "title": _("Other Settings")
             },
+            {
+                "identifier": "admin_menu",
+                "title": _("Admin menu")
+            },
         ]
     }
 ]
