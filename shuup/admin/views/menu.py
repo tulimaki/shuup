@@ -6,7 +6,7 @@
 # This source code is licensed under the OSL-3.0 license found in the
 # LICENSE file in the root directory of this source tree.
 from django.http import JsonResponse
-from django.views.generic import TemplateView, View
+from django.views.generic import TemplateView, View, UpdateView
 
 
 class MenuView(TemplateView):
@@ -17,3 +17,9 @@ class MenuToggleView(View):
     def post(self, request, *args, **kwargs):
         request.session["menu_open"] = not bool(request.session.get("menu_open", True))
         return JsonResponse({"success": True})
+
+
+class MenuArrangeView(UpdateView):
+    """
+    Set order for the left admin menu
+    """
