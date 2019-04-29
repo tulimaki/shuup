@@ -1,5 +1,67 @@
 {% extends "shuup/admin/base.jinja" %}
 
+{% block title %}
+    {% trans %}Customize admin menu{% endtrans %}
+{% endblock %}
+
 {% block content %}
-    {{ admin_menus }}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="list-group menu-items">
+                    {% for menu in admin_menus %}
+                        <div class="list-group-item list-group-item-action disabled" data-identifier="{{ menu.identifier }}">
+                            <div class="menu-actions">
+                                <div class="input-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="isVisible_{{ menu.identifier }}" {% if not menu.is_hidden %}checked{% endif %}>
+                                        <label class="custom-control-label" for="isVisible_{{ menu.identifier }}"></label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <i class="fa fa-arrows sortable-handler" title="{% trans %}Drag me{% endtrans %}"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <i class="{{ menu.icon }}"></i>
+                            {{ menu.name }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript">
+        function serializeMenus() {
+            const menuItems = $('.menu-items > .list-group-item');
+            return JSON.stringify(menuItems.map(function (index, item) {
+                const id = $(item).data('identifier');
+                return {
+                    'identifier': id,
+                    'name': $(item).text().trim(),
+                    'is_hidden': !$(item).find('#isVisible_' + id).is(':checked'),
+                }
+            }).get());
+        }
+
+        function postMenus(e) {
+            const menuItem = $(e.detail ? e.detail.item : e.target).parents('.list-group-item');
+            menuItem.addClass('loading');
+            $.post("{{ url("shuup_admin:admin_menu.arrange") }}", {
+                csrfmiddlewaretoken: "{{ csrf_token }}",
+                menus: serializeMenus(),
+            }, function(response) {
+                 menuItem.removeClass('loading');
+            });
+        }
+
+        window.html5sortable('.menu-items', {
+            forcePlaceholderSize: true,
+            handle: '.sortable-handler',
+        })[0].addEventListener('sortupdate', postMenus);
+
+        $('.custom-control-input').on('change', postMenus);
+    </script>
 {% endblock %}

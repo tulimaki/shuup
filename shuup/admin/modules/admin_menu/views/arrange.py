@@ -7,7 +7,13 @@
 # LICENSE file in the root directory of this source tree.
 from __future__ import unicode_literals
 
+import json
+
+from django.http import HttpResponse
 from django.views.generic import TemplateView
+
+from shuup import configuration
+from shuup.admin.menu import get_menu_entry_categories
 
 
 class AdminMenuArrangeView(TemplateView):
@@ -21,25 +27,18 @@ class AdminMenuArrangeView(TemplateView):
         Populate context with admin_menus
         """
         context = super(AdminMenuArrangeView, self).get_context_data(**kwargs)
-        # dummies
-        context["admin_menus"] = [
-            {
-                "identifier": "dummy_agent",
-                "icon": "fa fa-user-secret",
-                "title": "Dummy Agent",
-                "is_hidden": False,
-            },
-            {
-                "identifier": "dummy_user",
-                "icon": "fa fa-user",
-                "title": "Dummy Customer",
-                "is_hidden": False,
-            },
-            {
-                "identifier": "dummy_star",
-                "icon": "fa fa-star",
-                "title": "Dummy Star",
-                "is_hidden": False,
-            },
-        ]
+        context["admin_menus"] = [{
+            "identifier": menu_item.identifier,
+            "icon": menu_item.icon,
+            "name": menu_item.name,
+            "is_hidden": menu_item.is_hidden,
+        } for menu_item in get_menu_entry_categories(self.request)]
         return context
+
+    def post(self, request):
+        """
+        Save admin menu for current user to the database
+        """
+        menus = json.loads(request.POST.get('menus'))
+        configuration.set(None, 'admin_menu_user_{}'.format(request.user.pk), menus)
+        return HttpResponse(json.dumps({"success": True}), content_type="application/json")

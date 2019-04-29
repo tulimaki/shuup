@@ -1,0 +1,63 @@
+/*!
+ * This file is part of Shuup.
+ *
+ * Copyright (c) 2012-2019, Shoop Commerce Ltd. All rights reserved.
+ *
+ * This source code is licensed under the OSL-3.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
+.menu-items {
+
+    .list-group-item {
+        transition: border-color 1s ease-in-out;
+
+        &.loading {
+            border-color: $primary;
+        }
+
+        .menu-actions {
+            display: inline-block;
+            position: absolute;
+            right: 0;
+
+            .custom-control-input {
+                ~.custom-control-label {
+                    width: 10px;
+                    height: 10px;
+                }
+
+                &:checked {
+                    ~.custom-control-label {
+                        &:before {
+                            background-color: $primary;
+                        }
+                    }
+                }
+            }
+
+        }
+
+        .sortable-placeholder {
+            background-color: rgba($primary, 0.1);
+        }
+
+        .sortable-handler {
+            cursor: pointer;
+        }
+
+        .fa {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 2.4em;
+            height: 2.4em;
+            margin-right: 15px;
+            background-color: rgba($primary, 0.1);
+            color: $primary;
+            border-radius: 20px;
+        }
+    }
+
+}

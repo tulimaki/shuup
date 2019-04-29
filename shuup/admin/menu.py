@@ -10,6 +10,7 @@ from django.utils.datastructures import OrderedDict
 from django.utils.encoding import force_text
 from django.utils.translation import ugettext_lazy as _
 
+from shuup import configuration
 from shuup.admin.module_registry import get_modules
 from shuup.admin.utils.permissions import get_missing_permissions
 from shuup.admin.views.home import QUICKLINK_ORDER
@@ -158,6 +159,7 @@ class _MenuCategory(object):
         self.icon = icon
         self.children = []
         self.entries = []
+        self.is_hidden = False
 
     def __iter__(self):
         return iter(sorted(self.entries, key=lambda e: e.ordering))
@@ -237,7 +239,21 @@ def get_menu_entry_categories(request): # noqa (C901)
         if not cat.entries and not cat.children:
             continue
         categories.append(cat)
-    return [c for menu_identifier, c in six.iteritems(menu_categories) if c in categories]
+    clean_categories = [c for menu_identifier, c in six.iteritems(menu_categories) if c in categories]
+
+    customized_admin_menu = configuration.get(None, "admin_menu_user_{}".format(request.user.pk))
+    if customized_admin_menu:
+        customized_categories = []
+        # override default values from admin_menu configuration
+        for category_config in customized_admin_menu:
+            for index, origin in enumerate(clean_categories):
+                if origin.identifier == category_config["identifier"]:
+                    category = clean_categories.pop(index)
+                    category.is_hidden = category_config.get("is_hidden", False)
+                    customized_categories.append(category)
+        return customized_categories + clean_categories
+    else:
+        return clean_categories
 
 
 def get_quicklinks(request):
