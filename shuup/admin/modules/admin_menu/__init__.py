@@ -29,9 +29,9 @@ class AdminMenuModule(AdminModule):
                 name="admin_menu.arrange"
             ),
             admin_url(
-                r"^admin_menu/(?P<pk>\s_?\s+)/update/$",
-                "shuup.admin.modules.admin_menu.views.AdminMenuUpdateView",
-                name="admin_menu.update"
+                r"^admin_menu/reset/$",
+                "shuup.admin.modules.admin_menu.views.AdminMenuResetView",
+                name="admin_menu.reset"
             ),
         ]
 

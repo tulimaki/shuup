@@ -10,33 +10,62 @@
 
 .menu-items {
 
-    .list-group-item {
-        transition: border-color 1s ease-in-out;
+    .menu-items {
+        margin-top: 10px;
+        min-height: 20px;
+        background-color: #c8d3d9;
 
-        &.loading {
-            border-color: $primary;
+        &.disabled {
+            display: none;
         }
 
-        .menu-actions {
-            display: inline-block;
-            position: absolute;
-            right: 0;
+        .list-group-item {
+            &:first-child {
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+            }
+            &:last-child {
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+        }
+    }
 
-            .custom-control-input {
-                ~.custom-control-label {
-                    width: 10px;
-                    height: 10px;
-                }
+    .list-group-item {
+        display: flex;
+        flex-direction: column;
 
-                &:checked {
+        .menu-item {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+
+            .name {
+                margin-left: 15px;
+            }
+
+            .entries {
+                font-size: 80%;
+            }
+
+            .menu-actions {
+                margin-left: auto;
+
+                .custom-control-input {
                     ~.custom-control-label {
-                        &:before {
-                            background-color: $primary;
+                        width: 10px;
+                        height: 10px;
+                    }
+
+                    &:checked {
+                        ~.custom-control-label {
+                            &:before {
+                                background-color: $primary;
+                            }
                         }
                     }
                 }
             }
-
         }
 
         .sortable-placeholder {
@@ -53,7 +82,6 @@
             align-items: center;
             width: 2.4em;
             height: 2.4em;
-            margin-right: 15px;
             background-color: rgba($primary, 0.1);
             color: $primary;
             border-radius: 20px;

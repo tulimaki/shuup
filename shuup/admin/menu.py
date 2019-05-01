@@ -241,16 +241,41 @@ def get_menu_entry_categories(request): # noqa (C901)
         categories.append(cat)
     clean_categories = [c for menu_identifier, c in six.iteritems(menu_categories) if c in categories]
 
+    def pop_category(identifier):
+        for index, clean_category in enumerate(clean_categories):
+            if clean_category.identifier == identifier:
+                category = clean_categories.pop(index)
+                return category
+            else:
+                for sub_index, sub_category in enumerate(clean_category.children):
+                    if sub_category.identifier == identifier:
+                        category = clean_category.children.pop(sub_index)
+                        return category
+
     customized_admin_menu = configuration.get(None, "admin_menu_user_{}".format(request.user.pk))
     if customized_admin_menu:
         customized_categories = []
         # override default values from admin_menu configuration
-        for category_config in customized_admin_menu:
-            for index, origin in enumerate(clean_categories):
-                if origin.identifier == category_config["identifier"]:
-                    category = clean_categories.pop(index)
-                    category.is_hidden = category_config.get("is_hidden", False)
-                    customized_categories.append(category)
+        for admin_menu in customized_admin_menu:
+            category = pop_category(admin_menu["identifier"])
+            if category:
+                category.name = admin_menu.get("name", category.name)
+                category.is_hidden = admin_menu.get("is_hidden", False)
+
+                for sub_admin_menu in admin_menu.get("children", []):
+                    sub_category = pop_category(sub_admin_menu["identifier"])
+                    if not sub_category:
+                        for sub_index, clean_category in enumerate(category.children):
+                            if clean_category.identifier == sub_admin_menu["identifier"]:
+                                sub_category = category.children.pop(sub_index)
+
+                    if sub_category:
+                        sub_category.name = sub_admin_menu.get("name", sub_category.name)
+                        sub_category.is_hidden = sub_admin_menu.get("is_hidden", False)
+                        category.children.append(sub_category)
+
+                customized_categories.append(category)
+
         return customized_categories + clean_categories
     else:
         return clean_categories

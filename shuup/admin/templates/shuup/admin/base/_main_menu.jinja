@@ -53,9 +53,11 @@
                         </a>
                         <ul class="submenu">
                             {% for child in category.children %}
-                                {% for entry in child %}
-                                    <li><a class="item-submenu" href="{{ entry.url }}">{{ entry.text }}</a></li>
-                                {% endfor %}
+                                {% if not child.is_hidden %}
+                                    {% for entry in child %}
+                                        <li><a class="item-submenu" href="{{ entry.url }}">{{ entry.text }}</a></li>
+                                    {% endfor %}
+                                {% endif %}
                             {% endfor %}
                             {% if not only_entry %}
                                 {% for entry in category %}

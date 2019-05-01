@@ -10,7 +10,8 @@ from __future__ import unicode_literals
 import json
 
 from django.http import HttpResponse
-from django.views.generic import TemplateView
+from django.urls import reverse_lazy
+from django.views.generic import TemplateView, RedirectView
 
 from shuup import configuration
 from shuup.admin.menu import get_menu_entry_categories
@@ -32,6 +33,7 @@ class AdminMenuArrangeView(TemplateView):
             "icon": menu_item.icon,
             "name": menu_item.name,
             "is_hidden": menu_item.is_hidden,
+            "children": menu_item.children,
         } for menu_item in get_menu_entry_categories(self.request)]
         return context
 
@@ -42,3 +44,14 @@ class AdminMenuArrangeView(TemplateView):
         menus = json.loads(request.POST.get('menus'))
         configuration.set(None, 'admin_menu_user_{}'.format(request.user.pk), menus)
         return HttpResponse(json.dumps({"success": True}), content_type="application/json")
+
+
+class AdminMenuResetView(RedirectView):
+    """
+    Reset admin menu to default values
+    """
+    url = reverse_lazy('shuup_admin:admin_menu.arrange')
+
+    def get(self, request, *args, **kwargs):
+        configuration.set(None, 'admin_menu_user_{}'.format(request.user.pk), None)
+        return super(AdminMenuResetView, self).get(request, *args, **kwargs)

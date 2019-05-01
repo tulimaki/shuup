@@ -7,10 +7,9 @@
 # LICENSE file in the root directory of this source tree.
 from __future__ import unicode_literals
 
-from .arrange import AdminMenuArrangeView
-from .update import AdminMenuUpdateView
+from .arrange import AdminMenuArrangeView, AdminMenuResetView
 
 __all__ = [
     "AdminMenuArrangeView",
-    "AdminMenuUpdateView",
+    "AdminMenuResetView",
 ]
