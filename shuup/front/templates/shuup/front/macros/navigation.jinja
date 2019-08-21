@@ -2,6 +2,9 @@
 {% from "shuup/front/macros/general.jinja" import render_field with context %}
 
 {% macro render_navigation(show_quick_login=True) %}
+    {% if _render_navigation %}
+        {{ _render_navigation() }}
+    {% else %}
     <div class="top-nav">
         <div class="container">
             <ul class="pull-left">
@@ -22,6 +25,7 @@
             </div>
         </div>
     </div>
+    {% endif %}
 {% endmacro %}
 
 {% macro render_search() %}
@@ -243,6 +247,9 @@
 {% endmacro %}
 
 {% macro render_menu_items() %}
+    {% if _render_menu_items %}
+        {{ _render_menu_items() }}
+    {% else %}
     <div>
         <button class="toggle-mobile-nav">
             <span class="sr-only">{% trans %}Menu{% endtrans %}</span>
@@ -257,4 +264,5 @@
             </ul>
         </div>
     </div>
+    {% endif %}
 {% endmacro %}

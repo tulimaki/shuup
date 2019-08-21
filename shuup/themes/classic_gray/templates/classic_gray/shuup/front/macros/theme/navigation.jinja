@@ -1,4 +1,28 @@
-{% macro render_menu_items() %}
+{% macro _render_navigation(show_quick_login=True) %}
+    <div class="top-nav">
+        <div class="container">
+            <ul class="pull-left">
+                asdfasdfasdf
+                {{ render_search() }}
+                {{ render_info_dropdown(show_quick_login) }}
+                {{ render_language_changer() }}
+            </ul>
+            <ul class="pull-right" id="navigation-basket-partial">
+                {{ render_basket_partial(request.basket) }}
+            </ul>
+        </div>
+    </div>
+    <div class="bottom-nav">
+        <div class="container">
+            <div class="nav-content">
+                {{ render_logo() }}
+                {{ render_menu_items() }}
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro _render_menu_items() %}
     <div>
         <button class="toggle-mobile-nav">
             <span class="sr-only">{% trans %}Menu{% endtrans %}</span>
@@ -8,7 +32,7 @@
             <ul class="nav-collapse">
                 <li{% if request.path == "/" %} class="current"{% endif %}><a href="/">{% trans %}Home{% endtrans %}</a></li>
                 {% set products_url = url('shuup:all-categories') %}
-                <li{% if request.path == products_url %} class="current"{% endif %}><a href="{{ products_url }}">{% trans %}Products{% endtrans %}</a></li>
+                <li{% if request.path == products_url %} class="current"{% endif %}><a href="{{ products_url }}">{% trans %}Classic Products{% endtrans %}</a></li>
                 {% if shuup.simple_cms %}
                     {% for link in xtheme.get_cms_navigation_links(request) %}
                         <li{% if request.path == "%s/" % link.url %} class="current"{% endif %}><a href="{{ link.url }}">{{ link.text }}</a></li>

@@ -40,7 +40,7 @@ VERSION_FILE = os.path.join(TOPDIR, 'shuup', '_version.py')
 #      - Add ".post0.dev" suffix to VERSION variable here
 
 NAME = 'shuup'
-VERSION = '1.9.9b2.post0.dev'
+VERSION = '1.9.4.post0.dev'
 DESCRIPTION = 'E-Commerce Platform'
 AUTHOR = 'Shoop Commerce Ltd.'
 AUTHOR_EMAIL = 'shuup@shuup.com'
@@ -90,7 +90,7 @@ REQUIRES = [
     'django-enumfields>=0.9,<0.10',
     'django-filer>=1.0,<2',
     'django-filter>=1.0,<1.2',
-    'django-jinja>=1.4,<3',
+    'django-jinja>=2.4,<3',
     'django-mptt>=0.8.0,<0.10',  # Django-filer doesn't officially support 0.9.0
     'django-parler>=1.5,<2',
     'django-parler-rest>=1.3a1,<2',
@@ -103,7 +103,7 @@ REQUIRES = [
     'django_rest_swagger>=2.1.0,<2.2',
     'factory-boy==2.7.0',
     'fake-factory>=0.5.0,<0.5.4',
-    'Jinja2==2.8.1',
+    'Jinja2>=2.10.1,<3',
     'jsonfield>=1',
     'keyring>=10',
     'keyrings.alt>=2',
