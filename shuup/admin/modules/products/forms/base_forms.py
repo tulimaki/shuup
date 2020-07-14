@@ -348,7 +348,12 @@ class ProductAttributesForm(forms.Form):
             languages += tuple(lang for lang in extant_languages if lang not in languages)
         else:
             extant_languages = set()
+
+
+        from django.utils.translation import get_language
+        origianl_lang = get_language()
         for lang in languages:
+            attribute.set_current_language(lang)
             field_name = "%s__%s" % (attribute.identifier, lang)
             self.fields[field_name] = field = attribute.formfield()
             field.label = "%s [%s]" % (field.label, get_language_name(lang))
@@ -360,6 +365,7 @@ class ProductAttributesForm(forms.Form):
                     pa.get_translation(lang), "translated_string_value", None
                 )
             self._field_languages[attribute.identifier][lang] = field_name
+        attribute.set_current_language(origianl_lang)
 
     def save(self):
         if not self.has_changed():  # Nothing to do, don't bother iterating

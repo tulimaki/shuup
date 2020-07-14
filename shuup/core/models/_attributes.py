@@ -124,6 +124,10 @@ class Attribute(TranslatableModel):
             "product detail page. The product attributes for a product are determined by the product type and can "
             "be set on the product editor page."
         )),
+        choices=models.CharField(max_length=256, verbose_name=_("choices"), help_text=_(
+            "The attribute choices. "
+            "Add all choices for String typed attributes."
+        )),
     )
 
     objects = AttributeQuerySet.as_manager()
@@ -151,6 +155,11 @@ class Attribute(TranslatableModel):
         """
         kwargs.setdefault("required", False)
         kwargs.setdefault("label", self.safe_translation_getter("name", self.identifier))
+
+        choices = self.safe_translation_getter("choices", "")
+        if (AttributeType.TRANSLATED_STRING or AttributeType.UNTRANSLATED_STRING) and self.choices:
+            kwargs.setdefault("choices", [(c, c) for c in self.choices.split(";")])
+
         if self.type == AttributeType.INTEGER:
             return forms.IntegerField(**kwargs)
         elif self.type == AttributeType.DECIMAL:
@@ -166,12 +175,18 @@ class Attribute(TranslatableModel):
         elif self.type == AttributeType.DATE:
             return forms.DateField(**kwargs)
         elif self.type == AttributeType.UNTRANSLATED_STRING:
-            return forms.CharField(**kwargs)
+            if choices:
+                return forms.ChoiceField(**kwargs)
+            else:
+                return forms.CharField(**kwargs)
         elif self.type == AttributeType.TRANSLATED_STRING:
             # Note: this isn't enough for actually saving multi-language entries;
             #       the caller will have to deal with calling this function several
             #       times for that.
-            return forms.CharField(**kwargs)
+            if choices:
+                return forms.ChoiceField(**kwargs)
+            else:
+                return forms.CharField(**kwargs)
         else:
             raise ValueError("Error! `formfield` can't deal with the fields of type `%r`." % self.type)
 
