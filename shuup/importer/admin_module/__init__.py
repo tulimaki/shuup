@@ -38,6 +38,11 @@ class ImportAdminModule(AdminModule):
                 name="importer.import_process"
             ),
             admin_url(
+                "^importer/import/process/(?P<pk>\d+)/$",
+                "shuup.importer.admin_module.import_views.ImportProcessingView",
+                name="importer.processing"
+            ),
+            admin_url(
                 "^importer/example$",
                 "shuup.importer.admin_module.import_views.ExampleFileDownloadView",
                 name="importer.download_example"

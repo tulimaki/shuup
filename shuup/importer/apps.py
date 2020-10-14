@@ -13,7 +13,7 @@ import shuup.apps
 
 
 class AppConfig(shuup.apps.AppConfig):
-    name = __name__
+    name = "shuup.importer"
     verbose_name = _("Import")
     label = "importer"
 

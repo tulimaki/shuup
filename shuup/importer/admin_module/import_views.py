@@ -15,11 +15,12 @@ from django.db.transaction import atomic
 from django.http.response import Http404, HttpResponse, HttpResponseBadRequest
 from django.shortcuts import redirect
 from django.utils.translation import ugettext_lazy as _
-from django.views.generic import FormView, TemplateView, View
+from django.views.generic import DetailView, FormView, TemplateView, View
 
 from shuup.admin.shop_provider import get_shop
 from shuup.admin.supplier_provider import get_supplier
 from shuup.importer.admin_module.forms import ImportForm, ImportSettingsForm
+from shuup.importer.models import ImportResult, ImportStatus
 from shuup.importer.transforms import transform_file
 from shuup.importer.utils import (
     get_import_file_path, get_importer, get_importer_choices
@@ -28,6 +29,64 @@ from shuup.utils.django_compat import reverse
 from shuup.utils.excs import Problem
 
 logger = logging.getLogger(__name__)
+
+
+class ImportProcessingView(DetailView):
+    model = ImportResult
+    template_name = "shuup/importer/admin/import_processing.jinja"
+
+    def dispatch(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if self.object.status == ImportStatus.NOT_STARTED:
+            import os
+            import subprocess
+            import sys
+
+            def _get_python_path():
+                """
+                Try to figure out an explicit path to the Python executable script.
+
+                :return: Python path
+                :rtype: str
+                """
+                try:
+                    from virtualenv import path_locations
+                    (home_dir, lib_dir, inc_dir, bin_dir) = path_locations(sys.prefix)
+                    return os.path.join(bin_dir, "python")
+                except ImportError:
+                    pass
+                return "python"
+
+
+            def _is_shell_needed_for_subprocess_calls():
+                """
+                Check if current environment needs shell for running subprocess calls.
+
+                Essentially return True for Windows and False otherwise.  See
+                http://bugs.python.org/issue6689 for details.
+                """
+                return (os.name == 'nt')
+
+            cmd = [
+                _get_python_path(),
+                "-m",
+                "shuup_workbench",
+                "handle_import",
+                "--result",
+                "%s" % self.object.pk
+            ]
+            pipe = subprocess.Popen(
+                cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                shell=_is_shell_needed_for_subprocess_calls(),
+            )
+            stdout, _ = pipe.communicate()
+            print(stdout)
+            if pipe.returncode != 0:
+                raise subprocess.CalledProcessError(pipe.returncode, cmd)
+
+        return super(ImportProcessingView, self).dispatch(request, *args, **kwargs)
 
 
 class ImportProcessView(TemplateView):
@@ -75,11 +134,15 @@ class ImportProcessView(TemplateView):
 
         if self.request.method == "POST":
             # check if mapping was done
+            manual_matches = {}
             for field in self.importer.unmatched_fields:
                 key = "remap[%s]" % field
                 vals = self.request.POST.getlist(key)
                 if len(vals):
+                    manual_matches[key] = vals[0]
                     self.importer.manually_match(field, vals[0])
+
+            self.manual_matches = manual_matches
             self.importer.do_remap()
 
         self.settings_form = ImportSettingsForm(data=self.request.POST if self.request.POST else None)
@@ -91,16 +154,17 @@ class ImportProcessView(TemplateView):
         prepared = self.prepare()
         if not prepared:
             return redirect(reverse("shuup_admin:importer.import"))
-        try:
-            with atomic():
-                self.importer.do_import(self.settings_form.cleaned_data["import_mode"])
-        except Exception:
-            logger.exception("Error! Failed to import data.")
-            messages.error(request, _("Failed to import the file."))
-            return redirect(reverse("shuup_admin:importer.import"))
 
-        self.template_name = "shuup/importer/admin/import_process_complete.jinja"
-        return self.render_to_response(self.get_context_data(**kwargs))
+        result = ImportResult.objects.create(
+            supplier=self.supplier,
+            file_name=self.request.GET.get("n"),
+            importer=self.importer_cls,
+            language=self.lang,
+            import_mode=self.settings_form.cleaned_data["import_mode"],
+            manual_matches=self.manual_matches
+        )
+
+        return redirect(reverse("shuup_admin:importer.processing", kwargs={"pk": result.pk}))
 
     def get_context_data(self, **kwargs):
         context = super(ImportProcessView, self).get_context_data(**kwargs)
