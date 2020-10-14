@@ -71,7 +71,10 @@ class DataImporterRowSession(object):
                 # so make sure that master_id is set when master.id is.
                 if (not model.master_id) and model.master:
                     model.master_id = model.master.pk
-            model.save()
+                    model.save()
+            elif not mkey.startswith("m2m"):
+                model.save()  # No need t osave after many to many relation is set
+
         self.deferred_attach.clear()
         while self.deferred_calls:
             self.deferred_calls.pop(0)()
