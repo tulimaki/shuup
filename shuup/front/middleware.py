@@ -69,6 +69,9 @@ class ShuupFrontMiddleware(MiddlewareMixin):
     """
 
     def process_request(self, request):
+        if request.path.startswith("/media/") or request.path.startswith("/static/"):
+            return None
+
         self._set_shop(request)
         self._set_person(request)
         self._set_customer(request)
